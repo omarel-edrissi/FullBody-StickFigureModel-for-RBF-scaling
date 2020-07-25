@@ -20,15 +20,16 @@ AnyFolder HumanModel={
   };
   
   //Choose between scaling laws
-  //#include "..\..\Body\AAUHuman\Scaling\ScalingUniform.any"
-  //#include "..\..\..\Body\AAUHuman\Scaling\ScalingLengthMass.any" 
-  //#include "..\..\..\Body\AAUHuman\Scaling\ScalingLengthMassFat.any" 
+//  #include "..\..\Body\AAUHuman\Scaling\ScalingUniform.any"
+//  #include "..\..\Body\AAUHuman\Scaling\ScalingLengthMass.any" 
+//  #include "..\..\Body\AAUHuman\Scaling\ScalingLengthMassFat.any" 
   #include "ScalingRBF.any" 
   
  
   Scaling = {
     //This is the file which set the segments lenghts
-    #include "AnyMan.any" 
+    #include "AnyMan.any"
+//    #include "AnyWomanExtPercentile.any"
   };
   
   #include "Mannequin.any" 

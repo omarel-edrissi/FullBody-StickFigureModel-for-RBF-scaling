@@ -1,8 +1,10 @@
-AnyFolder Seg = {
+AnyFolder Seg = 
+{
   
   #if IncludeKnee + IncludeHip > 0
   
-  AnySeg Thigh = {
+  AnySeg Thigh = 
+  {
    AnyDrawRefFrame drw ={RGB={1,0,0}; ScaleXYZ = 0.12*{1,1,1};Visible = On;};
    #include "MorphNodesThigh.any"  
     
@@ -10,13 +12,13 @@ AnyFolder Seg = {
     Jii = {0.01, 0.005, 0.01};
     
     #ifdef RightLeg
-    r0 = ....StickFigure.Posture.Right.Thigh.InitialPos.r0;
-    Axes0 = ....StickFigure.Posture.Right.Thigh.InitialPos.Axes0;
+    r0 = .....StickFigure.Posture.Right.Leg.Thigh.InitialPos.r0;
+    Axes0 = .....StickFigure.Posture.Right.Leg.Thigh.InitialPos.Axes0;
     #endif
     
     #ifdef LeftLeg
-    r0 = ....StickFigure.Posture.Left.Thigh.InitialPos.r0;
-    Axes0 = ....StickFigure.Posture.Left.Thigh.InitialPos.Axes0;
+    r0 = .....StickFigure.Posture.Left.Leg.Thigh.InitialPos.r0;
+    Axes0 = .....StickFigure.Posture.Left.Leg.Thigh.InitialPos.Axes0;
     #endif
     
     AnyRefNode HipJoint = {  
@@ -77,12 +79,12 @@ AnyFolder Seg = {
 
     // Initial Segment position
     #ifdef RightLeg 
-    r0 = ....StickFigure.Posture.Right.Shank.InitialPos.r0;
-    Axes0 = ....StickFigure.Posture.Right.Shank.InitialPos.Axes0;
+    r0 = .....StickFigure.Posture.Right.Leg.Shank.InitialPos.r0;
+    Axes0 = .....StickFigure.Posture.Right.Leg.Shank.InitialPos.Axes0;
     #endif
     #ifdef LeftLeg
-    r0 = ....StickFigure.Posture.Left.Shank.InitialPos.r0;
-    Axes0 = ....StickFigure.Posture.Left.Shank.InitialPos.Axes0;
+    r0 = .....StickFigure.Posture.Left.Leg.Shank.InitialPos.r0;
+    Axes0 = .....StickFigure.Posture.Left.Leg.Shank.InitialPos.Axes0;
     #endif
     
     Mass = 7.5; 
@@ -95,12 +97,12 @@ AnyFolder Seg = {
       
       #ifdef RightLeg 
       sRel = {0, 0,  -0.06341919};
-      AnyFolder &StaticRef = .....StickFigure.Posture.Right.Shank.KneeJoint.RotAxisAngles;
+      AnyFolder &StaticRef = ......StickFigure.Posture.Right.Leg.Shank.KneeJoint.RotAxisAngles;
       AnyMat33 Rotation = RotMat(xRot ,x)*RotMat(yRot,y)*RotMat(StaticRef.zRot,z);
       #endif
       #ifdef LeftLeg
       sRel = {0, 0, -0.01040184};
-      AnyFolder &StaticRef = .....StickFigure.Posture.Left.Shank.KneeJoint.RotAxisAngles;
+      AnyFolder &StaticRef = ......StickFigure.Posture.Left.Leg.Shank.KneeJoint.RotAxisAngles;
       AnyMat33 Rotation = RotMat(xRot ,x)*RotMat(yRot,y)*RotMat(StaticRef.zRot,z);
       #endif
       
@@ -109,7 +111,7 @@ AnyFolder Seg = {
 
     
     AnyRefNode AnkleJoint = {
-//      AnyDrawRefFrame drw ={};
+      AnyDrawRefFrame drw ={};
       AnyMat33 InitialRotation = RotMat(sRel, sRel+{0,0,1}, .KneeJoint.sRel)
       * RotMat(90*pi/180,y);
       
@@ -151,48 +153,48 @@ AnyFolder Seg = {
   AnySeg Talus = {
     // Initial Segment position
     #ifdef RightLeg
-    r0 = ....StickFigure.Posture.Right.Talus.InitialPos.r0; 
-    Axes0 = ....StickFigure.Posture.Right.Talus.InitialPos.Axes0; 
+    r0 = .....StickFigure.Posture.Right.Leg.Talus.InitialPos.r0; 
+    Axes0 = .....StickFigure.Posture.Right.Leg.Talus.InitialPos.Axes0; 
     #endif
     
     #ifdef LeftLeg
-    r0 = ....StickFigure.Posture.Left.Talus.InitialPos.r0; 
-    Axes0 = ....StickFigure.Posture.Left.Talus.InitialPos.Axes0; 
+    r0 = .....StickFigure.Posture.Left.Leg.Talus.InitialPos.r0; 
+    Axes0 = .....StickFigure.Posture.Left.Leg.Talus.InitialPos.Axes0; 
     #endif   
     Mass = 0.0; 
     sCoM = {0,0, 0};
     Jii = {0.0002, 0.003, 0.00295};
     JaboutCoMOnOff = On;
-//      AnyDrawRefFrame drw ={ScaleXYZ = 0.1*{1,1,1};};
+      AnyDrawRefFrame drw ={ScaleXYZ = 0.1*{1,1,1};};
     AnyRefNode AnkleJoint = {
-//      AnyDrawRefFrame drw ={};
+      AnyDrawRefFrame drw ={};
       #ifdef RightLeg 
       sRel = {0.0, 0.0, 0.0};
-//      sRel = .....StickFigure.Posture.Right.Talus.AnkleJoint.sRel_static;
-      ARel = .....StickFigure.Posture.Right.Talus.AnkleJoint.ARel_static;
+//      sRel = ......StickFigure.Posture.Right.Talus.AnkleJoint.sRel_static;
+      ARel = ......StickFigure.Posture.Right.Leg.Talus.AnkleJoint.ARel_static;
       #endif
       
       #ifdef LeftLeg
       sRel = {0.0, 0.0, 0.0};
-//      sRel = .....StickFigure.Posture.Left.Talus.AnkleJoint.sRel_static;
-      ARel = .....StickFigure.Posture.Left.Talus.AnkleJoint.ARel_static;
+//      sRel = ......StickFigure.Posture.Left.Talus.AnkleJoint.sRel_static;
+      ARel = ......StickFigure.Posture.Left.Leg.Talus.AnkleJoint.ARel_static;
       #endif  
     };
 
     AnyRefNode SubtalarJoint = {
-//      AnyDrawRefFrame drw ={Visible = Off;};
+      AnyDrawRefFrame drw ={Visible = Off;};
       AnyFloat yRot = 0;
       #ifdef RightLeg
       sRel = {0.0, -0.01, 0};
-//      sRel =  .....StickFigure.Posture.Right.Talus.SubtalarJoint.sRel_static;
-      AnyFolder &StaticRef = .....StickFigure.Posture.Right.Talus.SubtalarJoint.RotAxisAngles;
+//      sRel =  ......StickFigure.Posture.Right.Talus.SubtalarJoint.sRel_static;
+      AnyFolder &StaticRef = ......StickFigure.Posture.Right.Leg.Talus.SubtalarJoint.RotAxisAngles;
       ARel = RotMat(StaticRef.xRot,x)*RotMat(yRot,y)*RotMat(StaticRef.zRot,z);
       #endif
       
       #ifdef LeftLeg
       sRel =   {0, -0.01, 0};
-//      sRel =   .....StickFigure.Posture.Left.Talus.SubtalarJoint.sRel_static;
-      AnyFolder &StaticRef = .....StickFigure.Posture.Left.Talus.SubtalarJoint.RotAxisAngles;
+//      sRel =   ......StickFigure.Posture.Left.Talus.SubtalarJoint.sRel_static;
+      AnyFolder &StaticRef = ......StickFigure.Posture.Left.Leg.Talus.SubtalarJoint.RotAxisAngles;
       ARel = RotMat(StaticRef.xRot,x)*RotMat(yRot,y)*RotMat(StaticRef.zRot,z);
       #endif  
     };  
@@ -209,21 +211,23 @@ AnyFolder Seg = {
     
     // Initial Segment position
     #ifdef RightLeg
-    r0 = ....StickFigure.Posture.Right.Foot.InitialPos.r0; 
-    Axes0 = ....StickFigure.Posture.Right.Foot.InitialPos.Axes0; 
+    r0 = .....StickFigure.Posture.Right.Leg.Foot.InitialPos.r0; 
+    Axes0 = .....StickFigure.Posture.Right.Leg.Foot.InitialPos.Axes0; 
     #endif
     
     #ifdef LeftLeg
-    r0 = ....StickFigure.Posture.Left.Foot.InitialPos.r0; 
-    Axes0 = ....StickFigure.Posture.Left.Foot.InitialPos.Axes0; 
+    r0 = .....StickFigure.Posture.Left.Leg.Foot.InitialPos.r0; 
+    Axes0 = .....StickFigure.Posture.Left.Leg.Foot.InitialPos.Axes0; 
     #endif
     
     
     Mass = 0.8; 
     sCoM = {0.16,0, 0};
     Jii = {0.0002, 0.003, 0.00295};
-    JaboutCoMOnOff = On;   
+    JaboutCoMOnOff = On;  
     
+
+  
     AnyRefNode SubtalarJoint = {
 //      AnyDrawRefFrame drw ={};
       AnyFloat yRot = 0;
@@ -231,13 +235,13 @@ AnyFolder Seg = {
       
       #ifdef RightLeg 
       sRel = {0.078530296, 0.02519825, 0.005506492};
-      AnyFolder &StaticRef = .....StickFigure.Posture.Right.Foot.SubtalarJoint.RotAxisAngles;
+      AnyFolder &StaticRef = ......StickFigure.Posture.Right.Leg.Foot.SubtalarJoint.RotAxisAngles;
       ARel = RotMat(StaticRef.xRot,x)*RotMat(yRot,y)*RotMat(zRot,z);
       #endif
       
       #ifdef LeftLeg
       sRel = {0.07336435, 0.0103326, 0.007378342};
-      AnyFolder &StaticRef = .....StickFigure.Posture.Left.Foot.SubtalarJoint.RotAxisAngles;
+      AnyFolder &StaticRef = ......StickFigure.Posture.Left.Leg.Foot.SubtalarJoint.RotAxisAngles;
       ARel = RotMat(StaticRef.xRot,x)*RotMat(yRot,y)*RotMat(zRot,z);
       #endif  
             

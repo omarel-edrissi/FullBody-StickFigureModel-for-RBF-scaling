@@ -34,7 +34,11 @@ AnyFolder JointsAndDriversKinOptModel = {
     AnyKinMeasureOrg &KneeJointMeasure = .InterfaceRef.Left.KneeJointMeasure;
     AnyKinMeasureOrg &AnkleJointMeasure = .InterfaceRef.Left.AnkleJointMeasure;
     AnyKinMeasureOrg &SubtalarMeasure = .InterfaceRef.Left.SubtalarJointMeasure;
-Reaction.Type={On,On,On,On,On,On};
+#ifndef SPHERICAL_KNEE_JOINT  
+    Reaction.Type={On,On,On,On,On,On};
+#else
+    Reaction.Type={On,On,On,On,On,On,On,On};
+#endif
   };
   #endif
   
@@ -51,7 +55,12 @@ Reaction.Type={On,On,On,On,On,On};
     AnyKinMeasureOrg &KneeJointMeasure = .InterfaceRef.Right.KneeJointMeasure;
     AnyKinMeasureOrg &AnkleJointMeasure = .InterfaceRef.Right.AnkleJointMeasure;
     AnyKinMeasureOrg &SubtalarMeasure = .InterfaceRef.Right.SubtalarJointMeasure;
+#ifndef SPHERICAL_KNEE_JOINT  
     Reaction.Type={On,On,On,On,On,On};
+#else
+    Reaction.Type={On,On,On,On,On,On,On,On};
+#endif
+
   };
   
  #endif

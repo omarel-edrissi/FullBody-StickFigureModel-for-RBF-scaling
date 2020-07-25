@@ -1,0 +1,12 @@
+#include "../SetModelType.any"
+
+Main = 
+{
+  #include "TName_Ref.any"
+  #include "TName.any"
+  #include "TrialSpecificData.any"
+  
+  //Anthropometrics based on Winter in SubjectSpecificData
+  #include "SubjectSpecificData.any"
+  #include "<BASE_MODEL_PATH>/KinematicModel.main.any"
+};

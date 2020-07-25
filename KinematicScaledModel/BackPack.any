@@ -1,0 +1,331 @@
+ AnySeg BackPack ={
+  Mass= 20;
+  Jii={0.0,0.0,0.0};
+  r0 = {-0.10, 1.65, -0.002};
+  Axes0 = {{0.999519, -0.031027, -0.000000}, {0.031027, 0.999519, 0.000000}, {-0.000000, -0.000000, 1.000000}};
+  
+  
+  
+  AnyDrawSurf BackPack = {
+    FileName = "../Input/BackPack";
+    RGB = Main.DrawSettings.Colors.AnyBodyBlue;
+    Opacity = 0.2;
+    ScaleXYZ={1,1,0.8};
+  };
+  
+  AnyRefNode LogoLocation={
+    sRel={-0.13,-0.3,0.2};
+    
+  };
+  
+  sCoM={-0.05,-0.1,0};
+  
+  
+  AnyRefNode TopStrapNodeRight={
+    sRel={0.0,-0.045,0.1};
+    //AnyDrawRefFrame drw={ScaleXYZ={0.1,0.1,0.1};};
+  };
+  
+  AnyRefNode TopStrapNodeLeft={
+    sRel={0.0,-0.045,-0.1};
+    //AnyDrawRefFrame drw={ScaleXYZ={0.1,0.1,0.1};};
+  };
+  
+  AnyRefNode TopNodeRight={
+    sRel={0.0,-0.045,0.1};
+    //AnyDrawRefFrame drw={ScaleXYZ={0.1,0.1,0.1};};
+  };
+  
+  AnyRefNode TopNodeLeft={
+    sRel={-0.0,-0.045,-0.1};
+    //AnyDrawRefFrame drw={ScaleXYZ={0.1,0.1,0.1};};
+  };
+  
+  AnyRefNode BottomNodeRight={
+    sRel={0.0,-0.5,0.15};
+    //AnyDrawRefFrame drw={ScaleXYZ={0.1,0.1,0.1};};
+  };
+  
+  AnyRefNode BottomNodeLeft={
+    sRel={-0,-0.5,-0.15};
+    //AnyDrawRefFrame drw={ScaleXYZ={0.1,0.1,0.1};};
+  };
+  
+  AnyRefNode BottomNodeCenter={
+    sRel={-0,-0.5,0};
+    //AnyDrawRefFrame drw={ScaleXYZ={0.1,0.1,0.1};};
+  };
+  AnyRefNode TopCenterNode={
+    sRel={0.0,-0.055,0};
+    // AnyDrawRefFrame drw={ScaleXYZ={0.1,0.1,0.1};};
+  };
+};
+
+
+
+AnySeg Logo={
+  Mass=0;
+  Jii={0,0,0};
+  
+  AnyDrawSurf Any = {
+    FileName = "../Input/any";
+    RGB = Main.DrawSettings.Colors.AnyBodyRed;
+    Opacity  = 0.8;
+    ScaleXYZ= 0.1*{0.1,0.1,0.1};
+  };
+  
+  AnyDrawSurf BodyTechnology = {
+    FileName = "../Input/BodyTechnology";
+    RGB = Main.DrawSettings.Colors.AnyBodyGrey;
+    Opacity  = 0.8;
+    ScaleXYZ= 0.1*{0.1,0.1,0.1};
+  };
+  
+};
+
+AnySphericalJoint LogoJnt={
+  AnyRefNode &ref1=.BackPack.LogoLocation;
+  AnySeg &ref2=.Logo;
+};
+
+
+AnyKinEqSimpleDriver LogoJntDrv={
+  AnySphericalJoint &ref1=.LogoJnt;
+  DriverPos={0,0,pi*0.5};
+  DriverVel={0,0.0,0};
+};
+
+
+//Adding contact nodes to the human model
+AnyFolder &Thorax = .HumanModel.Trunk.SegmentsThorax.ThoraxSeg;  
+Thorax={
+  AnyRefNode T2Node= {
+    sRel= {-0.05-0.06,0.42,0};
+    AnyDrawNode drw={
+      ScaleXYZ={0.005,.005,.005};
+      RGB={0,0,1};
+    };
+  };
+  
+  
+  
+  AnyRefNode RightShoulderNodeFront= {
+    sRel= {0.1,0.3,0.1};
+    /*  AnyDrawRefFrame drw={
+    ScaleXYZ={0.5,.5,.50};
+    RGB={0,0,1};
+    };*/
+  };
+  
+  
+  AnyRefNode LeftShoulderNodeFront= {
+    sRel= {0.1,0.3,-0.1};
+    /*AnyDrawRefFrame drw={
+    ScaleXYZ={0.5,.5,.50};
+    RGB={0,0,1};
+    };*/
+  };    
+  
+};
+
+
+
+
+AnyFolder &ClaviculaRight = .HumanModel.Right.ShoulderArm.Seg.Clavicula;  
+
+ClaviculaRight={
+  AnyRefNode StrapNode={
+    sRel={0.1,0.03,0};
+  };
+};
+
+AnyFolder &ClaviculaLeft = .HumanModel.Left.ShoulderArm.Seg.Clavicula;  
+ClaviculaLeft={
+  AnyRefNode StrapNode={
+    sRel={0.1,-0.03,0};
+  };
+};
+
+
+
+
+
+AnyFolder &ScapulaLeft = .HumanModel.Left.ShoulderArm.Seg.Scapula;  
+ScapulaLeft={
+  AnyRefNode SupportNode={
+    sRel={-0.1,0.05,0.01};
+    /*AnyDrawRefFrame drw={
+    ScaleXYZ={0.5,.5,.50};
+    RGB={0,0,1};
+    };*/
+    
+  };
+  AnyRefNode StrapNode={
+    sRel={-0.05,0.0,0.01};
+    
+    /*AnyDrawRefFrame drw={
+    ScaleXYZ={0.5,.5,.50};
+    RGB={0,0,1};
+    };*/
+    
+  };    
+};
+
+
+AnyFolder &ScapulaRight = .HumanModel.Right.ShoulderArm.Seg.Scapula;  
+ScapulaRight={
+  AnyRefNode SupportNode={
+    sRel={-0.1,-0.05,0.01};
+    /*    AnyDrawRefFrame drw={
+    ScaleXYZ={0.5,.5,.50};
+    RGB={0,0,1};
+    };*/
+  };
+  
+  AnyRefNode StrapNode={
+    sRel={-0.05,-0,0.01};
+    /*      AnyDrawRefFrame drw={
+    ScaleXYZ={0.5,.5,.50};
+    RGB={0,0,1};
+    };*/
+  };  
+};
+
+
+
+
+
+AnyFolder &Pelvis= .HumanModel.Trunk.SegmentsLumbar.PelvisSeg;  
+Pelvis={
+  AnyRefNode SupportNodeRight={
+    sRel={-0.02, 0.01, 0.07};
+    /*      AnyDrawRefFrame drw={
+    ScaleXYZ={0.5,.5,.50};
+    RGB={0,0,1};
+    };*/
+  };
+  AnyRefNode SupportNodeLeft={
+    sRel={-0.02, 0.01, -0.07};
+    /*     AnyDrawRefFrame drw={
+    ScaleXYZ={0.5,.5,.50};
+    RGB={0,0,1};
+    };*/
+  };
+  
+  AnyRefNode SupportNodeCenter={
+    sRel={-0.02, 0.01, 0.00};
+    /*      AnyDrawRefFrame drw={
+    ScaleXYZ={0.5,.5,.50};
+    RGB={0,0,1};
+    };*/
+  };
+};
+
+AnyMuscleModel MusModel={
+  F0=2000;
+};
+
+AnyKinLinear BackPackScapulaLinRight={
+  Ref=0;
+  AnyRefFrame  &ref1= .BackPack.TopNodeRight;
+  AnyRefFrame &ref2=..HumanModel.Right.ShoulderArm.Seg.Scapula.SupportNode;  
+};
+
+AnyKinEqSimpleDriver BackPackScapulaLinDrvRight={
+  AnyKinLinear &ref1=.BackPackScapulaLinRight;
+  DriverPos={0.01};
+  DriverVel={0};
+  MeasureOrganizer={0};
+  Reaction.Type={1};
+};
+
+AnyKinMeasureOrg BackPackScapulaLinXRight={
+  AnyKinLinear &ref1=.BackPackScapulaLinRight;
+  MeasureOrganizer={0};
+};
+
+AnyKinLinear BackPackScapulaLinLeft={
+  Ref=0;
+  AnyRefNode &ref1=.BackPack.TopNodeLeft;
+  AnyRefNode &ref2=..HumanModel.Left.ShoulderArm.Seg.Scapula.SupportNode;  
+  
+};
+
+AnyKinEqSimpleDriver BackPackScapulaLinDrvLeft={
+  AnyKinLinear &ref1=.BackPackScapulaLinLeft;
+  DriverPos={0.01};
+  DriverVel={0};
+  MeasureOrganizer={0};
+  Reaction.Type={1};
+};
+
+AnyKinMeasureOrg BackPackScapulaLinXLeft={
+  AnyKinLinear &ref1=.BackPackScapulaLinLeft;
+  MeasureOrganizer={1};
+};
+
+
+AnyKinLinear BackPackPelvisLinCenter={
+  Ref=0;
+  AnyRefNode &ref2=.BackPack.BottomNodeCenter;
+  AnyRefNode &ref1= ..HumanModel.Trunk.SegmentsLumbar.PelvisSeg.SupportNodeCenter;  
+  
+};
+
+AnyKinEqSimpleDriver BackPackPelvisLinDrvCenter={
+  AnyKinLinear &ref1=.BackPackPelvisLinCenter;
+  DriverPos={0.01};
+  DriverVel={0};
+  MeasureOrganizer={0};
+  Reaction.Type={1};
+};
+
+AnyKinMeasureOrg BackPackPelvisLinXCenter={
+  AnyKinLinear &ref1=.BackPackPelvisLinCenter;
+  MeasureOrganizer={0};
+};  
+
+AnyKinMeasureOrg BackPackPelvisLinZCenter={
+  AnyKinLinear &ref1=.BackPackPelvisLinCenter;
+  MeasureOrganizer={2};
+};  
+
+AnyKinEqSimpleDriver BackPackPelvisLinZCenterDrv={
+  AnyKinMeasureOrg &ref=.BackPackPelvisLinZCenter;
+  DriverPos={0};
+  DriverVel={0};
+};
+
+
+AnyKinPLine  RightStrap={
+  AnyRefNode &ref1=.BackPack.TopStrapNodeRight;
+  AnyRefNode &ref2=..HumanModel.Right.ShoulderArm.Seg.Clavicula.StrapNode;  
+  AnyRefNode &ref4=..HumanModel.Trunk.SegmentsThorax.ThoraxSeg.RightShoulderNodeFront;
+  AnyRefNode &ref5=.BackPack.BottomNodeRight;
+  
+  AnyDrawPLine strap={Thickness=0.01; RGB={1,0,0};};  
+};
+
+AnyKinEqSimpleDriver RightStrapDrv={
+  AnyKinPLine &ref1=.RightStrap;
+  DriverPos={0.63};
+  DriverVel={-0.0}  ;
+};
+
+AnyKinPLine  LeftStrap={
+  AnyRefNode &ref1=.BackPack.TopStrapNodeLeft;
+  AnyRefNode &ref2=..HumanModel.Left.ShoulderArm.Seg.Clavicula.StrapNode;             
+  AnyRefNode &ref4=..HumanModel.Trunk.SegmentsThorax.ThoraxSeg.LeftShoulderNodeFront;
+  AnyRefNode &ref5=.BackPack.BottomNodeLeft;
+  AnyDrawPLine strap={Thickness=0.01; RGB={1,0,0};};  
+};
+
+AnyKinEqSimpleDriver LeftStrapDrv={
+  AnyKinPLine &ref1=.LeftStrap;
+  DriverPos={0.63};
+  DriverVel={-0.0}  ;
+};
+
+
+
+

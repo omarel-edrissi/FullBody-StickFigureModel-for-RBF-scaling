@@ -1,0 +1,10 @@
+#include "../SetModelType.any"
+
+Main = 
+{  
+    #include "TName_Ref.any"
+    #include "TName.any"
+    #include "TrialSpecificData.any" 
+    #include "SubjectSpecificData.any"  
+    #include "<BASE_MODEL_PATH>/FootPosModel/FootPosStudy.any"
+}; 

@@ -5,6 +5,7 @@
 #path ANYBODY_PATH_OUTPUT"../Output"  
 #endif 
 
+
 #include "../libdef.any"
 
 #ifndef PROJECT_FOLDER_NAME 
@@ -14,7 +15,6 @@
 #path BASE_MODEL_PATH "."
 #path PROJECT_PATH "../.."
 
-#path SHARED_FILES_PATH "../SharedFiles"
 
 #ifndef H5_OUTPUT 
 #path H5_OUTPUT "../Output"  
@@ -32,10 +32,10 @@
 
 //#include "ForcePlateGrandChallenge.any"
 #include "KinOptModel\ClassTemplates.any"
-#include "<SHARED_FILES_PATH>/EmgProcessing.any"
-#include "<SHARED_FILES_PATH>/AnatomicalJointAnglesTemplate.any"
-#include "<SHARED_FILES_PATH>/RotationAxisAngles.any"
-#path ALTERNATIVE_JOINT_PARAMETER_FILE "<SHARED_FILES_PATH>/Modified_ModelJointParameters.any"
+#include "EmgProcessing.any"
+#include "AnatomicalJointAnglesTemplate.any"
+#include "RotationAxisAngles.any"
+#path ALTERNATIVE_JOINT_PARAMETER_FILE "Modified_ModelJointParameters.any"
 
 #endif
 

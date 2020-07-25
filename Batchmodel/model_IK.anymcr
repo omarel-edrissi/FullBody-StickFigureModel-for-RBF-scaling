@@ -1,0 +1,8 @@
+load "C:\Users\omar\Aamu projects\Git\FullBody-RBF-scaling\Batchmodel\Kinematics.main.any"
+
+operation Main.RunKinematics 
+
+run 
+
+exit 
+

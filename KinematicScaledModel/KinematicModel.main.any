@@ -1,200 +1,381 @@
+#ifndef Debug 
+  #define Debug 0
+#endif
+
 #ifndef IncludeRight 
-#define IncludeRight 1
+  #define IncludeRight 1
 #endif
 
 #ifndef IncludeLeft 
-#define IncludeLeft 1
+  #define IncludeLeft 1
+#endif
+
+#ifndef IncludeLeg
+  #define IncludeLeg 1
+#endif
+
+#ifndef IncludeArm 
+  #define IncludeArm 1
 #endif
 
 #ifndef IncludeHip 
-#define IncludeHip 1
+  #define IncludeHip 1
 #endif
 
 #ifndef IncludeKnee 
-#define IncludeKnee 1
+  #define IncludeKnee 1
 #endif
 
 #ifndef IncludeAnkle 
-#define IncludeAnkle 1
+  #define IncludeAnkle 1
+#endif
+
+#ifndef IncludeShoulder
+  #define IncludeShoulder 1
+#endif
+
+#ifndef IncludeElbow
+  #define IncludeElbow 1
+#endif
+
+#ifndef IncludeWrist
+  #define IncludeWrist 1
+#endif  
+
+#ifndef IncludeSpine 
+  #define IncludeSpine 1
 #endif
 
 #ifndef UseDanamicLoadPosition 
-#define UseDanamicLoadPosition 1
+  #define UseDanamicLoadPosition 1
 #endif
 
 #ifndef EnableJointAxisScaling 
-#define EnableJointAxisScaling 1
+  #define EnableJointAxisScaling 1
 #endif
 
 #ifndef HideStickModelGraphics 
-#define HideStickModelGraphics 0
+  #define HideStickModelGraphics 0
 #endif
 
-//#define UseRbfScaling 1
-// MAIN Project file. This include ensures that it is embedded in all models
-#include "<PROJECT_PATH>/Project.Main.any"
+// Use the German Sport University Cologne markerset, which is based on the Vicon Plug-In-Gait
+// markerset with additional medial markers for the Elbow joint. 
+#ifndef GSUFullBodyMarkerSet
+  #define GSUFullBodyMarkerSet 1
+#endif
 
-// Project operation of kinmatic model
-#include "KinOptModel\Project.any"
+// Estimation of the Sternoclavicular (SC) joint center from the Incisura jugularis (IJ) 
+// based on the values for a 57 year old right muscular male shoulder with an estimated 
+// body length of 168 cm provided by Klein Breteler, M. D., Spoor, C. W., & van der Helm, F. C. T. (1999). 
+// Measuring muscle and joint geometry parameters of a shoulder for modeling purposes. 
+// Journal of Biomechanics, 32(11), 1191-1197. 
+// https://doi.org/10.1016/S0021-9290(99)00122-0
+// right values were mirrored to the left by changing the sign of the medio lateral axis
+#ifndef USE_KLEIN_BRETELER_SC_JOINT_CENTER_ESTIMATION
+  #define USE_KLEIN_BRETELER_SC_JOINT_CENTER_ESTIMATION 1
+#endif
+
+// Estimation of the Glenohumeral (GH) joint center based on the multiple regression model 
+// provided by Meskers, C.G.M., van der Helm, F. C. T., Rozendaal, L. A., & Rozing, P. M. (1997). 
+// In vivo estimation of the glenohumeral joint rotation center from scapular bony landmarks 
+// by linear regression. Journal of Biomechanics, 31(1), 93-96. 
+// https://doi.org/10.1016/S0021-9290(97)00101-2
+// Marker set must contain markers for Trigonum Spinae Scapulae (TS), Angulus Inferior (AI), 
+// Angulus Acromialis (AA) and processus coracoideus (PC)
+#ifndef USE_MESKERS_GH_JOINT_CENTER_ESTIMATION
+  #define USE_MESKERS_GH_JOINT_CENTER_ESTIMATION 1
+#endif
+
+// Estimation of the Glenohumeral (GH) joint center based on the regression model
+// provided by Rab, Petuskey, and Bagley (2002)
+// A method for determination of upper extremity kinematics. Gait & Posture, 15(2), 113–119. 
+// https://doi.org/10.1016/S0966-6362(01)00155-2 
+#ifndef USE_RABS_GH_JOINT_CENTER_ESTIMATION
+  #define USE_RABS_GH_JOINT_CENTER_ESTIMATION 0
+#endif
 
 
-Main = {  
+// Estimation of the Glenohumeral (GH) joint center from the Incisura jugularis (IJ) 
+// based on the values for a 57 year old right muscular male shoulder with an estimated 
+// body length of 168 cm provided by Klein Breteler, M. D., Spoor, C. W., & van der Helm, F. C. T. (1999). 
+// Measuring muscle and joint geometry parameters of a shoulder for modeling purposes. 
+// Journal of Biomechanics, 32(11), 1191-1197. 
+// https://doi.org/10.1016/S0021-9290(99)00122-0
+// right values were mirrored to the left by changing the sign of the medio lateral axis
+#ifndef USE_KLEIN_BRETELER_GH_JOINT_CENTER_ESTIMATION
+  #define USE_KLEIN_BRETELER_GH_JOINT_CENTER_ESTIMATION 0
+#endif
+
+// Estimation of the Glenohumeral (GH) joint center
+// based on values from subject 2 in respect to the Incisura jugularis (IJ). Values are provided by
+// Van der Helm, F.C.T., Veeger, H.E.J., Pronk, G. M., van der Woude, L.H.V., & Rozendal, R. H. (1992) 
+#ifndef USE_VAN_DER_HELM_GH_JOINT_CENTER_ESTIMATION
+  #define USE_VAN_DER_HELM_GH_JOINT_CENTER_ESTIMATION 0
+  // error here in van der helm
+#endif
+
+// Estimation of the Trigonum spinae scapulae (TS), Angulus inferior (AI) and Angulus acromii (AA)
+// based on values from subject 2 in respect to the Incisura jugularis (IJ). Values are provided by
+// Van der Helm, F.C.T., Veeger, H.E.J., Pronk, G. M., van der Woude, L.H.V., & Rozendal, R. H. (1992)
+// If used markerset contains markers for TS, AI, AA, set USE_VAN_DER_HELM_SCAPULA_ESTIMATION to 0
+#ifndef USE_VAN_DER_HELM_SCAPULA_ESTIMATION
+  #define USE_VAN_DER_HELM_SCAPULA_ESTIMATION 0
+#endif
+
+// Estimation of eighth thoracic vertebra (T8) as midpoint between T6 and T10
+// If used markerset contains marker for T8, set USE_CALCULATED_T8 to 0
+#ifndef USE_CALCULATED_T8
+  #define USE_CALCULATED_T8 0
+#endif
+
+// ISB recommendations  offer two options for the local coordinate system of the humerus.
+// Option 2 is recommended when the forearm is available for recording, otherwise option 1
+// should be used. To use option 1 set USE_HUMERUS_OPT_2 to 0
+#ifndef USE_HUMERUS_OPT_2
+ #define USE_HUMERUS_OPT_2 1
+#endif
+
+// Representation of the ribcage using a thorax-sized ellipsoid (BolsEllips) concepted by
+// Bolsterlee, B., Veeger, H. E. J., & van der Helm, F. C. T. (2014). Modelling clavicular 
+// and scapular kinematics: From measurement to simulation. Medical & Biological Engineering 
+// & Computing, 52(3), 283-291. 
+// https://doi.org/10.1007/s11517-013-1065-2
+// This representation requires an additional ThL marker, which is defined as the most laterally
+// palpable part of the thorax
+#ifndef USE_BOLSELLIPS
+ #define USE_BOLSELLIPS 1
+#endif
+
+// Representation of the rib-cage using the thorax-sized ellipsoid (ScapThoEllips) suggested by
+// Michaud, B., Duprey, S., & Begon, M. (2017). Scapular kinematic reconstruction - 
+// segmental optimization, multibody optimization with open-loop or closed-loop chains: 
+// which one should be preferred? International Biomechanics, 4(2), 86-94. 
+// https://doi.org/10.1080/23335432.2017.1405741
+// This representation requires an initial guess obtained from BolsEllips
+// and is recommended for high arm elevations 
+#if USE_BOLSELLIPS == 1
+ #ifndef USE_SCAPTHOELLIPS
+  #define USE_SCAPTHOELLIPS 0
+ #endif
+#endif
+
+// No rib-cage representation, use 6-DOF shoulder model as suggested by
+// Michaud, B., Duprey, S., & Begon, M. (2017). Scapular kinematic reconstruction - 
+// segmental optimization, multibody optimization with open-loop or closed-loop chains: 
+// which one should be preferred? International Biomechanics, 4(2), 86-94. 
+// https://doi.org/10.1080/23335432.2017.1405741
+// The 6-DOF approach is less accurate at high arm elevations
+#if USE_BOLSELLIPS == 0
+  #ifndef USE_6DOFSHOULDERMODEL
+    #define USE_6DOFSHOULDERMODEL 1
+  #endif // USE_6DOFSHOULDERMODEL
+#endif // USE_BOLSELLIPS
+
+
+Main = 
+{
+  AnyOperationSequence RunKinematics = 
+  {
+    AnyOperation &Load_AnatomicalParameters = Main.JntParameterOptModel.AnatomicalStickFigureValues.Load_AnatomicalParameters;
+    AnyOperation &Load_JointTrialParameters = Main.Load_JointTrialParameters;
+    AnyOperation &Kinematics = Main.JntParameterOptModel.KinematicStudy.Kinematics;  
+  };
+
   #include "ModelSetup.any"
   #include "Camera.any"
   
-  AnyFolder JntParameterOptModel = {
-    
+  AnyFolder JntParameterOptModel = 
+  {
      #include "KinOptModel\StickFigure.any"
      #include "KinOptModel\TransferStickFigureValues.any"
 
      // The actual body model goes in this folder
-     AnyFolder LegModel = {
-       
-       AnyFolder Trunk = {
+     AnyFolder FullModel = 
+     {
+       AnyFolder Trunk = 
+       {
          #include "KinOptModel\TrunkSegments.any"
+         #include "KinOptModel\TrunkJoints.any"
+         #include "KinOptModel\TrunkMeasures.any"
+         #include "KinOptModel\TrunkDrivers.any"
        };
        
        #if IncludeRight == 1
-       #define RightLeg
-         AnyFolder Right = {
-           #include "KinOptModel\LegSegments.any"
-           #include "KinOptModel\Joints.any"
-           AnyFloat Sign = 1;
-         };   
-       #undef RightLeg
-       #endif
-       
+        AnyFolder Right = 
+        {
+          #if IncludeLeg == 1
+            AnyFolder Leg =
+            {
+              #define RightLeg
+                #include "KinOptModel\LegSegments.any"
+                #include "KinOptModel\LegJoints.any"
+                AnyFloat Sign = 1;
+              #undef RightLeg
+            }; // Leg
+          #endif // IncludeLeg
+
+          #if IncludeArm == 1
+            AnyFolder Arm =
+            {
+              #define RightArm
+                #include "KinOptModel\ArmSegments.any"
+                #include "KinOptModel\ArmJoints.any"
+                #include "KinOptModel\ArmMeasures.any"
+                #include "KinOptModel\ArmDrivers.any"
+                AnyFloat Sign = 1;
+              #undef RightArm
+            }; // Arm
+          #endif // IncludeArm    
+        }; // Right
+      #endif // Include Right
+      
        #if IncludeLeft == 1
-       #define LeftLeg
-         AnyFolder Left = {
-           #include "KinOptModel\LegSegments.any"
-           #include "KinOptModel\Joints.any"
-           AnyFloat Sign = -1;
-         };   
-       #undef LeftLeg
-       #endif       
-       
+       AnyFolder Left = 
+       {
+          AnyFolder Leg = 
+          {
+            #define LeftLeg
+              #include "KinOptModel\LegSegments.any"
+              #include "KinOptModel\LegJoints.any"
+              AnyFloat Sign = -1;
+            #undef LeftLeg
+          }; // Leg
+
+          #if IncludeArm == 1
+            AnyFolder Arm =
+            {
+              #define LeftArm
+                #include "KinOptModel\ArmSegments.any"
+                #include "KinOptModel\ArmJoints.any"
+                #include "KinOptModel\ArmMeasures.any"
+                #include "KinOptModel\ArmDrivers.any"
+                AnyFloat Sign = -1;
+              #undef LeftArm
+            }; // Arm
+          #endif
+       }; // Left
+       #endif
+
        #include "KinOptModel\Interface.any"
+     }; // FullModel
 
-     };
+     AnyFolder Environment = 
+     {
+      #include "KinOptModel\MarkerDrivers.any"
+      #include "KinOptModel\Environment.any"         
+     }; // Environment
+      
+      //  AnyDesEvalStudy LoadSavaDesignParameters = 
+      //  { 
+      //    AnyFolder &ModelRef = Main.JntParameterOptModel.FullModel;
+      //    #define INCLUDE_DUMMY_PLACEHOLDERS
+      //    #include "KinOptModel/DesignVars_All.any"
+      //    #include "KinOptModel/DesignMeasure_All.any"
+      //    #undef INCLUDE_DUMMY_PLACEHOLDERS
+      //
+      //    AnyOperationMacro Load_CurrentTrial = 
+      //    {
+      //      AnyString Mcr = "classoperation Main.JntParameterOptModel.LoadSavaDesignParameters" 
+      //      + strquote("Load design")+ " --file=" + strquote(Main.ModelSetup.Files.AllParameters ) ;
+      //      MacroStr = { Mcr};
+      //    };
+      //    AnyOperationMacro Save_CurrentTrial  = 
+      //    {
+      //      AnyString Mcr = "classoperation Main.JntParameterOptModel.LoadSavaDesignParameters" 
+      //      + strquote("Save design")+ " --file=" + strquote(Main.ModelSetup.Files.AllParameters ) ;
+      //      MacroStr = { Mcr};
+      //    };
+      //    
+      //    AnyOperationMacro Load_RightHipParameters = 
+      //    {
+      //      AnyString LoadMcr = "classoperation Main.JntParameterOptModel.LoadSavaDesignParameters" 
+      //      + strquote("Load design")+ " --file=" + strquote(Main.ModelSetup.Files.RightHipParameters) ;
+      //      MacroStr = { LoadMcr};
+      //    };
+      //    AnyOperationMacro Load_LeftHipParameters = 
+      //    {
+      //      AnyString LoadMcr = "classoperation Main.JntParameterOptModel.LoadSavaDesignParameters" 
+      //      + strquote("Load design")+ " --file=" + strquote(Main.ModelSetup.Files.LeftHipParameters ) ;
+      //      MacroStr = { LoadMcr };
+      //    };
+      //    AnyOperationMacro Load_LeftAnkleParameters = 
+      //    {
+      //      AnyString LoadMcr = "classoperation Main.JntParameterOptModel.LoadSavaDesignParameters" 
+      //      + strquote("Load design")+ " --file=" + strquote(Main.ModelSetup.Files.LeftAnkleParameters ) ;
+      //      MacroStr = { LoadMcr };
+      //    };
+      //    AnyOperationMacro Load_RightAnkleParameters = 
+      //    {
+      //      AnyString LoadMcr = "classoperation Main.JntParameterOptModel.LoadSavaDesignParameters" 
+      //      + strquote("Load design")+ " --file=" + strquote(Main.ModelSetup.Files.RightAnkleParameters ) ;
+      //      MacroStr = { LoadMcr };
+      //    };
+      //    AnyOperationMacro Load_LeftKneeParameters = 
+      //    {
+      //      AnyString LoadMcr = "classoperation Main.JntParameterOptModel.LoadSavaDesignParameters" 
+      //      + strquote("Load design")+ " --file=" + strquote(Main.ModelSetup.Files.LeftKneeParameters ) ;
+      //      MacroStr = { LoadMcr };
+      //    };
+      //    AnyOperationMacro Load_RightKneeParameters = 
+      //    {
+      //      AnyString LoadMcr = "classoperation Main.JntParameterOptModel.LoadSavaDesignParameters" 
+      //      + strquote("Load design")+ " --file=" + strquote(Main.ModelSetup.Files.RightKneeParameters ) ;
+      //      MacroStr = { LoadMcr };
+      //    };
+      //    
+      //    AnyOperationMacro Load_MultiJointParameters = 
+      //    {
+      //      AnyString LoadMcr = "classoperation Main.JntParameterOptModel.LoadSavaDesignParameters" 
+      //      + strquote("Load design")+ " --file=" + strquote(Main.ModelSetup.Files.MultiJointParameters ) ;
+      //      MacroStr = { LoadMcr };
+      //    };    
+      //  };  
 
-     AnyFolder Environment = {
-       #include "KinOptModel\Drivers.any"
-        #include "KinOptModel\Environment.any"         
-     };
-     
-  
-  AnyDesEvalStudy LoadSavaDesignParameters = 
-  { 
-    AnyFolder &ModelRef = Main.JntParameterOptModel.LegModel;
-    #define INCLUDE_DUMMY_PLACEHOLDERS
-    #include "KinOptModel/DesignVars_All.any"
-    #include "KinOptModel/DesignMeasure_All.any"
-    #undef INCLUDE_DUMMY_PLACEHOLDERS
+      AnyBodyStudy KinematicStudy = 
+      {
+        tStart = Main.ModelSetup.tStart;
+        tEnd = Main.ModelSetup.tEnd;
+        nStep = Main.ModelSetup.nStep;
+        // Insert Gravity?
+        Gravity = {0, 0, 0};
+        
+        AnyFolder &FullModel = .FullModel;
+        AnyFolder &EnvironmentModel = .Environment;
+        //AnyFolder &Camera = Main.ModelSetup.Camera;
+        AnyFolder &Markers = EnvironmentModel.Drivers;
 
-    AnyOperationMacro Load_CurrentTrial = 
-    {
-      AnyString Mcr = "classoperation Main.JntParameterOptModel.LoadSavaDesignParameters" 
-      + strquote("Load design")+ " --file=" + strquote(Main.ModelSetup.Files.AllParameters ) ;
-      MacroStr = { Mcr};
-    };
-    AnyOperationMacro Save_CurrentTrial  = 
-    {
-      AnyString Mcr = "classoperation Main.JntParameterOptModel.LoadSavaDesignParameters" 
-      + strquote("Save design")+ " --file=" + strquote(Main.ModelSetup.Files.AllParameters ) ;
-      MacroStr = { Mcr};
-    };
-    
-    AnyOperationMacro Load_RightHipParameters = 
-    {
-      AnyString LoadMcr = "classoperation Main.JntParameterOptModel.LoadSavaDesignParameters" 
-      + strquote("Load design")+ " --file=" + strquote(Main.ModelSetup.Files.RightHipParameters) ;
-      MacroStr = { LoadMcr};
-    };
-    AnyOperationMacro Load_LeftHipParameters = 
-    {
-      AnyString LoadMcr = "classoperation Main.JntParameterOptModel.LoadSavaDesignParameters" 
-      + strquote("Load design")+ " --file=" + strquote(Main.ModelSetup.Files.LeftHipParameters ) ;
-      MacroStr = { LoadMcr };
-    };
-    AnyOperationMacro Load_LeftAnkleParameters = 
-    {
-      AnyString LoadMcr = "classoperation Main.JntParameterOptModel.LoadSavaDesignParameters" 
-      + strquote("Load design")+ " --file=" + strquote(Main.ModelSetup.Files.LeftAnkleParameters ) ;
-      MacroStr = { LoadMcr };
-    };
-    AnyOperationMacro Load_RightAnkleParameters = 
-    {
-      AnyString LoadMcr = "classoperation Main.JntParameterOptModel.LoadSavaDesignParameters" 
-      + strquote("Load design")+ " --file=" + strquote(Main.ModelSetup.Files.RightAnkleParameters ) ;
-      MacroStr = { LoadMcr };
-    };
-    AnyOperationMacro Load_LeftKneeParameters = 
-    {
-      AnyString LoadMcr = "classoperation Main.JntParameterOptModel.LoadSavaDesignParameters" 
-      + strquote("Load design")+ " --file=" + strquote(Main.ModelSetup.Files.LeftKneeParameters ) ;
-      MacroStr = { LoadMcr };
-    };
-    AnyOperationMacro Load_RightKneeParameters = 
-    {
-      AnyString LoadMcr = "classoperation Main.JntParameterOptModel.LoadSavaDesignParameters" 
-      + strquote("Load design")+ " --file=" + strquote(Main.ModelSetup.Files.RightKneeParameters ) ;
-      MacroStr = { LoadMcr };
-    };
-    
-    AnyOperationMacro Load_MultiJointParameters = 
-    {
-      AnyString LoadMcr = "classoperation Main.JntParameterOptModel.LoadSavaDesignParameters" 
-      + strquote("Load design")+ " --file=" + strquote(Main.ModelSetup.Files.MultiJointParameters ) ;
-      MacroStr = { LoadMcr };
-    };    
-  };  
-       
-     
-  AnyBodyStudy KinematicStudy = 
-  {
-    tStart = Main.ModelSetup.tStart;
-    tEnd = Main.ModelSetup.tEnd;
-    nStep = Main.ModelSetup.nStep;
-    Gravity = {0, 0, 0};
-    
-//    AnyFolder &C3DData=Main.ModelSetup.DynamicDataSet ;
-    AnyFolder &LegModel = .LegModel;
-    AnyFolder &EnvironmentModel = .Environment;
-    AnyFolder &Camera = Main.ModelSetup.Camera;
-    AnyFolder &Markers = EnvironmentModel.Drivers;
-
-    #include "KinOptModel\JointAngleOutputs.any"
-    
-      InitialConditions.SolverType = KinSolOverDeterminate;
-      Kinematics.SolverType = KinSolOverDeterminate;   
-      InitialConditions.PosAnalysisOnlyOnOff=On;
-      Kinematics.PosAnalysisOnlyOnOff=On;     
-  };
+        #include "KinOptModel\JointAngleOutputs.any"
+        
+          InitialConditions.SolverType = KinSolOverDeterminate;
+          Kinematics.SolverType = KinSolOverDeterminate;   
+          InitialConditions.PosAnalysisOnlyOnOff=On;
+          Kinematics.PosAnalysisOnlyOnOff=On;     
+      }; // KinematicStudy
   
 
-    #ifndef IncludeLegTDModel
-     AnyOperationMacro SaveKinOutputToH5File = {
-        MacroStr = {
-          "classoperation  Main.JntParameterOptModel.KinematicStudy.Output " + strquote("Save data") 
-        + "--type="+strquote("Deep") + " --file= " + strquote( H5_OUTPUT +"/"+ Main.TrialSpecificData.TrialName +".kin"+ ".anydata.h5") };
-     };
-  #endif
-};
+      #ifndef IncludeLegTDModel
+        AnyOperationMacro SaveKinOutputToH5File = 
+        {
+            MacroStr = {
+              "classoperation  Main.JntParameterOptModel.KinematicStudy.Output " + strquote("Save data") 
+            + "--type="+strquote("Deep") + " --file= " + strquote( H5_OUTPUT +"/"+ Main.TrialSpecificData.TrialName +".kin"+ ".anydata.h5") };
+        };
+      #endif
+    };
     
    //TODO Rename JointTrialParameters to JointParameters
-   AnyOperationSequence Load_JointTrialParameters = {
+   AnyOperationSequence Load_JointTrialParameters = 
+   {
      AnyOperation &AllAnatomicalParam =.JntParameterOptModel.AnatomicalStickFigureValues.Load_AnatomicalParameters;
      #ifndef ANATOMIC_SCALED_MODEL
-     AnyOperation &RHip =.JntParameterOptModel.LoadSavaDesignParameters.Load_RightHipParameters ;
-     AnyOperation &LHip =.JntParameterOptModel.LoadSavaDesignParameters .Load_LeftHipParameters ;
-     AnyOperation &RAnk =.JntParameterOptModel.LoadSavaDesignParameters.Load_RightAnkleParameters ;
-     AnyOperation &LAnk =.JntParameterOptModel.LoadSavaDesignParameters.Load_LeftAnkleParameters ;
-//     AnyOperation &RKnee =.JntParameterOptModel.LoadSavaDesignParameters.Load_RightKneeParameters ;
-//     AnyOperation &LKnee =.JntParameterOptModel.LoadSavaDesignParameters.Load_LeftKneeParameters ;
-     AnyOperation &MultJoint = .JntParameterOptModel.LoadSavaDesignParameters.Load_MultiJointParameters;
+      AnyOperation &RHip =.JntParameterOptModel.LoadSavaDesignParameters.Load_RightHipParameters ;
+      AnyOperation &LHip =.JntParameterOptModel.LoadSavaDesignParameters .Load_LeftHipParameters ;
+      AnyOperation &RAnk =.JntParameterOptModel.LoadSavaDesignParameters.Load_RightAnkleParameters ;
+      AnyOperation &LAnk =.JntParameterOptModel.LoadSavaDesignParameters.Load_LeftAnkleParameters ;
+      //AnyOperation &RKnee =.JntParameterOptModel.LoadSavaDesignParameters.Load_RightKneeParameters ;
+      //AnyOperation &LKnee =.JntParameterOptModel.LoadSavaDesignParameters.Load_LeftKneeParameters ;
+      AnyOperation &MultJoint = .JntParameterOptModel.LoadSavaDesignParameters.Load_MultiJointParameters;
      #endif
-	 AnyOperation &InitCon = Main.JntParameterOptModel.KinematicStudy.InitialConditions;
-   };
-  
+	   AnyOperation &InitCon = Main.JntParameterOptModel.KinematicStudy.InitialConditions;
+   }; // Load_JointTrialParameters
 };  // Main

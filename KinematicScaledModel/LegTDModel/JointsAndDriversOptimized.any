@@ -63,7 +63,11 @@ AnyFolder JointsAndDriversLegTD = {
     AnyKinMeasureOrg &KneeMeasure = ...HumanModel.BodyModel.Interface.Left.KneeJointMeasure;
     AnyKinMeasureOrg &AnkleMeasure = ...HumanModel.BodyModel.Interface.Left.AnkleJointDriveMeasure;
     AnyKinMeasureOrg &SubtalarMeasure = ...HumanModel.BodyModel.Interface.Left.SubtalarJointDriveMeasure;
+#ifndef SPHERICAL_KNEE_JOINT
     Reaction.Type={Off,Off,Off,Off,Off,Off};
+#else
+    Reaction.Type={Off,Off,Off,Off,Off,Off,Off,Off};
+#endif
   };
   
 //  AnyKinEqSimpleDriver SubTalarEversionDrvLeft={
@@ -87,7 +91,11 @@ AnyFolder JointsAndDriversLegTD = {
     AnyKinMeasureOrg &KneeMeasure = ...HumanModel.BodyModel.Interface.Right.KneeJointMeasure;
     AnyKinMeasureOrg &AnkleMeasure = ...HumanModel.BodyModel.Interface.Right.AnkleJointDriveMeasure;
     AnyKinMeasureOrg &SubtalarMeasure = ...HumanModel.BodyModel.Interface.Right.SubtalarJointDriveMeasure ;
+#ifndef SPHERICAL_KNEE_JOINT
     Reaction.Type={Off,Off,Off,Off,Off,Off};
+#else
+    Reaction.Type={Off,Off,Off,Off,Off,Off,Off,Off};
+#endif
   };
   
 //  AnyKinEqSimpleDriver SubTalarEversionDrvRight={

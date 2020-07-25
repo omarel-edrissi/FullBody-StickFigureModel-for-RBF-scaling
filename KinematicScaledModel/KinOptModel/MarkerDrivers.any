@@ -1,0 +1,833 @@
+AnyFolder Drivers = 
+{
+  AnySwitchVar ShowMarker = On;
+  AnyVar MarkerSize = 0.01;
+
+  #if IncludeSpine == 1
+    
+    // Thorax drivers
+    AnyKinDriverMarker IncisuraJugularis =    
+    {      
+      CType = {Soft,Soft,Soft};
+      AnyRefFrame &ref1 = ...FullModel.Trunk.Seg.Thorax.IncisuraJugularis;
+      AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._INCISURAJUGULARIS_.PosInterpol;
+      //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.Clavicle.Weight};
+      //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+    }; // IncisuraJugularis
+
+    AnyKinDriverMarker ProcessusXiphoideus =    
+    {
+      CType = {Soft,Soft,Soft};
+      AnyRefFrame &ref1 = ...FullModel.Trunk.Seg.Thorax.ProcessusXiphoideus;
+      AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._PROCESSUSXIPHOIDEUS_.PosInterpol;
+      //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.Sternum.Weight};
+      //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+    }; // ProcessusXiphoideus
+    
+    // Columna vertebralis cranialis (upper spine) drivers
+    AnyKinDriverMarker C7 =    
+    {
+      CType = {Soft,Soft,Soft};
+      AnyRefFrame &ref1 = ...FullModel.Trunk.Seg.Spine.ThoracicSpine.C7;
+      AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._C7_.PosInterpol;
+      //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.C7.Weight};
+      //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+    }; // C7
+
+    AnyKinDriverMarker T6 =    
+    {
+      CType = {Soft,Soft,Soft};
+      AnyRefFrame &ref1 = ...FullModel.Trunk.Seg.Spine.ThoracicSpine.T6;
+      AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._T6_.PosInterpol;
+      //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.T10.Weight};
+      //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+    }; // T6
+
+    AnyKinDriverMarker T8 =    
+    {
+      CType = {Soft,Soft,Soft};
+      AnyRefFrame &ref1 = ...FullModel.Trunk.Seg.Spine.ThoracicSpine.T8;
+      AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._T8_.PosInterpol;
+      //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.T10.Weight};
+      //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+    }; // T8
+
+    AnyKinDriverMarker T10 =    
+    {
+      CType = {Soft,Soft,Soft};
+      AnyRefFrame &ref1 = ...FullModel.Trunk.Seg.Spine.ThoracicSpine.T10;
+      AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._T10_.PosInterpol;
+      //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.T10.Weight};
+      //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+    }; // T10
+    
+    // Columna vertebralis caudalis (lower spine) drivers
+    AnyKinDriverMarker L1 =    
+    {
+      CType = {Soft,Soft,Soft};
+      AnyRefFrame &ref1 = ...FullModel.Trunk.Seg.Spine.LumbarSpine.L1;
+      AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._L1_.PosInterpol;
+      //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.L1.Weight};
+      //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+    }; // L1
+
+    AnyKinDriverMarker L3 =    
+    {
+      CType = {Soft,Soft,Soft};
+      AnyRefFrame &ref1 = ...FullModel.Trunk.Seg.Spine.LumbarSpine.L3;
+      AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._L3_.PosInterpol;
+      //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.L3.Weight};
+      //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+    }; // L3
+
+    AnyKinDriverMarker L5 =    
+    {
+      CType = {Soft,Soft,Soft};
+      AnyRefFrame &ref1 = ...FullModel.Trunk.Seg.Spine.LumbarSpine.L5;
+      AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._L5_.PosInterpol;
+      //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.L5.Weight};
+      //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+    }; // L5
+
+  #endif // IncludeSpine
+
+  #if IncludeHip == 1
+    // Pelvis Drivers
+    AnyKinDriverMarker LAsis =    
+    {
+      CType = {Soft,Soft,Soft};
+      AnyRefFrame &ref1 = ...FullModel.Trunk.Seg.Pelvis.LAsis;
+      AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LASIS_.PosInterpol;
+      //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.LAsis.Weight};
+      //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+    }; // LAsis
+    
+    AnyKinDriverMarker RAsis =    
+    {
+      CType = {Soft,Soft,Soft};
+      AnyRefFrame &ref1 = ...FullModel.Trunk.Seg.Pelvis.RAsis ;
+      AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RASIS_.PosInterpol;
+      //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RAsis.Weight};
+      //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+    }; // RAsis
+
+    #ifdef FULL_MARKERSET
+      AnyKinDriverMarker Sacral =    
+      {
+        CType = {Soft,Soft,Soft};
+        AnyRefFrame &ref1 = ...FullModel.Trunk.Seg.Pelvis.Sacral;
+        AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers.Sacral.PosInterpol;
+        //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.Sacral.Weight};
+        //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+      }; // Sacral
+
+    #endif
+
+    AnyKinDriverMarker RPsis =   
+    {
+      CType = {Soft,Soft,Soft};
+      AnyRefFrame &ref1 = ...FullModel.Trunk.Seg.Pelvis.RPsis;
+      AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RPSIS_.PosInterpol;
+      //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RPsis.Weight};
+      //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+    }; // RPsis
+
+    AnyKinDriverMarker LPsis =    
+    {
+      CType = {Soft,Soft,Soft};
+      AnyRefFrame &ref1 = ...FullModel.Trunk.Seg.Pelvis.LPsis;
+      AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LPSIS_.PosInterpol;
+      //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.LPsis.Weight};
+      //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+    }; // LPsis
+    
+    /* Exclude by Lund et al. 2015 
+      AnyKinDriverMarker PREF1 =    
+      {
+        CType = {Soft,Soft,Soft};
+        AnyRefFrame &ref1 = ...FullModel.Trunk.Seg.Pelvis.PREF1;
+        AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers.PREF1.PosInterpol;
+        AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+      };  
+    
+      AnyKinDriverMarker PREF2 =
+      {
+        CType = {Soft,Soft,Soft};
+        AnyRefFrame &ref1 = ...FullModel.Trunk.Seg.Pelvis.PREF2;
+        AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers.PREF2.PosInterpol;
+        AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+      };  
+    */
+  #endif
+  
+  #if IncludeRight == 1
+    #if IncludeArm == 1
+      #if IncludeShoulder == 1
+
+        // Marker drivers for all four scapula markers (AC, AA, TS, AI)
+        AnyKinDriverMarker RAcromion =
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Right.Arm.Seg.Scapula.RAcromion;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RACROMION_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RAcromion.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        }; // RAcromion
+
+        AnyKinDriverMarker RAngulusAcromii =
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Right.Arm.Seg.Scapula.RAngulusAcromii;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RANGULUSACROMII_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RAcromion.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        }; // RAngulusAcromii
+
+        AnyKinDriverMarker RTrigonumSpinaeScapulae =
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Right.Arm.Seg.Scapula.RTrigonumSpinaeScapulae;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RTRIGONUMSPINAESCAPULAE_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RAcromion.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        }; // RTrigonumSpinaeScapulae
+
+        AnyKinDriverMarker RAngulusInferior =
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Right.Arm.Seg.Scapula.RAngulusInferior;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RANGULUSINFERIOR_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RAcromion.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        }; // RAngulusInferior
+
+        #if USE_MESKERS_GH_JOINT_CENTER_ESTIMATION == 1
+         AnyKinDriverMarker RProcessusCoracoideus =
+         {
+           CType = {Soft,Soft,Soft};
+           AnyRefFrame &ref1 = ...FullModel.Right.Arm.Seg.Scapula.RProcessusCoracoideus;
+           AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RPROCESSUSCORACOIDEUS_.PosInterpol;
+           //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RAcromion.Weight};
+           //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+         }; // RAngulusInferior
+         #endif
+
+        
+
+      #endif // IncludeShoulder
+      #if IncludeShoulder == 1 | IncludeElbow == 1
+
+        AnyKinDriverMarker RTuberculumMajus =
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Right.Arm.Seg.Humerus.RTuberculumMajus;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RTUBERCULUMMAJUS_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RArticulatioGlenoHumeralis.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        }; // RTuberculumMajus
+
+        AnyKinDriverMarker REpicondylusMedialisHumeri = 
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Right.Arm.Seg.Humerus.REpicondylusMedialisHumeri;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._REPICONDYLUSMEDIALISHUMERI_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.REpicondylusMedialisHumeri.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        }; // REpicondylusMedialisHumeri
+
+        AnyKinDriverMarker REpicondylusLateralisHumeri = 
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Right.Arm.Seg.Humerus.REpicondylusLateralisHumeri;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._REPICONDYLUSLATERALISHUMERI_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.REpicondylusLateralisHumeri.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        }; // REpicondylusLateralisHumeri
+
+        AnyKinDriverMarker RBrachiumSegmentHelpMarker = 
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Right.Arm.Seg.Humerus.RBrachiumSegmentHelpMarker;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RBRACHIUMSEGMENTHELPMARKER_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RBrachiumSegmentHelpMarker.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        }; // RBrachiumSegmentHelpMarker
+
+      #endif // IncludeShoulder == 1 | IncludeElbow == 1
+
+      #if IncludeElbow == 1 | IncludeWrist == 1
+
+        AnyKinDriverMarker RAntebrachiumSegmentHelpMarker = 
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Right.Arm.Seg.Forearm.RAntebrachiumSegmentHelpMarker;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RANTEBRACHIUMSEGMENTHELPMARKER_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RAntebrachiumSegmentHelpMarker.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        }; // RAntebrachiumSegmentHelpMarker
+
+        AnyKinDriverMarker RProcessusStyloideusUlnae =
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Right.Arm.Seg.Forearm.RProcessusStyloideusUlnae;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RPROCESSUSSTYLOIDEUSULNAE_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RProcessusStyloideusUlnae.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        }; // RProcessusStyloideusUlnae
+
+        AnyKinDriverMarker RProcessusStyloideusRadii =
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Right.Arm.Seg.Forearm.RProcessusStyloideusRadii;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RPROCESSUSSTYLOIDEUSRADII_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RProcessusStyloideusRadii.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        }; // RProcessusStyloideusRadii
+      
+      #endif // IncludeElbow == 1 | IncludeWrist == 1
+
+      #if IncludeWrist == 1
+        AnyKinDriverMarker RManusSegmentHelpMarker = 
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Right.Arm.Seg.Hand.RManusSegmentHelpMarker;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RMANUSSEGMENTHELPMARKER_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.REpicondylusLateralisHumeri.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        }; // RManusSegmentHelpMarker
+      #endif // IncludeWrist == 1
+
+    #endif // IncludeArms
+
+    #if IncludeLeg == 1
+      // THIGH DRIVERS dynamic
+      #if IncludeHip + IncludeKnee > 0
+        AnyKinDriverMarker RThighSuperior =    
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Right.Leg.Seg.Thigh.RThighSuperior;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RTHIGHSUPERIOR_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RThighSuperior.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        }; // RThighSuperior
+
+        // Exclude by GSU Cologne
+        #if GSUFullBodyMarkerSet == 0
+          AnyKinDriverMarker RTHL =    
+          {
+            CType = {Soft,Soft,Soft};
+            AnyRefFrame &ref1 = ...FullModel.Right.Seg.Thigh.RKneeMedial;
+            AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers.RTHL.PosInterpol;
+            //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RTHL.Weight};
+            //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+          };      
+        #endif
+      
+        AnyKinDriverMarker RThighInferior =    
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Right.Leg.Seg.Thigh.RThighInferior ;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RTHIGHINFERIOR_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RThighInferior.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };
+
+        AnyKinDriverMarker RThighLateral =   
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Right.Leg.Seg.Thigh.RThighLateral ;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RTHIGHLATERAL_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RThighLateral.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };    
+      #endif
+      
+      #if IncludeKnee 
+        ////    #ifdef FULL_MARKERSET
+        //    AnyKinDriverMarker RPatella=    {
+        //      CType = {Soft,Soft,Soft};
+        //      AnyRefFrame &ref1 = ...FullModel.Right.Seg.Shank.RPatella;
+        //      AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers.RPatella.PosInterpol;
+        //      AnyFolder Weights = {AnyFunConst WFun ={Value = {
+        //            Main.SubjectSpecificData.MarkerWeights.PatellaX,
+        //            Main.SubjectSpecificData.MarkerWeights.PatellaY,
+        //            Main.SubjectSpecificData.MarkerWeights.PatellaZ
+        //            };};};
+        //      WeightFun={&Weights.WFun };    
+        //      Linear.Ref = 0; // Weights are in local coordinates
+        //      AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        //    };  
+        //    #endif  
+      #endif
+      
+      // SHANK DRIVERS dynamic
+      
+      #if IncludeKnee + IncludeAnkle > 0
+
+        #ifndef EXCLUDE_RSHANKSUPERIOR
+          AnyKinDriverMarker RTUB =    
+          {
+            CType = {Soft,Soft,Soft};
+            AnyRefFrame &ref1 = ...FullModel.Right.Leg.Seg.Shank.RTUB;
+            AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RSHANKSUPERIOR_.PosInterpol;
+            //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RShankSuperior.Weight};
+            //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+          };
+        #endif 
+        AnyKinDriverMarker RShankInferior =    
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Right.Leg.Seg.Shank.RShankInferior ;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RSHANKINFERIOR_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RShankInferior.Weight};
+          //    AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };
+      
+        #ifndef EXCLUDE_RSHANKLATERAL
+          AnyKinDriverMarker RShankLateral =    
+          {
+            CType = {Soft,Soft,Soft};
+            AnyRefFrame &ref1 = ...FullModel.Right.Leg.Seg.Shank.RShankLateral ;
+            AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RSHANKLATERAL_.PosInterpol;
+            //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RShankLateral.Weight};
+            //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+          };
+        #endif
+
+        //  AnyKinDriverMarker RANK=    {
+        //    CType = {Soft,Soft,Soft};
+        //    AnyRefFrame &ref1 = ...FullModel.Right.Seg.Shank.RAnkleLateral ;
+        //    AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RANK_.PosInterpol;
+        //    AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        //  };
+        //
+        //  AnyKinDriverMarker RMMA = {
+        //    CType = {Soft,Soft,Soft};
+        //    AnyRefFrame &ref1 = ...FullModel.Right.Seg.Shank.RAnkleMedial ;
+        //    AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RMMA_.PosInterpol;
+        //  };
+        //  
+      #endif
+      
+      //ANKLE DRIVERS dynamic
+      #if IncludeAnkle == 1
+        AnyKinDriverMarker RHeel =    
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Right.Leg.Seg.Foot.RHeel;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RHEEL_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RHeel.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };
+        
+        #if GSUFullBodyMarkerSet == 0
+          AnyKinDriverMarker RHindfoot =    
+          {
+            CType = {Soft,Soft,Soft};
+            AnyRefFrame &ref1 = ...FullModel.Right.Seg.Foot.RHindfoot;
+            AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RHINDFOOT_.PosInterpol;
+            //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+          };  
+        #endif // GSUFullBodyMarkerSet
+
+        AnyKinDriverMarker RMidfootMedial =   
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Right.Leg.Seg.Foot.RMidfootMedial ;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RMIDFOOTMEDIAL_.PosInterpol;
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };
+        
+        AnyKinDriverMarker RMidfootLateral =    
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Right.Leg.Seg.Foot.RMidfootLateral ;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RMIDFOOTLATERAL_.PosInterpol;
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };
+        
+        #if GSUFullBodyMarkerSet == 0
+          AnyKinDriverMarker RMidfootSuperior =    
+          {
+            CType = {Soft,Soft,Soft};
+            AnyRefFrame &ref1 = ...FullModel.Right.Seg.Foot.RMidfootSuperior ;
+            AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers.RMidfootSuperior.PosInterpol;
+            //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RMidfootSuperior.Weight};
+            //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+          };  
+        #endif // GSUFullBodyMarkerSet
+
+        #ifdef FULL_MARKERSET
+          AnyKinDriverMarker RToeMedial =    
+          {
+            CType = {Soft,Soft,Soft};
+            AnyRefFrame &ref1 = ...FullModel.Right.Seg.Foot.RToeMedial;
+            AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RTOEMEDIAL_.PosInterpol;
+            AnyFolder Weights = {AnyFunConst WFun ={Value = {
+                    Main.SubjectSpecificData.MarkerWeights.ToeX,
+                    Main.SubjectSpecificData.MarkerWeights.ToeY,
+                    Main.SubjectSpecificData.MarkerWeights.ToeZ
+                };};};
+            WeightFun={&Weights.WFun };
+            Linear.Ref = 0; // Weights are in local coordinates
+            //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+          };
+          AnyKinDriverMarker RToeLateral =    
+          {
+            CType = {Soft,Soft,Soft};
+            AnyRefFrame &ref1 = ...FullModel.Right.Seg.Foot.RToeLateral;
+            AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RTOELATERAL_.PosInterpol;
+            AnyFolder Weights = {AnyFunConst WFun ={Value = {
+                    Main.SubjectSpecificData.MarkerWeights.ToeX,
+                    Main.SubjectSpecificData.MarkerWeights.ToeY,
+                    Main.SubjectSpecificData.MarkerWeights.ToeZ
+                };};};
+            WeightFun={&Weights.WFun };
+            Linear.Ref = 0; // Weights are in local coordinates
+            //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+          };  
+        #endif
+        
+        AnyKinDriverMarker RToe =    
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Right.Leg.Seg.Foot.RToe ;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._RTOE_.PosInterpol;
+          AnyFolder Weights = {AnyFunConst WFun ={Value = {
+                  Main.SubjectSpecificData.MarkerWeights.ToeX,
+                  Main.SubjectSpecificData.MarkerWeights.ToeY,
+                  Main.SubjectSpecificData.MarkerWeights.ToeZ
+              };};};
+          WeightFun={&Weights.WFun };
+          Linear.Ref = 0; // Weights are in local coordinates
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };
+      #endif // IncludeAnkle
+    #endif // IncludeLeg
+  #endif // IncludeRight
+  
+  
+  #if IncludeLeft == 1
+    #if IncludeArm == 1
+      #if IncludeShoulder == 1
+        // Marker drivers for all four scapula markers (AC, AA, TS, AI)
+        AnyKinDriverMarker LAcromion =
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Left.Arm.Seg.Clavicle.LAcromion;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LACROMION_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RAcromion.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };
+
+        AnyKinDriverMarker LAngulusAcromii =
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Left.Arm.Seg.Scapula.LAngulusAcromii;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LANGULUSACROMII_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RAcromion.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        }; // LAngulusAcromii
+
+        AnyKinDriverMarker LTrigonumSpinaeScapulae =
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Left.Arm.Seg.Scapula.LTrigonumSpinaeScapulae;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LTRIGONUMSPINAESCAPULAE_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RAcromion.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        }; // LTrigonumSpinaeScapulae
+
+        AnyKinDriverMarker LAngulusInferior =
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Left.Arm.Seg.Scapula.LAngulusInferior;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LANGULUSINFERIOR_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RAcromion.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        }; // LAngulusInferior
+        #if USE_MESKERS_GH_JOINT_CENTER_ESTIMATION == 1
+        AnyKinDriverMarker LProcessusCoracoideus =
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Left.Arm.Seg.Scapula.LProcessusCoracoideus;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LPROCESSUSCORACOIDEUS_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RAcromion.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        }; // LAngulusInferior
+        #endif
+
+    
+      #endif
+
+      #if IncludeShoulder == 1 | IncludeElbow == 1
+        AnyKinDriverMarker LTuberculumMajus =
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Left.Arm.Seg.Humerus.LTuberculumMajus;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LTUBERCULUMMAJUS_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.RArticulatioGlenoHumeralis.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };
+
+        AnyKinDriverMarker LEpicondylusMedialisHumeri = 
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Left.Arm.Seg.Humerus.LEpicondylusMedialisHumeri;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LEPICONDYLUSMEDIALISHUMERI_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.LPsis.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };
+
+        AnyKinDriverMarker LEpicondylusLateralisHumeri = 
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Left.Arm.Seg.Humerus.LEpicondylusLateralisHumeri;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LEPICONDYLUSLATERALISHUMERI_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.LPsis.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };
+
+        AnyKinDriverMarker LBrachiumSegmentHelpMarker = 
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Left.Arm.Seg.Humerus.LBrachiumSegmentHelpMarker;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LBRACHIUMSEGMENTHELPMARKER_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.LBrachiumSegmentHelpMarker.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        }; // LBrachiumSegmentHelpMarker
+      #endif
+
+      #if IncludeElbow == 1 | IncludeWrist == 1
+        AnyKinDriverMarker LProcessusStyloideusUlnae =
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Left.Arm.Seg.Forearm.LProcessusStyloideusUlnae;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LPROCESSUSSTYLOIDEUSULNAE_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.LPsis.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };
+
+        AnyKinDriverMarker LProcessusStyloideusRadii =
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Left.Arm.Seg.Forearm.LProcessusStyloideusRadii;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LPROCESSUSSTYLOIDEUSRADII_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.LPsis.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };
+
+        AnyKinDriverMarker LAntebrachiumSegmentHelpMarker = 
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Left.Arm.Seg.Forearm.LAntebrachiumSegmentHelpMarker;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LANTEBRACHIUMSEGMENTHELPMARKER_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.LPsis.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };
+      #endif
+
+      #if IncludeWrist == 1
+        AnyKinDriverMarker LManusSegmentHelpMarker = 
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Left.Arm.Seg.Hand.LManusSegmentHelpMarker;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LMANUSSEGMENTHELPMARKER_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.REpicondylusLateralisHumeri.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };
+      #endif
+      
+    #endif // IncludeArms
+  
+    #if IncludeLeg == 1
+      // THIGH DRIVERS dynamic
+      #if IncludeHip + IncludeKnee > 0
+        AnyKinDriverMarker LThighInferior =    
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Left.Leg.Seg.Thigh.LThighInferior;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LTHIGHINFERIOR_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.LThighInferior.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };
+
+        AnyKinDriverMarker LThighLateral =    
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Left.Leg.Seg.Thigh.LThighLateral ;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LTHIGHLATERAL_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.LThighLateral.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };
+      
+        AnyKinDriverMarker LThighSuperior =    
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Left.Leg.Seg.Thigh.LThighSuperior ;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LTHIGHSUPERIOR_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.LThighSuperior.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };  
+      #endif // IncludeHip + IncludeKnee > 0
+      
+      #if IncludeKnee
+        #if GSUFullBodyMarkerSet == 0
+          #ifdef FULL_MARKERSET
+            AnyKinDriverMarker LPatella =
+            {
+              CType = {Soft,Soft,Soft};
+              AnyRefFrame &ref1 = ...FullModel.Left.Seg.Shank.LPatella;
+              AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers.LPatella.PosInterpol;
+              AnyFolder Weights = 
+              {
+                AnyFunConst WFun =
+                {
+                  Value = 
+                  {
+                    Main.SubjectSpecificData.MarkerWeights.PatellaX,
+                    Main.SubjectSpecificData.MarkerWeights.PatellaY,
+                    Main.SubjectSpecificData.MarkerWeights.PatellaZ
+                  };
+                };
+              };
+              WeightFun = { &Weights.WFun };
+              Linear.Ref = 0; // Weights are in local coordinates
+              AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+            };
+          #endif // FULL_MARKERSET
+        #endif // GSUFullBodyMarkerSet
+      #endif // IncludeKnee 
+
+      // SHANK DRIVERS dynamic
+      #if IncludeKnee + IncludeAnkle > 0
+      
+        AnyKinDriverMarker LTUB =    
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Left.Leg.Seg.Shank.LTUB;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LSHANKSUPERIOR_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.LShankSuperior.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };
+
+        AnyKinDriverMarker LShankInferior=    
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Left.Leg.Seg.Shank.LShankInferior ;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LSHANKINFERIOR_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.LShankInferior.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };
+
+        AnyKinDriverMarker LShankLateral =    
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Left.Leg.Seg.Shank.LShankLateral ;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LSHANKLATERAL_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.LShankLateral.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };
+      #endif // IncludeKnee + IncludeAnkle > 0
+      
+      //ANKLE DRIVERS dynamic
+      #if IncludeAnkle == 1
+        AnyKinDriverMarker LHeel =    
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Left.Leg.Seg.Foot.LHeel;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LHEEL_.PosInterpol;
+          //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.LHeel.Weight};
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };
+
+        #if GSUFullBodyMarkerSet == 0
+          AnyKinDriverMarker LHindfoot =    
+          {
+            CType = {Soft,Soft,Soft};
+            AnyRefFrame &ref1 = ...FullModel.Left.Seg.Foot.LHindfoot;
+            AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LHINDFOOT_.PosInterpol;
+            //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+          }; 
+        #endif // GSUFullBodyMarkerSet
+
+        AnyKinDriverMarker LMidfootLateral =    
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Left.Leg.Seg.Foot.LMidfootLateral ;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LMIDFOOTLATERAL_.PosInterpol;
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };
+
+        AnyKinDriverMarker LMidfootMedial =    
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Left.Leg.Seg.Foot.LMidfootMedial ;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LMIDFOOTMEDIAL_.PosInterpol;
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        };  
+        
+        #if GSUFullBodyMarkerSet == 0
+          AnyKinDriverMarker LMidfootSuperior =    
+          {
+            CType = {Soft,Soft,Soft};
+            AnyRefFrame &ref1 = ...FullModel.Left.Seg.Foot.LMidfootSuperior ;
+            AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers.LMidfootSuperior.PosInterpol;
+            //WeightFun = {&Main.ModelSetup.DynamicDataSet.Points.Markers.LMidfootSuperior.Weight};
+            AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+          };
+        #endif // GSUFullBodyMarkerSet
+        
+        #ifdef FULL_MARKERSET
+          AnyKinDriverMarker LToeMedial =    
+          {
+            CType = {Soft,Soft,Soft};
+            AnyRefFrame &ref1 = ...FullModel.Left.Seg.Foot.LToeMedial ;
+            AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LTOEMEDIAL_.PosInterpol;
+            AnyFolder Weights = {AnyFunConst WFun ={Value = {
+                    Main.SubjectSpecificData.MarkerWeights.ToeX,
+                    Main.SubjectSpecificData.MarkerWeights.ToeY,
+                    Main.SubjectSpecificData.MarkerWeights.ToeZ
+                };};};
+            WeightFun={&Weights.WFun };
+            Linear.Ref = 0; // Weights are in local coordinates
+            //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+          };
+
+          AnyKinDriverMarker LToeLateral =    
+          {
+            CType = {Soft,Soft,Soft};
+            AnyRefFrame &ref1 = ...FullModel.Left.Seg.Foot.LToeLateral ;
+            AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LTOELATERAL_.PosInterpol;    
+            AnyFolder Weights = {AnyFunConst WFun ={Value = {
+                    Main.SubjectSpecificData.MarkerWeights.ToeX,
+                    Main.SubjectSpecificData.MarkerWeights.ToeY,
+                    Main.SubjectSpecificData.MarkerWeights.ToeZ
+                };};};
+            WeightFun={&Weights.WFun };
+            Linear.Ref = 0; // Weights are in local coordinates
+            //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+          };  
+        #endif // FULL_MARKERSET
+      
+        AnyKinDriverMarker LToe =   
+        {
+          CType = {Soft,Soft,Soft};
+          AnyRefFrame &ref1 = ...FullModel.Left.Leg.Seg.Foot.LToe ;
+          AnyParamFun &ref2 = Main.ModelSetup.DynamicDataSet.Points.Markers._LTOE_.PosInterpol;
+          AnyFolder Weights = {AnyFunConst WFun ={Value = {
+                Main.SubjectSpecificData.MarkerWeights.ToeX,
+                Main.SubjectSpecificData.MarkerWeights.ToeY,
+                Main.SubjectSpecificData.MarkerWeights.ToeZ
+            };};};
+          WeightFun={&Weights.WFun };
+          Linear.Ref = 0; // Weights are in local coordinates
+          //AnyDrawKinMeasure drw = { Visible = ..ShowMarker; Label = Off; Size = ..MarkerSize;  Line = Off;  };
+        }; // LToe
+      
+      #endif // IncludeAnkle
+    #endif // IncludeLeg
+  #endif // IncludeLeft
+}; // Driver
+
+

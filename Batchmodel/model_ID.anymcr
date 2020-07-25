@@ -1,0 +1,8 @@
+load "C:\Users\omar\Aamu projects\Git\FullBody-RBF-scaling\Batchmodel\InversDynamics.main.any"
+
+operation Main.RunInverseDynamics 
+
+run 
+
+exit 
+

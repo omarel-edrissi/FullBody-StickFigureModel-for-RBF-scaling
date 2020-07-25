@@ -1,25 +1,25 @@
     AnyRefNode MorphNodes = {
-    AnyDrawRefFrame drw={RGB={1,0,0};};
+    //AnyDrawRefFrame drw={RGB={1,0,0};};
 
     AnyVar MarkerRadius = 0.006;
     sRel = .KneeJoint.sRel;
       #ifdef RightLeg
         AnyVar Sign = 1;
         // Coordinates of Medial and Lateral condyle markers in Shank ref system
-        AnyVec3 LatKneeRef = .....StickFigure.Posture.Right.Shank.RKneeLateral.sRel_static;
-        AnyVec3 MedKneeRef = .....StickFigure.Posture.Right.Shank.RKneeMedial.sRel_static;
-        AnyVec3 PatellaRef = .....StickFigure.Posture.Right.Shank.RPatella.sRel_static;
-        AnyVec3 MedAnkleRef = .....StickFigure.Posture.Right.Shank.RAnkleMedial.sRel_static;
-        AnyVec3 LatAnkleRef = .....StickFigure.Posture.Right.Shank.RAnkleLateral.sRel_static;
+        AnyVec3 LatKneeRef = ......StickFigure.Posture.Right.Leg.Shank.RKneeLateral.sRel_static;
+        AnyVec3 MedKneeRef = ......StickFigure.Posture.Right.Leg.Shank.RKneeMedial.sRel_static;
+//        AnyVec3 PatellaRef = .....StickFigure.Posture.Right.Shank.RPatella.sRel_static;
+        AnyVec3 MedAnkleRef = ......StickFigure.Posture.Right.Leg.Shank.RAnkleMedial.sRel_static;
+        AnyVec3 LatAnkleRef = ......StickFigure.Posture.Right.Leg.Shank.RAnkleLateral.sRel_static;
       #endif
       #ifdef LeftLeg
          AnyVar Sign = -1;
         // Coordinates of Medial and Lateral condyle markers in Thigh ref system
-        AnyVec3 LatKneeRef = .....StickFigure.Posture.Left.Shank.LKneeLateral.sRel_static;
-        AnyVec3 MedKneeRef = .....StickFigure.Posture.Left.Shank.LKneeMedial.sRel_static;
-        AnyVec3 PatellaRef = .....StickFigure.Posture.Left.Shank.LPatella.sRel_static;
-        AnyVec3 MedAnkleRef = .....StickFigure.Posture.Left.Shank.LAnkleMedial.sRel_static;
-        AnyVec3 LatAnkleRef = .....StickFigure.Posture.Left.Shank.LAnkleLateral.sRel_static;
+        AnyVec3 LatKneeRef = ......StickFigure.Posture.Left.Leg.Shank.LKneeLateral.sRel_static;
+        AnyVec3 MedKneeRef = ......StickFigure.Posture.Left.Leg.Shank.LKneeMedial.sRel_static;
+//        AnyVec3 PatellaRef = .....StickFigure.Posture.Left.Leg.Shank.LPatella.sRel_static;
+        AnyVec3 MedAnkleRef = ......StickFigure.Posture.Left.Leg.Shank.LAnkleMedial.sRel_static;
+        AnyVec3 LatAnkleRef = ......StickFigure.Posture.Left.Leg.Shank.LAnkleLateral.sRel_static;
       #endif
 
      // Calculate Knee and Ankle axis orientation in the MorphNodes coordinate system
@@ -61,7 +61,7 @@
      // Calculate Marker Positions in the MorphNodes coordinate system
      AnyVec3 sMedKneeMarker = ( ARel'*(MedKneeRef - sRel)' )';
      AnyVec3 sLatKneeMarker = ( ARel'*(LatKneeRef - sRel)' )';
-     AnyVec3 sPatellaMarker = ( ARel'*(PatellaRef - sRel)' )';
+//     AnyVec3 sPatellaMarker = ( ARel'*(PatellaRef - sRel)' )';
      AnyVec3 sMedAnkleMarker = ( ARel'*(MedAnkleRef - sRel)' )';
      AnyVec3 sLatAnkleMarker = ( ARel'*(LatAnkleRef - sRel)' )';
      AnyVec3 sAnkleCenter = ( ARel'*(.AnkleJoint.sRel - sRel)')';

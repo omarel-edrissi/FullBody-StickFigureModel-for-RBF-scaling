@@ -1,0 +1,8 @@
+load "C:\Users\omar\Aamu projects\Git\FullBody-RBF-scaling\Batchmodel\FootPosition.main.any"
+
+operation Main.RunApplication 
+
+run 
+
+exit 
+

@@ -1,0 +1,5 @@
+AnyFolder Forceplates = 
+{
+    #define INCLUDE_FP1_RightFootContact 
+}; 
+

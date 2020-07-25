@@ -1,0 +1,6 @@
+AnyFolder TName_Ref = 
+{
+    AnyString NameR = "..\Input\Ref_sup0004_mod.c3d"; 
+    AnyString NameG = "Ref_sup0004_mod"; 
+}; 
+

@@ -28,4 +28,28 @@ AnyFolder JointAnglesAndMoments = {
     ANKLEMOMENT = BodyModelRef.Left.Leg.MomentMeasure.AnklePlantarFlexionNetMoment.M
     ) = { Sign = -1;};
 
+    
+    CreateJointAnglesAndMomentMeasures Right2 (
+    PELVIS_FRAME= LegModelRef.Trunk.Seg.Pelvis.StaticMarkerFrame,
+    THIGH_HIP_FRAME = LegModelRef.Right.Seg.Thigh.HipStaticMarkerFrame,
+    THIGH_KNEE_FRAME = LegModelRef.Right.Seg.Thigh.KneeJointCoordinateSystemMechanicalAxis,
+    SHANK_KNEE_FRAME = LegModelRef.Right.Seg.Shank.KneeJointCoordinateSystemMechanicalAxis,
+    SHANK_ANKLE_FRAME = LegModelRef.Right.Seg.Shank.AnkleStaticMarkerFrame,
+    FOOT_ANKLE_FRAME = LegModelRef.Right.Seg.Foot.AnkleStaticMarkerFrame,
+    HIPMOMENT = BodyModelRef.Right.Leg.MomentMeasure.HipNetMoment.M,
+    KNEEMOMENT = BodyModelRef.Right.Leg.MomentMeasure.KneeNetMoment.M,
+    ANKLEMOMENT = BodyModelRef.Right.Leg.MomentMeasure.AnklePlantarFlexionNetMoment.M
+    ) = { Sign = 1;};    
+    
+    CreateJointAnglesAndMomentMeasures Left2 (
+    PELVIS_FRAME= LegModelRef.Trunk.Seg.Pelvis.StaticMarkerFrame,
+    THIGH_HIP_FRAME = LegModelRef.Left.Seg.Thigh.HipStaticMarkerFrame,
+    THIGH_KNEE_FRAME = LegModelRef.Left.Seg.Thigh.KneeJointCoordinateSystemMechanicalAxis,
+    SHANK_KNEE_FRAME = LegModelRef.Left.Seg.Shank.KneeJointCoordinateSystemMechanicalAxis,
+    SHANK_ANKLE_FRAME = LegModelRef.Left.Seg.Shank.AnkleStaticMarkerFrame,
+    FOOT_ANKLE_FRAME = LegModelRef.Left.Seg.Foot.AnkleStaticMarkerFrame,
+    HIPMOMENT = BodyModelRef.Left.Leg.MomentMeasure.HipNetMoment.M,
+    KNEEMOMENT = BodyModelRef.Left.Leg.MomentMeasure.KneeNetMoment.M,
+    ANKLEMOMENT = BodyModelRef.Left.Leg.MomentMeasure.AnklePlantarFlexionNetMoment.M
+    ) = { Sign = -1;};
 };

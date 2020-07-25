@@ -1,0 +1,45 @@
+#if IncludeSpine == 1
+  AnyFolder TrunkMeasures =
+  {
+    AnyFolder Thorax =
+    {
+        AnyKinRotational IJPXRotMeasure =
+        {               
+            AnyRefFrame &ref1= ....Trunk.Seg.Thorax.IncisuraJugularis;
+            AnyRefFrame &ref2= ....Trunk.Seg.Thorax.ProcessusXiphoideus;
+            
+            Type = RotAxesAngles; 
+        }; // IJPXRotMeasure
+
+        AnyKinRotational IJC7RotMeasure =
+        {               
+            AnyRefFrame &ref1= ....Trunk.Seg.Thorax.IncisuraJugularis;
+            AnyRefFrame &ref2= ....Trunk.Seg.Thorax.C7;
+            
+            Type = RotAxesAngles; 
+        }; // IJC7RotMeasure
+
+        AnyKinRotational PXT8RotMeasure =
+        {               
+            AnyRefFrame &ref1= ....Trunk.Seg.Thorax.ProcessusXiphoideus;
+            AnyRefFrame &ref2= ....Trunk.Seg.Thorax.T8;
+            
+            Type = RotAxesAngles; 
+        }; // PXT8RotMeasure
+
+        AnyKinRotational C7T8RotMeasure =
+        {               
+            AnyRefFrame &ref1= ....Trunk.Seg.Thorax.C7;
+            AnyRefFrame &ref2= ....Trunk.Seg.Thorax.T8;
+            
+            Type = RotAxesAngles; 
+        }; // PXT8RotMeasure
+      
+        AnyKinLinear IJPXTransMeasure = 
+        {
+              AnyRefFrame &ref1= ....Trunk.Seg.Thorax.IncisuraJugularis;
+              AnyRefFrame &ref2= ....Trunk.Seg.Thorax.ProcessusXiphoideus;
+        }; // IJPXTransMeasure   
+    }; // Thorax
+  }; // TrunkMeasures
+#endif // IncludeSpine

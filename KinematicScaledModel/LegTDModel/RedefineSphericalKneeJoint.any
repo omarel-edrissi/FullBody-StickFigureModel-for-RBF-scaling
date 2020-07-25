@@ -1,0 +1,119 @@
+AnyFolder RedefineSphericalKneeJoint = {
+
+  #ifndef SPHERICAL_KNEE_JOINT
+  #define SPHERICAL_KNEE_JOINT
+  #endif
+  
+ 
+  AnyFolder &BodyRef = .HumanModel.BodyModel;
+ 
+ // Objects to exclude
+  AnyObjectPtrArray ExcludedObjects = {&BodyRef.Right.Leg.Jnt.Knee.Constraints,
+                                  &BodyRef.Right.Leg.Jnt.Knee.Constraints.Reaction,
+                                  &BodyRef.Left.Leg.Jnt.Knee.Constraints,
+                                  &BodyRef.Left.Leg.Jnt.Knee.Constraints.Reaction};
+  BodyRef = {   
+    Right= {
+       Leg.Jnt = {
+          AnySphericalJoint SphericalKneeWithRevoluteReactions = {
+            AnyRefFrame &ref1 = ..Seg.Thigh.KneeJoint;
+            AnyRefFrame &ref2 = ..Seg.Shank.KneeJoint;
+            AnyReacForce RevoluteReacforces = {
+//              Type = {Off,On,On};
+//              AnyKinMeasure &rot = .Orientation;
+                AnyKinMeasureOrg Orientation = {
+                  AnyKinRotational rot = {
+                    Type = RotAxesAngles;                    
+                    AnyRefFrame &ref1 = .....Seg.Thigh.KneeJoint;
+                    AnyRefFrame &ref2 = .....Seg.Shank.KneeJoint;
+                  };
+                  MeasureOrganizer = {1,2};
+                };
+
+            }; 
+          };
+          
+        };
+       // Add reaction force to the moment measure
+       Leg.MomentMeasure.KneeNetMoment = {
+         AnyReacForce &jnt1a = ..Jnt.SphericalKneeWithRevoluteReactions.Constraints.Reaction;
+         AnyReacForce &jnt1b = ..Jnt.SphericalKneeWithRevoluteReactions.RevoluteReacforces;
+       };
+       Leg.MomentMeasure.KneeNetMomentMuscle ={
+         AnyReacForce &jnt1a = ..Jnt.SphericalKneeWithRevoluteReactions.Constraints.Reaction;
+         AnyReacForce &jnt1b = ..Jnt.SphericalKneeWithRevoluteReactions.RevoluteReacforces;
+       };
+       
+       Leg.MomentMeasure.HipNetMoment = {
+         AnyReacForce &jnt1a = ..Jnt.SphericalKneeWithRevoluteReactions.Constraints.Reaction;
+         AnyReacForce &jnt1b = ..Jnt.SphericalKneeWithRevoluteReactions.RevoluteReacforces;
+       };
+
+            
+     };
+    Left= {
+       Leg.Jnt = {
+         AnySphericalJoint SphericalKneeWithRevoluteReactions = {
+           AnyRefFrame &ref1 = ..Seg.Thigh.KneeJoint;
+           AnyRefFrame &ref2 = ..Seg.Shank.KneeJoint;
+            AnyReacForce RevoluteReacforces = {
+                AnyKinMeasureOrg Orientation = {
+                  AnyKinRotational rot = {
+                    Type = RotAxesAngles;                    
+                    AnyRefFrame &ref1 = .....Seg.Thigh.KneeJoint;
+                    AnyRefFrame &ref2 = .....Seg.Shank.KneeJoint;
+                  };
+                  MeasureOrganizer = {1,2};
+                };
+
+            };
+
+         };
+       };
+       // Add reaction force to the moment measure
+       Leg.MomentMeasure.KneeNetMoment = {
+         AnyReacForce &jnt1a = ..Jnt.SphericalKneeWithRevoluteReactions.Constraints.Reaction;
+         AnyReacForce &jnt1b = ..Jnt.SphericalKneeWithRevoluteReactions.RevoluteReacforces;
+       };
+
+      Leg.MomentMeasure.KneeNetMomentMuscle ={
+         AnyReacForce &jnt1a = ..Jnt.SphericalKneeWithRevoluteReactions.Constraints.Reaction;
+         AnyReacForce &jnt1b = ..Jnt.SphericalKneeWithRevoluteReactions.RevoluteReacforces;
+       };  
+       
+       Leg.MomentMeasure.HipNetMoment = {
+         AnyReacForce &jnt1a = ..Jnt.SphericalKneeWithRevoluteReactions.Constraints.Reaction;
+         AnyReacForce &jnt1b = ..Jnt.SphericalKneeWithRevoluteReactions.RevoluteReacforces;
+       };
+
+       
+     };    
+    
+   };
+  
+   #if RIGHT_LEG_MUS_3E + RIGHT_LEG_TD_MUS_3E + LEFT_LEG_MUS_3E + LEFT_LEG_TD_MUS_3E >= 1
+   
+   AnyObjectPtrArray CalibrationObjectExclude = {&BodyRef.Right.Leg.Jnt.SphericalKneeWithRevoluteReactions.Constraints,
+                                  &BodyRef.Right.Leg.Jnt.SphericalKneeWithRevoluteReactions.Constraints.Reaction,
+                                  &BodyRef.Left.Leg.Jnt.SphericalKneeWithRevoluteReactions.Constraints,
+                                  &BodyRef.Left.Leg.Jnt.SphericalKneeWithRevoluteReactions.Constraints.Reaction};
+   
+   Main.AnyBodyGaitAppModel.HumanModel.Calibration.RightLegCalibration1.LegCalibrationStudy1.MechObjectExclude = CalibrationObjectExclude;
+   Main.AnyBodyGaitAppModel.HumanModel.Calibration.RightLegCalibration2.LegCalibrationStudy2.MechObjectExclude = CalibrationObjectExclude;
+   Main.AnyBodyGaitAppModel.HumanModel.Calibration.RightLegCalibration3.LegCalibrationStudy3.MechObjectExclude = CalibrationObjectExclude;
+   Main.AnyBodyGaitAppModel.HumanModel.Calibration.RightLegCalibration5.LegCalibrationStudy5.MechObjectExclude = CalibrationObjectExclude;
+   Main.AnyBodyGaitAppModel.HumanModel.Calibration.RightLegCalibration6.LegCalibrationStudy6.MechObjectExclude = CalibrationObjectExclude;
+   Main.AnyBodyGaitAppModel.HumanModel.Calibration.RightLegCalibration7.LegCalibrationStudy7.MechObjectExclude = CalibrationObjectExclude;
+
+   Main.AnyBodyGaitAppModel.HumanModel.Calibration.LeftLegCalibration1.LegCalibrationStudy1.MechObjectExclude = CalibrationObjectExclude;
+   Main.AnyBodyGaitAppModel.HumanModel.Calibration.LeftLegCalibration2.LegCalibrationStudy2.MechObjectExclude = CalibrationObjectExclude;
+   Main.AnyBodyGaitAppModel.HumanModel.Calibration.LeftLegCalibration3.LegCalibrationStudy3.MechObjectExclude = CalibrationObjectExclude;
+   Main.AnyBodyGaitAppModel.HumanModel.Calibration.LeftLegCalibration5.LegCalibrationStudy5.MechObjectExclude = CalibrationObjectExclude;
+   Main.AnyBodyGaitAppModel.HumanModel.Calibration.LeftLegCalibration6.LegCalibrationStudy6.MechObjectExclude = CalibrationObjectExclude;
+   Main.AnyBodyGaitAppModel.HumanModel.Calibration.LeftLegCalibration7.LegCalibrationStudy7.MechObjectExclude = CalibrationObjectExclude;
+
+   
+   
+   #endif   
+   
+ };

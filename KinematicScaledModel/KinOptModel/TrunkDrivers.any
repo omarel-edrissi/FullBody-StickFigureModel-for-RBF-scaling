@@ -1,0 +1,34 @@
+#if IncludeSpine == 1
+  AnyFolder TrunkDrivers =
+  {
+      AnyKinEq IJPXRotDriver = 
+      {
+          AnyKinRotational &IJPXRotMeasure = ..TrunkMeasures.Thorax.IJPXRotMeasure;
+          MeasureOrganizer = {0,1,2};
+      }; // RotDriver
+
+      AnyKinEq IJC7RotDriver = 
+      {
+          AnyKinRotational &IJC7RotMeasure = ..TrunkMeasures.Thorax.IJC7RotMeasure;
+          MeasureOrganizer = {0,1,2};
+      }; // RotDriver
+
+      AnyKinEq PXT8RotDriver = 
+      {
+          AnyKinRotational &PXT8RotMeasure = ..TrunkMeasures.Thorax.PXT8RotMeasure;
+          MeasureOrganizer = {0,1,2};
+      }; // RotDriver
+
+      AnyKinEq C7T8RotDriver = 
+      {
+          AnyKinRotational &C7T8RotMeasure = ..TrunkMeasures.Thorax.C7T8RotMeasure;
+          MeasureOrganizer = {0,1,2};
+      }; // RotDriver
+      
+//      AnyKinEq IJPXTransDriver = 
+//      {
+//          AnyKinLinear &IJPXTransMeasure = ..TrunkMeasures.Thorax.IJPXTransMeasure;
+//          MeasureOrganizer = {0,1,2};
+//      }; // TransDriver
+  };
+#endif

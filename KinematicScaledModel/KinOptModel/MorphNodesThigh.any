@@ -4,17 +4,17 @@
      #ifdef RightLeg     
        AnyVar Sign=1;
        // Coordinates of Medial and Lateral condyle markers in Thigh ref system
-       AnyVec3 LatKneeRef = .....StickFigure.Posture.Right.Thigh.RKneeLateral.sRel_static;
-       AnyVec3 MedKneeRef = .....StickFigure.Posture.Right.Thigh.RKneeMedial.sRel_static;
-       AnyVec3 PatellaRef = .....StickFigure.Posture.Right.Thigh.RPatella.sRel_static;
+       AnyVec3 LatKneeRef = ......StickFigure.Posture.Right.Leg.Thigh.RKneeLateral.sRel_static;
+       AnyVec3 MedKneeRef = ......StickFigure.Posture.Right.Leg.Thigh.RKneeMedial.sRel_static;
+//       AnyVec3 PatellaRef = .....StickFigure.Posture.Right.Thigh.RPatella.sRel_static;
 
      #endif
      #ifdef LeftLeg 
        AnyVar Sign=-1;
        // Coordinates of Medial and Lateral condyle markers in Thigh ref system
-       AnyVec3 LatKneeRef = .....StickFigure.Posture.Left.Thigh.LKneeLateral.sRel_static;
-       AnyVec3 MedKneeRef = .....StickFigure.Posture.Left.Thigh.LKneeMedial.sRel_static;
-       AnyVec3 PatellaRef = .....StickFigure.Posture.Left.Thigh.LPatella.sRel_static;
+       AnyVec3 LatKneeRef = ......StickFigure.Posture.Left.Leg.Thigh.LKneeLateral.sRel_static;
+       AnyVec3 MedKneeRef = ......StickFigure.Posture.Left.Leg.Thigh.LKneeMedial.sRel_static;
+//       AnyVec3 PatellaRef = .....StickFigure.Posture.Left.Thigh.LPatella.sRel_static;
      #endif
 
     AnyVec3 sKneeAxisZ = ( ARel'* .KneeJoint.ARel*{0,0,Sign*1}' )';
@@ -22,7 +22,7 @@
 
     AnyVec3 sMedKneeMarker = ( ARel'*(MedKneeRef - sRel)' )';
     AnyVec3 sLatKneeMarker = ( ARel'*(LatKneeRef - sRel)' )';
-    AnyVec3 sPatellaMarker = ( ARel'*(PatellaRef - sRel)' )';
+//    AnyVec3 sPatellaMarker = ( ARel'*(PatellaRef - sRel)' )';
 
     // Calculate a scale factor for the knee based on the knee width
    #ifdef MARKERS_DO_NOT_DEFINE_KNEE_WIDTH

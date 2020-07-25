@@ -128,8 +128,10 @@ AnyFolder Scaling = {
       AnyFolder Talus  = {
         AnySwitch ShowNodes = Off;
 
-        #if 1
+        #if 0
           AnyFunTransform3DIdentity ScaleFunction = {};
+        #else
+          AnyFunTransform3D &ScaleFunction = .Foot.ScaleFunction;
         #endif
       };
       
@@ -139,10 +141,11 @@ AnyFolder Scaling = {
         AnyVar LengthScale = ...AnthroSegmentLengths.Side.FootLength / ...StandardParameters.Side.Foot.Length;    
         AnyVar MassScale = ...MassScaling.Left.Foot.MassScale;
 
-        AnyFunTransform3DLin ScaleFunction= 
-        {
-           ScaleMat = {{1,0,0},{0,1,0},{0,0,1}};
-           Offset = {0,0,0};
+        AnyVar ms =  MassScale ;
+        AnyVar ls = LengthScale;
+        AnyFunTransform3DLin ScaleFunction = {
+          ScaleMat = {{.ls, 0, 0},{0, (.ms/.ls)^0.5, 0},{0, 0, (.ms/.ls)^0.5}};
+          Offset = {0, 0, 0};
         };
       };
 
@@ -304,12 +307,12 @@ AnyFolder Scaling = {
         AnyVar LengthScale = ...AnthroSegmentLengths.Side.FootLength / ...StandardParameters.Side.Foot.Length;    
         AnyVar MassScale = ...MassScaling.Left.Foot.MassScale;
 
-        AnyFunTransform3DLin ScaleFunction = 
-        {
-          ScaleMat = {{1,0,0},{0,1,0},{0,0,1}};
-          Offset = {0,0,0};
+        AnyVar ms =  MassScale ;
+        AnyVar ls = LengthScale;
+        AnyFunTransform3DLin ScaleFunction = {
+          ScaleMat = {{.ls, 0, 0},{0, (.ms/.ls)^0.5, 0},{0, 0, (.ms/.ls)^0.5}};
+          Offset = {0, 0, 0};            
         };
-     
       };
       
       AnyFolder Shank = {

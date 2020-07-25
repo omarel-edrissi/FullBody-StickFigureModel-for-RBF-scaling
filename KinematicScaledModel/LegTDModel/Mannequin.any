@@ -3,13 +3,15 @@ AnyFolder Mannequin = {
   
   AnyFolder Posture = {
     
-    AnyParamFun &RAsis = Main.ModelSetup.DynamicDataSet.Points.Markers.RAsis.PosInterpol;
-    AnyParamFun &LAsis = Main.ModelSetup.DynamicDataSet.Points.Markers.LAsis.PosInterpol;
+    AnyParamFun &RAsis = Main.ModelSetup.DynamicDataSet.Points.Markers._RASIS_.PosInterpol;
+    AnyParamFun &LAsis = Main.ModelSetup.DynamicDataSet.Points.Markers._LASIS_.PosInterpol;
+
+    AnyParamFun &RPsis = Main.ModelSetup.DynamicDataSet.Points.Markers._RPSIS_.PosInterpol;
+    AnyParamFun &LPsis = Main.ModelSetup.DynamicDataSet.Points.Markers._LPSIS_.PosInterpol;
     
-    AnyParamFun &Sacral = Main.ModelSetup.DynamicDataSet.Points.Markers.Sacral.PosInterpol;
     
     AnyVec3 u3 =  ( RAsis(Main.ModelSetup.tStart) - LAsis(Main.ModelSetup.tStart) ) / vnorm(RAsis(Main.ModelSetup.tStart)- LAsis(Main.ModelSetup.tStart)) ;
-    AnyVec3 initPelvisPos = ( Sacral(Main.ModelSetup.tStart) -LAsis(Main.ModelSetup.tStart) )*u3'* u3 + LAsis(Main.ModelSetup.tStart);
+    AnyVec3 initPelvisPos = ( 0.5*(RPsis(Main.ModelSetup.tStart)+LPsis(Main.ModelSetup.tStart)) -LAsis(Main.ModelSetup.tStart) )*u3'* u3 + LAsis(Main.ModelSetup.tStart);
         
     AnyVar PelvisPosX = initPelvisPos[0] -0.5;
     AnyVar PelvisPosY = initPelvisPos[1] ;
@@ -19,7 +21,7 @@ AnyFolder Mannequin = {
     AnyVar PelvisRotY = Main.TrialSpecificData.InitialPositionOfBody.PelvisRotY;
     AnyVar PelvisRotX = Main.TrialSpecificData.InitialPositionOfBody.PelvisRotX;
     
-    AnyMat33 PelvisRotMatrix =  RotMat(Sacral(Main.ModelSetup.tStart),
+    AnyMat33 PelvisRotMatrix =  RotMat(0.5*(RPsis(Main.ModelSetup.tStart)+LPsis(Main.ModelSetup.tStart)),
     0.5*(RAsis(Main.ModelSetup.tStart)+LAsis(Main.ModelSetup.tStart)), 
     RAsis(Main.ModelSetup.tStart))*RotMat(-pi/2,x) ;
     // These variables control the rotation of the thorax wrt the

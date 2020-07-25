@@ -1,0 +1,115 @@
+// This file is included at line 2 in SetModelType.any
+
+#define _LASIS_ LASI
+#define _RASIS_ RASI
+#define _RPSIS_ RPSI
+#define _LPSIS_ LPSI
+
+#define _RTHIGHSUPERIOR_ RTRO
+#define _RTHIGHLATERAL_ RKNE
+#define _RTHIGHINFERIOR_ RKNEmed
+#define _RKNEEMEDIAL_ RKNEmed
+#define _RKNEELATERAL_ RKNE
+
+#define _RSHANKSUPERIOR_ RTIB
+#define _RSHANKINFERIOR_ RANKmed
+#define _RSHANKLATERAL_ RANK
+
+#define _RANKLELATERAL_ RANK
+#define _RANKLEMEDIAL_ RANKmed
+
+#define _RHEEL_ RHEE
+#define _RMIDFOOTLATERAL_ RCalcLat
+#define _RMIDFOOTMEDIAL_ RCalcMed
+
+
+#define _RTOEMEDIAL_ RMT1
+#define _RTOELATERAL_ RMT5
+#define _RTOE_ RToesTop
+
+#define _LTHIGHSUPERIOR_ LTRO
+#define _LTHIGHLATERAL_ LKNE
+#define _LTHIGHINFERIOR_ LKNEmed
+#define _LKNEELATERAL_ LKNE
+#define _LKNEEMEDIAL_ LKNEmed
+
+#define _LSHANKSUPERIOR_ LTIB
+#define _LSHANKINFERIOR_ LANKmed
+#define _LSHANKLATERAL_ LANK
+#define _LANKLELATERAL_ LANK
+#define _LANKLEMEDIAL_ LANKmed
+
+#define _LHEEL_ LHEE
+#define _LMIDFOOTLATERAL_ LCalcLat
+#define _LMIDFOOTMEDIAL_ LCalcMed
+
+
+#define _LTOEMEDIAL_ LMT1
+#define _LTOELATERAL_ LMT5
+#define _LTOE_ LToesTop
+
+// IJ: Deepest point of Incisura Jugularis (suprasternal notch)
+#define _INCISURAJUGULARIS_ CLAV
+
+// PX: Processus Xiphoideus (xiphoid process), most caudal point on the sternum
+#define _PROCESSUSXIPHOIDEUS_ STRN
+
+// C7: Processus spinosus vertebrae cervicales septima
+#define _C7_ C7
+
+// T6: Processus spinosus vertebrae thoracica sexta
+#define _T6_ TH6
+
+// T10: Processus spinosus vertebrae thoracica decima
+#define _T10_ TH10
+
+// L5: Processus spinosus vertebrae lumbalis primae
+#define _L1_ L1
+
+// L5: Processus spinosus vertebrae lumbalis tertiae
+#define _L3_ L3
+
+// L5: Processus spinosus vertebrae lumbalis quintae
+#define _L5_ L5
+
+// Right and left US: Most caudal–medial point on the ulnar styloid
+// Based on ISB recommendations Wu, van der Helm et al. 2005
+#define _RPROCESSUSSTYLOIDEUSULNAE_ RWRB
+#define _LPROCESSUSSTYLOIDEUSULNAE_ LWRB
+
+// Right and left RS: Most caudal–lateral point on the radial styloid
+// Based on ISB recommendations Wu, van der Helm et al. 2005
+#define _RPROCESSUSSTYLOIDEUSRADII_ RWRA
+#define _LPROCESSUSSTYLOIDEUSRADII_ LWRA
+
+// Right and left EM: Most caudal point on medial epicondyle of the humerus
+#define _REPICONDYLUSMEDIALISHUMERI_ RELBmed
+#define _LEPICONDYLUSMEDIALISHUMERI_ LELBmed
+
+// Right and left EL: Most caudal point on lateral epicondyle of the humerus
+#define _REPICONDYLUSLATERALISHUMERI_ RELB
+#define _LEPICONDYLUSLATERALISHUMERI_ LELB
+
+// Right and left FRA: Help marker located on the forearm segment
+#define _RANTEBRACHIUMSEGMENTHELPMARKER_ RFRA
+#define _LANTEBRACHIUMSEGMENTHELPMARKER_ LFRA
+
+// Right and left tuberculum majus
+#define _RTUBERCULUMMAJUS_ RSHO
+#define _LTUBERCULUMMAJUS_ LSHO
+
+// Right and left acromion
+#define _RACROMION_ RACR
+#define _LACROMION_ LACR
+
+// Right and left finger marker
+#define _RMANUSSEGMENTHELPMARKER_ RFIN
+#define _LMANUSSEGMENTHELPMARKER_ LFIN
+
+// Right and left UpperArm: Help marker located on the arm (brachium) segment
+#define _RBRACHIUMSEGMENTHELPMARKER_ RUpperArm
+#define _LBRACHIUMSEGMENTHELPMARKER_ LUpperArm
+
+
+
+

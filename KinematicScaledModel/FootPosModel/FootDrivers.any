@@ -1,8 +1,8 @@
 TLEMFoot = {
     AnyRefNode NeutralAnkleCenter = {
       sRel = .Scale(.StdPar.AnkleJoint);
-      //ARel = .AnatomicalFrame.ARel;
-      ARel = .ScalingNode.ARel;
+      ARel = .AnatomicalFrame.ARel;
+      //ARel = .ScalingNode.ARel;
 
       AnyDrawRefFrame drw = {};
     };      

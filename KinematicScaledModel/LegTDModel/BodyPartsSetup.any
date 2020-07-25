@@ -60,7 +60,7 @@
 // ***********************************
 #define LEFT_LEG 0
 // This is just the bones,
-// Choose one of the following options to add muscles
+// Choose one of the following options to add muscle1
 #define LEFT_LEG_SIMPLE_MUSCLES 0
 #define LEFT_LEG_MUS_3E 0
 

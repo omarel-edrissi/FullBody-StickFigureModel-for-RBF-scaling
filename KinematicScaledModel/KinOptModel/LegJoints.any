@@ -1,0 +1,89 @@
+AnyFolder Jnt = 
+{
+    #if IncludeHip == 1
+        AnySphericalJoint HipJoint = 
+        {
+            #ifdef RightLeg
+                AnyRefFrame &ref1= ....Trunk.Seg.Pelvis.RHipJoint;
+            #endif // RightLeg
+            
+            #ifdef LeftLeg
+                AnyRefFrame &ref1= ....Trunk.Seg.Pelvis.LHipJoint;
+            #endif // LeftLeg
+            
+            AnyRefFrame &ref2 = ...Leg.Seg.Thigh.HipJoint;
+
+            #if HideStickModelGraphics == 0
+                AnyDrawStdJoint drwJnt = 
+                {   
+                    D = 0.015; 
+                    L=4*D; 
+                };
+            #endif // HideStickModelGraphics
+        }; // HipJoint
+    #endif // IncludeHip
+    
+    #if IncludeKnee == 1
+        #ifndef SPHERICAL_KNEE_JOINT
+            AnyRevoluteJoint KneeJoint = 
+            {
+                Constraints.CType = {Hard,Hard,Hard,Hard,Hard};
+                Axis = z;
+                AnyRefFrame &ref1 = ..Seg.Thigh.KneeJoint;
+                AnyRefFrame &ref2 = ..Seg.Shank.KneeJoint;
+                
+                #if HideStickModelGraphics == 0
+                AnyDrawStdJoint drwJnt =  
+                {      
+                    D = 0.005; 
+                    L=4*D;   
+                };
+                #endif // HideStickModelGraphics
+            }; // SPHERICAL_KNEE_JOINT
+        #else  
+            AnySphericalJoint KneeJoint = 
+            {
+                AnyRefFrame &ref1 = ..Seg.Thigh.KneeJoint;
+                AnyRefFrame &ref2 = ..Seg.Shank.KneeJoint;
+                
+                #if HideStickModelGraphics == 0
+                AnyDrawStdJoint drwJnt =  
+                {      
+                    D = 0.005; 
+                    L=4*D;   
+                };
+                #endif // HideStickModelGraphics
+            }; // KneeJoint
+        #endif // SPHERICAL_KNEE_JOINT else
+    #endif // IncludeKnee
+    
+    #if IncludeAnkle == 1
+        AnyRevoluteJoint AnkleJoint = 
+        {
+            Axis = z;
+            AnyRefFrame &ref1 = ..Seg.Shank.AnkleJoint;
+            AnyRefFrame &ref2 = ..Seg.Talus.AnkleJoint;
+            #if HideStickModelGraphics == 0
+                AnyDrawStdJoint drwJnt =  
+                { 
+                    D = 0.005; 
+                    L=4*D; 
+                };
+            #endif 
+        };    
+
+        AnyRevoluteJoint SubtalarJoint = 
+        {
+            Axis = x;
+            AnyRefFrame &ref1 = ..Seg.Talus.SubtalarJoint;
+            AnyRefFrame &ref2 = ..Seg.Foot.SubtalarJoint;
+            #if HideStickModelGraphics == 0
+                AnyDrawStdJoint drwJnt =  
+                { 
+                    D = 0.005; 
+                    L=4*D; 
+                };
+            #endif // HideStickModelGraphics
+        }; // SubtalarJoint
+    #endif // IncludeAnkle
+};//Jnt

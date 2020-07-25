@@ -5,22 +5,31 @@
 #define IncludeAnkle 1
 #define UseDanamicLoadPosition 1
 #define EnableJointAxisScaling 1
-#define HideStickModelGraphics 0
+#define HideStickModelGraphics 1
 #define UseRbfScaling 1
 #define IncludeLegTDModel 1
 
+// Muscle weight factors normalising by: 1) nElems, 2) PCSA/nElems, 3) MuscleVolume/nElems 
 #ifndef INCLUDE_MUSCLE_WEIGHT_FACTOR 
-#define INCLUDE_MUSCLE_WEIGHT_FACTOR 0
+#define INCLUDE_MUSCLE_WEIGHT_FACTOR 2
 #endif
 
-
+Main = {
+ AnyOperationSequence RunInverseDynamics = 
+  {
+    AnyOperation &Load_AnatomicalParameters = Main.JntParameterOptModel.AnatomicalStickFigureValues.Load_AnatomicalParameters;
+    AnyOperation &LoadFootJointAxis = Main.LoadFootJointAxis;
+    AnyOperation &MuscleCalibration = Main.AnyBodyGaitAppModel.HumanModel.Calibration.CalibrationSequence;
+    AnyOperation &InverseDynamics = Main.AnyBodyGaitAppModel.InverseDynamicStudy.InverseDynamics;
+    AnyOperation &SaveOutputToH5File = Main.SaveOutputToH5File;
+  };  
+};
 
 #include "KinematicModel.main.any"
 
-// This is the project operation for the inverse dynamic models
-#include "LegTDModel\Project.any"
 
 Main = {
+  
   #include "DrawSettings.any"
   #include "GeneralSettings.any"  
   
@@ -30,8 +39,8 @@ Main = {
     
     AnyBodyStudy InverseDynamicStudy = 
     {
-      #include "<SHARED_FILES_PATH>/InverseDynamicsSettings.any"
-      
+      #include "InverseDynamicsSettings.any"
+      AnyFolder& CoM_Folder = Main.CoM_Folder;
       tStart = Main.ModelSetup.tStart;
       #ifdef NSTEP
       nStep = NSTEP;
@@ -45,7 +54,7 @@ Main = {
       tEnd = Main.ModelSetup.tEnd;
       #endif
 
-      
+  
       
       AnyFolder &OptKinModel = Main.JntParameterOptModel.LegModel;
       AnyFolder HumanModel = {
@@ -56,19 +65,21 @@ Main = {
           TriggerConst = neqfun(.BodyModel.Right.Leg.ModelParameters.Thigh.KneeJoint[0]  , 0.04423707  );
            Type = MSG_ErrorFatal;
            Message = "The model is not using a modified AMMR. The joint parameters have to be changed so the ankle and knee joint are translated along the axis to lie between the bony landmarks.";
-        };
+     
+         };
       }; 
       #include "LegTDModel\InstrumentedKnee.any"
       // Includes Analog data (EMG and Kneeforces) 
-      #include "ValidationOutput.any"
+      //#include "ValidationOutput.any"
       
       AnyFolder EnvironmentModel = {
         AnyFolder DrawC3DMarkers = {}; 
-        #include "Environment.any"         
+        #include "Environment.any"   
        };
-      AnyFolder &camera = Main.ModelSetup.Camera;
+      //AnyFolder &camera = Main.ModelSetup.Camera;
       //Connection between environment and the human    
       AnyFolder ModelEnvironmentConnection = {
+       
         //Drivers for the model
         #include "LegTDModel\JointsAndDriversOptimized.any"
         
@@ -76,6 +87,10 @@ Main = {
         #include "KinOptModel\JointsAndDriversOptimized.any"
       };
       
+      #ifdef SPHERICAL_KNEE_JOINT  
+      #include "LegTDModel\RedefineSphericalKneeJoint.any"
+      MechObjectExclude = RedefineSphericalKneeJoint.ExcludedObjects;
+      #endif
       
       #include "JointReactionForces.any"
       #include "JointAnglesAndMoments.any"
@@ -88,8 +103,8 @@ Main = {
       #endif
       
       
-      AnyFolder &MusPar= Main.AnyBodyGaitAppModel.HumanModel.BodyModel.Left.Leg.MusPar;
-      #include "<SHARED_FILES_PATH>/ReduceKneeStrength.any"
+//      AnyFolder &MusPar= Main.AnyBodyGaitAppModel.HumanModel.BodyModel.Left.Leg.MusPar;
+//      #include "ReduceKneeStrength.any"
       
 
      
@@ -113,7 +128,53 @@ Main = {
   #endif
   #endif
   
-  
+  AnyFolder CoM_Folder =
+{
+    AnyKinCoM CoM_Measure =
+    {
+      AnyFolder& Model = Main.AnyBodyGaitAppModel.HumanModel.BodyModel;
+    };
+   
+    AnySeg dummySeg =
+    {
+       Mass = 0;
+       Jii = {0, 0, 0};
+       r0 = {0, 0, 0};
+       Axes0 = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
+       AnyDrawNode drw =
+       {
+         ScaleXYZ={1,1,1}*0.02;
+         RGB = {0, 248, 208} / 255;
+       };
+    };
+    
+    AnyKinEq rotCon =
+    {
+       AnyKinRotational rot=
+       {
+         AnyRefFrame& base = Main.AnyBodyGaitAppModel.InverseDynamicStudy.EnvironmentModel.GlobalRef;
+         AnySeg& ref = ..dummySeg;
+         Type = RotAxesAngles;
+       };
+    };
+   
+    AnyKinLinear lin=
+    {
+      AnyRefFrame& ref = Main.AnyBodyGaitAppModel.InverseDynamicStudy.EnvironmentModel.GlobalRef;
+      AnySeg& ref2 = .dummySeg;
+    };   
+    
+    AnyKinEq CoM_Drv =
+    {
+        AnyKinMeasureLinComb lincomb =
+        {
+            AnyKinLinear &ref1 = ..lin;
+            AnyKinCoM &ref2 = ..CoM_Measure;
+            Coef={{1,0,0,-1,0,0},{0,1,0,0,-1,0},{0,0,1,0,0,-1}};
+            OutDim = 3;
+        };
+    };
+};  
     
   
 };  // Main

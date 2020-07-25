@@ -1,0 +1,54 @@
+AnyFolder Anthro = {
+
+AnyVar BodyMass=87.92;  //the mass is automatically distributed to the segments 
+
+AnyVar BodyHeight=1.87;  //height 
+
+AnyVar ThighLength=0.21;  //rigth and left side is mirrored  
+
+AnyVar ShankLength=0.33;  //rigth and left side is mirrored  
+
+AnyVar FootLength=0.3;  //rigth and left side is mirrored  
+
+AnyVar PelvisWidth=0.3; //test 
+
+AnyVar HeadHeight=0.15;  //height in neutral position from  C1HatNode to top of head  
+
+AnyVar TrunkHeight=0.27;  //height in neutral position from  C1HatNode to L5SacrumJnt  
+
+AnyVar UpperArmLength=0.2;   
+
+AnyVar LowerArmLength=0.19;   
+
+AnyVar HandLength=0.15;   
+
+AnyVar HandBreadth=0.9;   
+
+AnyVar ThighCirc=0.59;   
+
+AnyVar KneeCirc=0.28;   
+
+AnyVar AnkleCirc=0.23;   
+
+AnyVar PelvisCirc=1.01;   
+
+AnyVar PelvisHeight=0.2;   
+
+AnyVar WaistCirc=0.82;   
+
+AnyVar BreastCirc=0.8;   
+
+AnyVar UpperArmCirc=0.23;   
+
+AnyVar LowerArmCirc=0.2;   
+
+AnyVar WristCirc=0.16;   
+
+AnyVar HandWidth=0.02;   
+
+AnyVar FootWidth=0.09;   
+
+AnyVar AnkleHeigth=0.08;   
+
+}; 
+

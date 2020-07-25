@@ -1,0 +1,9 @@
+AnyFolder TName = 
+{
+      AnyString NameO = "..\Input\Wand0001_01_mod.c3d"; 
+      AnyString NameX = "Wand0001_01_mod";
+      
+//     AnyString NameO = "..\Input\Ref_sup0004_mod.c3d"; 
+//      AnyString NameX = "Ref_sup0004_mod";
+}; 
+

@@ -8,6 +8,7 @@ AnyFixedRefFrame GlobalRef ={
 
 
 #ifdef IncludeLegTDModel
+#ifdef INCLUDE_FP1
 ForcePlateType2AutoDetection ForcePlate1 (
 PlateName = Plate1,
 Folder = Main.ModelSetup.DynamicDataSet,
@@ -17,53 +18,177 @@ VerticalDirection ="Z",
 HeightTolerance=0.05,
 VelThreshold=2.2,
 No=0,
-Fx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.Fx1,
-Fy=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.Fy1,
-Fz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.Fz1,
-Mx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.Mx1,
-My=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.My1,
-Mz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.Mz1,
+Fx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFx1,
+Fy=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFy1,
+Fz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFz1,
+Mx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMx1,
+My=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMy1,
+Mz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMz1,
 FootPresent = IncludeLegTDModel)
 = {
 };
+#endif
+#ifdef INCLUDE_FP1_RightFootContact
+ForcePlateType2 ForcePlate1 (
+PlateName = Plate1,
+Folder = Main.ModelSetup.DynamicDataSet,
+Limb = ..HumanModel.BodyModel.Right.Leg.Seg.Foot,
+No=0,
+Fx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFx1,
+Fy=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFy1,
+Fz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFz1,
+Mx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMx1,
+My=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMy1,
+Mz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMz1
+)
+= {
+};
+#endif
 
-ForcePlateType2AutoDetection ForcePlate2 (
+#ifdef INCLUDE_FP1_LeftFootContact
+
+ForcePlateType2 ForcePlate1 (
+PlateName = Plate1,
+Folder = Main.ModelSetup.DynamicDataSet,
+Limb = ..HumanModel.BodyModel.Left.Leg.Seg.Foot,
+No=0,
+Fx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFx1,
+Fy=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFy1,
+Fz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFz1,
+Mx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMx1,
+My=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMy1,
+Mz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMz1
+)
+= {
+};
+#endif
+
+#ifdef INCLUDE_FP2_RightFootContact
+ForcePlateType2 ForcePlate2 (
 PlateName = Plate2,
 Folder = Main.ModelSetup.DynamicDataSet,
-Limb1 = ..HumanModel.BodyModel.Left.Leg.Seg.Foot,
-Limb2 = ..HumanModel.BodyModel.Right.Leg.Seg.Foot,
-VerticalDirection ="Z",
-HeightTolerance=0.05,
-VelThreshold=2.2,
+Limb = ..HumanModel.BodyModel.Right.Leg.Seg.Foot,
 No=1,
-Fx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.Fx2,
-Fy=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.Fy2,
-Fz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.Fz2,
-Mx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.Mx2,
-My=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.My2,
-Mz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.Mz2,
-FootPresent = IncludeLegTDModel)
+Fx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFx2,
+Fy=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFy2,
+Fz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFz2,
+Mx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMx2,
+My=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMy2,
+Mz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMz2
+)
 = {
 };
+#endif
 
-ForcePlateType2AutoDetection ForcePlate3 (
+#ifdef INCLUDE_FP2_LeftFootContact
+ForcePlateType2 ForcePlate2 (
+PlateName = Plate2,
+Folder = Main.ModelSetup.DynamicDataSet,
+Limb = ..HumanModel.BodyModel.Left.Leg.Seg.Foot,
+No=1,
+Fx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFx2,
+Fy=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFy2,
+Fz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFz2,
+Mx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMx2,
+My=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMy2,
+Mz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMz2
+)
+= {
+};
+#endif
+
+//#ifdef INCLUDE_FP2
+//ForcePlateType2AutoDetection ForcePlate2 (
+//PlateName = Plate2,
+//Folder = Main.ModelSetup.DynamicDataSet,
+//Limb1 = ..HumanModel.BodyModel.Left.Leg.Seg.Foot,
+//Limb2 = ..HumanModel.BodyModel.Right.Leg.Seg.Foot,
+//VerticalDirection ="Z",
+//HeightTolerance=0.05,
+//VelThreshold=2.2,
+//No=1,
+//Fx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.Force.Fx2,
+//Fy=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.Force.Fy2,
+//Fz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.Force.Fz2,
+//Mx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.Moment.Mx2,
+//My=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.Moment.My2,
+//Mz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.Moment.Mz2,
+//FootPresent = IncludeLegTDModel)
+//= {
+//};
+//#endif
+//
+//
+#ifdef INCLUDE_FP4_LeftFootContact
+ForcePlateType2 ForcePlate4 (
+PlateName = Plate4,
+Folder = Main.ModelSetup.DynamicDataSet,
+Limb = ..HumanModel.BodyModel.Left.Leg.Seg.Foot,
+No=1,
+Fx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFx4,
+Fy=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFy4,
+Fz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFz4,
+Mx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMx4,
+My=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMy4,
+Mz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMz4
+)
+= {
+};
+#endif
+
+#ifdef INCLUDE_FP4_RightFootContact
+ForcePlateType2 ForcePlate4 (
+PlateName = Plate4,
+Folder = Main.ModelSetup.DynamicDataSet,
+Limb = ..HumanModel.BodyModel.Right.Leg.Seg.Foot,
+No=1,
+Fx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFx4,
+Fy=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFy4,
+Fz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFz4,
+Mx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMx4,
+My=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMy4,
+Mz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMz4
+)
+= {
+};
+#endif
+
+#ifdef INCLUDE_FP3_LeftFootContact
+ForcePlateType2 ForcePlate3 (
 PlateName = Plate3,
 Folder = Main.ModelSetup.DynamicDataSet,
-Limb1 = ..HumanModel.BodyModel.Left.Leg.Seg.Foot,
-Limb2 = ..HumanModel.BodyModel.Right.Leg.Seg.Foot,
-VerticalDirection ="Z",
-HeightTolerance=0.05,
-VelThreshold=2.2,
-No=2,
-Fx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.Fx3,
-Fy=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.Fy3,
-Fz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.Fz3,
-Mx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.Mx3,
-My=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.My3,
-Mz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.Mz3,
-FootPresent = IncludeLegTDModel)
+Limb = ..HumanModel.BodyModel.Left.Leg.Seg.Foot,
+No=0,
+Fx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFx3,
+Fy=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFy3,
+Fz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFz3,
+Mx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMx3,
+My=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMy3,
+Mz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMz3
+)
 = {
 };
+#endif
+
+#ifdef INCLUDE_FP3_RightFootContact
+ForcePlateType2 ForcePlate3 (
+PlateName = Plate3,
+Folder = Main.ModelSetup.DynamicDataSet,
+Limb = ..HumanModel.BodyModel.Right.Leg.Seg.Foot,
+No=0,
+Fx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFx3,
+Fy=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFy3,
+Fz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.ForceFz3,
+Mx=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMx3,
+My=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMy3,
+Mz=Main.ModelSetup.DynamicDataSet.Analog.DataFiltered.MomentMz3
+)
+= {
+};
+#endif
+
+
+
 
 #endif
 

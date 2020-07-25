@@ -1,61 +1,110 @@
-AnyFolder JointAngleOutputs = {
-  
-  #if IncludeHip == 1
-  
-  AnyOutputFile OutputFile1 = {
-    FileName = Main.ModelSetup.Files.OptimizedMotionTrunk ;
-    SepSign = " ";
+AnyFolder JointAngleOutputs = 
+{
+    #if IncludeHip == 1
+      AnyOutputFile OutputFile1 = 
+      {
+        FileName = Main.ModelSetup.Files.OptimizedMotionTrunk ;
+        SepSign = " ";
+        SepSpaceAutoOnOff = Off;
+        Header.TitleSectionOnOff = Off;
+        Header.ConstSectionOnOff = Off;
+        Header.ConstSectionSaveOptionsOnOff = Off;
+        Header.VarSectionOnOff = Off;
+      
+        AnyVector PelvisPosX = ...FullModel.Interface.Trunk.PelvisDriveNodePosX.Pos;
+        AnyVector PelvisPosY = ...FullModel.Interface.Trunk.PelvisDriveNodePosY.Pos;
+        AnyVector PelvisPosZ = ...FullModel.Interface.Trunk.PelvisDriveNodePosZ.Pos;
+        AnyVector PelvisRot0 = ...FullModel.Interface.Trunk.PelvisDriveNodeRot0.Pos;
+        AnyVector PelvisRot1 = ...FullModel.Interface.Trunk.PelvisDriveNodeRot1.Pos;
+        AnyVector PelvisRot2 = ...FullModel.Interface.Trunk.PelvisDriveNodeRot2.Pos;
+      };
+    #endif // IncludeHip
     
-    AnyVector PelvisPosX = ...LegModel.Interface.Trunk.PelvisDriveNodePosX.Pos;
-    AnyVector PelvisPosY = ...LegModel.Interface.Trunk.PelvisDriveNodePosY.Pos;
-    AnyVector PelvisPosZ = ...LegModel.Interface.Trunk.PelvisDriveNodePosZ.Pos;
-    AnyVector PelvisRot0 = ...LegModel.Interface.Trunk.PelvisDriveNodeRot0.Pos;
-    AnyVector PelvisRot1 = ...LegModel.Interface.Trunk.PelvisDriveNodeRot1.Pos;
-    AnyVector PelvisRot2 = ...LegModel.Interface.Trunk.PelvisDriveNodeRot2.Pos;
-  };
-  #endif
-  
-  
-  #if IncludeLeft + IncludeHip + IncludeKnee + IncludeAnkle == 4
-  
-  AnyOutputFile OutputFile2 = {
-    FileName =  Main.ModelSetup.Files.OptimizedMotionLeftLegTD ;
-    SepSign = " ";
+    #if IncludeLeft + IncludeLeg + IncludeHip + IncludeKnee + IncludeAnkle == 5    
+        AnyOutputFile OutputFile2 = 
+        {
+          FileName =  Main.ModelSetup.Files.OptimizedMotionLeftLegTD ;
+          SepSign = " ";
+          SepSpaceAutoOnOff = Off;
+          Header.TitleSectionOnOff = Off;
+          Header.ConstSectionOnOff = Off;
+          Header.ConstSectionSaveOptionsOnOff = Off;
+          Header.VarSectionOnOff = Off;
+          
+          AnyVector HipMeasure0 = ...FullModel.Interface.Left.Leg.HipJointMeasure0.Pos;
+          AnyVector HipMeasure1 = ...FullModel.Interface.Left.Leg.HipJointMeasure1.Pos;
+          AnyVector HipMeasure2 = ...FullModel.Interface.Left.Leg.HipJointMeasure2.Pos;
+          AnyVector KneeJointMeasure = ...FullModel.Interface.Left.Leg.KneeJointMeasure.Pos;
+          AnyVector AnkleJointMeasure = ...FullModel.Interface.Left.Leg.AnkleJointMeasure.Pos;
+          AnyVector SubtalarMeasure = ...FullModel.Interface.Left.Leg.SubtalarJointMeasure.Pos;
+        }; // OutputFile2
+    #endif // IncludeLeft + IncludeLeg + IncludeHip + IncludeKnee + IncludeAnkle
     
-    AnyVector HipMeasure0 = ...LegModel.Interface.Left.HipJointMeasure0.Pos;
-    AnyVector HipMeasure1 = ...LegModel.Interface.Left.HipJointMeasure1.Pos;
-    AnyVector HipMeasure2 = ...LegModel.Interface.Left.HipJointMeasure2.Pos;
-    AnyVector KneeJointMeasure = ...LegModel.Interface.Left.KneeJointMeasure.Pos;
-    AnyVector AnkleJointMeasure = ...LegModel.Interface.Left.AnkleJointMeasure.Pos;
-    AnyVector SubtalarMeasure = ...LegModel.Interface.Left.SubtalarJointMeasure.Pos;
-  };
-  
-  #endif
-  
-  
-  
-  #if IncludeRight + IncludeHip + IncludeKnee + IncludeAnkle == 4
-  
-  
-  AnyOutputFile OutputFile3 = {
-    FileName =  Main.ModelSetup.Files.OptimizedMotionRightLegTD ;
-    SepSign = " ";
+    #if IncludeRight + IncludeLeg + IncludeHip + IncludeKnee + IncludeAnkle == 5
+      AnyOutputFile OutputFile3 = 
+      {
+        FileName =  Main.ModelSetup.Files.OptimizedMotionRightLegTD ;
+        SepSign = " ";
+        SepSpaceAutoOnOff = Off;
+        Header.TitleSectionOnOff = Off;
+        Header.ConstSectionOnOff = Off;
+        Header.ConstSectionSaveOptionsOnOff = Off;
+        Header.VarSectionOnOff = Off;
+        
+        AnyVector HipMeasure0 = ...FullModel.Interface.Right.Leg.HipJointMeasure0.Pos;
+        AnyVector HipMeasure1 = ...FullModel.Interface.Right.Leg.HipJointMeasure1.Pos;
+        AnyVector HipMeasure2 = ...FullModel.Interface.Right.Leg.HipJointMeasure2.Pos;
+        AnyVector KneeJointMeasure = ...FullModel.Interface.Right.Leg.KneeJointMeasure.Pos;
+        AnyVector AnkleJointMeasure = ...FullModel.Interface.Right.Leg.AnkleJointMeasure.Pos;
+        AnyVector SubtalarMeasure = ...FullModel.Interface.Right.Leg.SubtalarJointMeasure.Pos;
+      }; // OutputFile3 
+    #endif // IncludeRight + IncludeLeg +  IncludeHip + IncludeKnee + IncludeAnkle
+
+    // Testing Output files 21.01.2019
     
-    AnyVector HipMeasure0 = ...LegModel.Interface.Right.HipJointMeasure0.Pos;
-    AnyVector HipMeasure1 = ...LegModel.Interface.Right.HipJointMeasure1.Pos;
-    AnyVector HipMeasure2 = ...LegModel.Interface.Right.HipJointMeasure2.Pos;
-    AnyVector KneeJointMeasure = ...LegModel.Interface.Right.KneeJointMeasure.Pos;
-    AnyVector AnkleJointMeasure = ...LegModel.Interface.Right.AnkleJointMeasure.Pos;
-    AnyVector SubtalarMeasure = ...LegModel.Interface.Right.SubtalarJointMeasure.Pos;
-  };
-  
-  #endif
-  
-  
-  
-  
-  
-  
+    #if IncludeLeft == 1
+     AnyOutputFile OutputFile_LeftArm = 
+     {
+       FileName = Main.ModelSetup.Files.OptimizedMotionLeftArm;
+       SepSign = " ";
+       SepSpaceAutoOnOff = Off;
+       Header.TitleSectionOnOff = Off;
+       Header.ConstSectionOnOff = Off;
+       Header.ConstSectionSaveOptionsOnOff = Off;
+       Header.VarSectionOnOff = Off;
+ 
+       //AnyVector GlenohumeralFlexion = ..BodyModel.Interface.Left.GlenohumeralFlexion.Pos;
+       //AnyVector GlenohumeralExternalRotation = ..BodyModel.Interface.Left.GlenohumeralExternalRotation.Pos;
+       //AnyVector GlenohumeralAbduction = ..BodyModel.Interface.Left.GlenohumeralAbduction.Pos;
+       AnyVector ElbowFlexion = ...FullModel.Interface.Left.Arm.ElbowFlexion.Pos;
+       //AnyVector ElbowPronation = ..BodyModel.Interface.Left.ElbowPronation.Pos;
+       AnyVector WristFlexion = ...FullModel.Interface.Left.Arm.WristFlexion.Pos;
+       //AnyVector WristAbduction = ..BodyModel.Interface.Left.WristAbduction.Pos;
+     };
+     #endif
+    
+    #if IncludeRight == 1
+     AnyOutputFile OutputFile_RightArm = 
+     {
+       FileName = Main.ModelSetup.Files.OptimizedMotionRightArm;
+       SepSign = " ";
+       SepSpaceAutoOnOff = Off;
+       Header.TitleSectionOnOff = Off;
+       Header.ConstSectionOnOff = Off;
+       Header.ConstSectionSaveOptionsOnOff = Off;
+       Header.VarSectionOnOff = Off;
+ 
+       //AnyVector GlenohumeralFlexion = ..BodyModel.Interface.Left.GlenohumeralFlexion.Pos;
+       //AnyVector GlenohumeralExternalRotation = ..BodyModel.Interface.Left.GlenohumeralExternalRotation.Pos;
+       //AnyVector GlenohumeralAbduction = ..BodyModel.Interface.Left.GlenohumeralAbduction.Pos;
+       AnyVector ElbowFlexion = ...FullModel.Interface.Right.Arm.ElbowFlexion.Pos;
+       //AnyVector ElbowPronation = ..BodyModel.Interface.Left.ElbowPronation.Pos;
+       AnyVector WristFlexion = ...FullModel.Interface.Right.Arm.WristFlexion.Pos;
+       //AnyVector WristAbduction = ..BodyModel.Interface.Left.WristAbduction.Pos;
+     };
+    #endif
+
+
 }; //JointAngleOutputs
 
 

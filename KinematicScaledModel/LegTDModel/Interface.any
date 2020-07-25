@@ -34,6 +34,14 @@
                     .HipJoint.sRel + .KneeJoint.ARel'[2] );
     };
     
+    AnyRefNode DriveNodeKnee = {
+     sRel = .KneeJoint.sRel;
+     ARel = RotMat(sRel,sRel+{0,0,1}*.KneeJoint.ARel', .HipJoint.sRel)
+     * RotMat(90*pi/180,y);
+//     AnyDrawRefFrame drw ={RGB={0,0,1};};
+     
+   };    
+    
   };
   
   RightShankRef = {
@@ -43,6 +51,13 @@
      //AnyDrawRefFrame drw ={};
      
     };
+    
+    AnyRefNode DriveNodeKnee = {
+     sRel = .KneeJoint.sRel;
+     ARel = RotMat(sRel,sRel+{0,0,1}*.KneeJoint.ARel', .AnkleJoint.sRel)
+     * RotMat(90*pi/180,y)*RotMat(pi,z);
+     //AnyDrawRefFrame drw ={RGB={1,0,0};};
+   };    
   };
   
   RightTalusRef = {
@@ -89,6 +104,14 @@
                     .KneeJoint.sRel ,
                     .HipJoint.sRel + (-1)*.KneeJoint.ARel'[2]  );
     };
+   
+    AnyRefNode DriveNodeKnee = {
+     sRel = .KneeJoint.sRel;
+     ARel = RotMat(sRel,sRel+{0,0,1}*.KneeJoint.ARel', .HipJoint.sRel)
+     * RotMat(90*pi/180,y);
+//     AnyDrawRefFrame drw ={RGB={0,0,1};};
+
+   };    
     
   };
   
@@ -99,6 +122,16 @@
      //AnyDrawRefFrame drw ={};
      
     };
+    
+     AnyRefNode DriveNodeKnee = {
+     sRel = .KneeJoint.sRel;
+     ARel = RotMat(sRel,sRel+{0,0,1}*.KneeJoint.ARel', .AnkleJoint.sRel)
+     * RotMat(90*pi/180,y)*RotMat(pi,z);
+//     AnyDrawRefFrame drw ={RGB={1,0,0};};
+
+   };  
+
+    
   };
   
   LeftTalusRef = {
@@ -198,7 +231,8 @@
         AnyKinRotational &HipMeasure =.HipJointMeasure0.HipMeasure; 
         MeasureOrganizer={2};
       };      
-      
+ 
+      #ifndef SPHERICAL_KNEE_JOINT
       AnyKinMeasureOrg KneeJointMeasure = {
          AnyKinRotational KneeRot ={
            AnyRefNode &KneeRef1 = ....RightThighRef.KneeJoint;
@@ -207,6 +241,15 @@
          };
         MeasureOrganizer={0};
       };
+      #else
+      AnyKinMeasureOrg KneeJointMeasure = {
+         AnyKinRotational KneeRot ={
+           AnyRefNode &KneeRef1 = ....RightThighRef.DriveNodeKnee;
+           AnyRefNode &KneeRef2 = ....RightShankRef.DriveNodeKnee;
+           Type=RotAxesAngles;
+         };
+      };      
+      #endif
 
       AnyKinMeasureOrg AnkleJointDriveMeasure = {
          AnyKinRotational AnkleRot ={
@@ -256,7 +299,7 @@
         AnyKinRotational &HipMeasure =.HipJointMeasure0.HipMeasure; 
         MeasureOrganizer={2};
       };      
-      
+      #ifndef SPHERICAL_KNEE_JOINT
       AnyKinMeasureOrg KneeJointMeasure = {
          AnyKinRotational KneeRot ={
            AnyRefNode &KneeRef1 = ....LeftThighRef.KneeJoint;
@@ -265,6 +308,15 @@
          };
         MeasureOrganizer={0};
       };
+      #else
+     AnyKinMeasureOrg KneeJointMeasure = {
+         AnyKinRotational KneeRot ={
+           AnyRefNode &KneeRef1 = ....LeftThighRef.DriveNodeKnee;
+           AnyRefNode &KneeRef2 = ....LeftShankRef.DriveNodeKnee;
+           Type=RotAxesAngles;
+         };
+      };            
+      #endif
 
       AnyKinMeasureOrg AnkleJointDriveMeasure = {
          AnyKinRotational AnkleRot ={

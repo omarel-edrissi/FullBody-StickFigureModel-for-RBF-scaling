@@ -9,26 +9,29 @@ AnyFolder JointReactionForces = {
   };
   
   AnyVec3 RightHipForceInThighCoordinateSystem =
-  RightHipForces.F*Main.AnyBodyGaitAppModel.HumanModel.BodyModel.Right.Leg.Seg.Thigh.ScalingNode.Axes;
+  RightHipForces.F*Main.JntParameterOptModel.LegModel.Right.Seg.Thigh.HipStaticMarkerFrame.Axes;
   
   AnyVec3 RightHipForceInThighCoordinateSystemPerBodyWeight = RightHipForceInThighCoordinateSystem/(Main.SubjectSpecificData.Anthropometrics.BodyMass*9.82);
 
-  AnyVec3 RightHipForceInPelvisCoordinateSystem =
-  RightHipForces.F*Main.JntParameterOptModel.LegModel.Trunk.Seg.Pelvis.Axes;
-  
   
   AnyForceMomentMeasure RightKneeForces = 
   {
+    #ifndef SPHERICAL_KNEE_JOINT 
     AnyForceBase &force =
     Main.AnyBodyGaitAppModel.HumanModel.BodyModel.Right.Leg.Jnt.Knee.Constraints.Reaction;
+    #else
+   AnyForceBase &force =
+   Main.AnyBodyGaitAppModel.HumanModel.BodyModel.Right.Leg.Jnt.SphericalKneeWithRevoluteReactions.Constraints.Reaction;    
+    #endif
     AnyRefFrame &knee =
     Main.AnyBodyGaitAppModel.HumanModel.BodyModel.Right.Leg.Jnt.Knee.ThighNode;
   };
   
   AnyVec3 RightKneeForceInShankCoordinateSystem =
-  RightKneeForces.F*Main.AnyBodyGaitAppModel.HumanModel.BodyModel.Right.Leg.Seg.Shank.ScalingNode.Axes;
+  RightKneeForces.F*Main.JntParameterOptModel.LegModel.Right.Seg.Shank.KneeStaticMarkerFrame.Axes;
   
   AnyVec3 RightKneeForceInShankCoordinateSystemPerBodyWeight = RightKneeForceInShankCoordinateSystem/(Main.SubjectSpecificData.Anthropometrics.BodyMass*9.82);
+  
   
   AnyForceMomentMeasure RightAnkleForces = 
   {
@@ -39,7 +42,7 @@ AnyFolder JointReactionForces = {
   };
   
   AnyVec3 RightAnkleForceInFootCoordinateSystem =
-  RightAnkleForces.F*Main.AnyBodyGaitAppModel.HumanModel.BodyModel.Right.Leg.Seg.Foot.ScalingNode.Axes;
+  RightAnkleForces.F*Main.JntParameterOptModel.LegModel.Right.Seg.Foot.AnkleStaticMarkerFrame.Axes;
   
   AnyVec3 RightAnkleForceInFootCoordinateSystemPerBodyWeight = RightAnkleForceInFootCoordinateSystem/(Main.SubjectSpecificData.Anthropometrics.BodyMass*9.82);
   
@@ -55,27 +58,31 @@ AnyFolder JointReactionForces = {
   };
   
   AnyVec3 LeftHipForceInThighCoordinateSystem =
-  LeftHipForces.F*Main.AnyBodyGaitAppModel.HumanModel.BodyModel.Left.Leg.Seg.Thigh.ScalingNode.Axes;
+  LeftHipForces.F*Main.JntParameterOptModel.LegModel.Left.Seg.Thigh.HipStaticMarkerFrame.Axes;
   
   AnyVec3 LeftHipForceInThighCoordinateSystemPerBodyWeight = LeftHipForceInThighCoordinateSystem/(Main.SubjectSpecificData.Anthropometrics.BodyMass*9.82);
 
-  AnyVec3 LeftHipForceInPelvisCoordinateSystem =
-  LeftHipForces.F*Main.JntParameterOptModel.LegModel.Trunk.Seg.Pelvis.Axes;
-  
-  
+   
   AnyForceMomentMeasure LeftKneeForces = 
   {
+    #ifndef SPHERICAL_KNEE_JOINT 
     AnyForceBase &force =
     Main.AnyBodyGaitAppModel.HumanModel.BodyModel.Left.Leg.Jnt.Knee.Constraints.Reaction;
+    #else
+    AnyForceBase &force =
+    Main.AnyBodyGaitAppModel.HumanModel.BodyModel.Left.Leg.Jnt.SphericalKneeWithRevoluteReactions.Constraints.Reaction;    
+    #endif
+
     AnyRefFrame &knee =
     Main.AnyBodyGaitAppModel.HumanModel.BodyModel.Left.Leg.Jnt.Knee.ThighNode;
   };
   
   AnyVec3 LeftKneeForceInShankCoordinateSystem =
-  LeftKneeForces.F*Main.AnyBodyGaitAppModel.HumanModel.BodyModel.Left.Leg.Seg.Shank.ScalingNode.Axes;
+  LeftKneeForces.F*Main.JntParameterOptModel.LegModel.Left.Seg.Shank.KneeStaticMarkerFrame.Axes;
   
   AnyVec3 LeftKneeForceInShankCoordinateSystemPerBodyWeight = LeftKneeForceInShankCoordinateSystem/(Main.SubjectSpecificData.Anthropometrics.BodyMass*9.82);
   
+
   AnyForceMomentMeasure LeftAnkleForces = 
   {
     AnyForceBase &force =
@@ -85,7 +92,7 @@ AnyFolder JointReactionForces = {
   };
   
   AnyVec3 LeftAnkleForceInFootCoordinateSystem =
-  LeftAnkleForces.F*Main.AnyBodyGaitAppModel.HumanModel.BodyModel.Left.Leg.Seg.Foot.ScalingNode.Axes;
+  LeftAnkleForces.F*Main.JntParameterOptModel.LegModel.Left.Seg.Foot.AnkleStaticMarkerFrame.Axes;
   
   AnyVec3 LeftAnkleForceInFootCoordinateSystemPerBodyWeight = LeftAnkleForceInFootCoordinateSystem/(Main.SubjectSpecificData.Anthropometrics.BodyMass*9.82);
   

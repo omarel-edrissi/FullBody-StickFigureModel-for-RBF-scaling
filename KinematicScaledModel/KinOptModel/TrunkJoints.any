@@ -1,0 +1,58 @@
+AnyFolder Jnt = 
+{
+    #if IncludeShoulder == 1
+        #if IncludeRight == 1
+        #endif
+
+        #if IncludeLeft == 1
+        #endif
+    #endif
+
+    #if IncludeSpine == 1
+        AnySphericalJoint ArticulatioLumboSacralis = 
+        {
+            AnyRefFrame &ref1= ...Trunk.Seg.Spine.LumbarSpine.L5;
+            AnyRefFrame &ref2 = ...Trunk.Seg.Pelvis.Sacral;
+            #if HideStickModelGraphics == 0
+                AnyDrawStdJoint drwJnt = 
+                {   
+                    D = 0.025; 
+                    L=4*D; 
+                }; // drwJnt            
+            #endif
+        };
+        
+        AnySphericalJoint ThoracicLumbarSpineFacetJoint = 
+        {
+            AnyRefFrame &ref1= ...Trunk.Seg.Spine.LumbarSpine.T10;
+            AnyRefFrame &ref2= ...Trunk.Seg.Spine.ThoracicSpine.T10;
+            
+            #if HideStickModelGraphics == 0
+                AnyDrawStdJoint drwJnt = 
+                {   
+                    D = 0.025; 
+                    L=4*D; 
+                }; // drwJnt            
+            #endif
+        };
+        
+        /*
+        // not ready
+
+        AnySphericalJoint ThoraxSpineJoint = 
+        {
+            AnyRefFrame &ref1= ...Trunk.Seg.Spine.ThoracicSpine.C7;
+            AnyRefFrame &ref2= ...Trunk.Seg.Thorax.C7;
+
+            
+            #if HideStickModelGraphics == 0
+                AnyDrawStdJoint drwJnt = 
+                {   
+                    D = 0.025; 
+                    L=4*D; 
+                }; // drwJnt            
+            #endif
+        };
+        */
+    #endif
+}; // Jnt

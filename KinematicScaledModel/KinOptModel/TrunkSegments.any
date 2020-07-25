@@ -1,58 +1,231 @@
-AnyFolder Seg = {
-  
-  #if IncludeHip == 1 
-  AnySeg Pelvis = 
-  {
-    r0 = ....StickFigure.Posture.Trunk.Pelvis.InitialPos.r0; 
-    Axes0 = ....StickFigure.Posture.Trunk.Pelvis.InitialPos.Axes0;
-    
-    Mass = 10.6;
-    Jii = {0.02, 0.025, 0.015};
-    sCoM = {-0.09,-0.03,0};
-    JaboutCoMOnOff = On;
+AnyFolder Seg = 
+{
+    #if IncludeHip == 1 
+        AnySeg Pelvis = 
+        {
+            r0 = ....StickFigure.Posture.Trunk.Pelvis.InitialPos.r0; 
+            Axes0 = ....StickFigure.Posture.Trunk.Pelvis.InitialPos.Axes0;
         
-    AnyRefNode RHipJoint = {
-        sRel =  { -0.06371582, -0.08784103, 0.1137453};
-    };
-    
-    AnyRefNode LHipJoint = {
-        sRel =  {-0.06371582, -0.0877099, -0.1137453};
-    };
-    
-    AnyRefNode StaticMarkerFrame = {};
-    
-    
-#if HideStickModelGraphics == 0
+            Mass = 10.6;
+            Jii = {0.02, 0.025, 0.015};
+            sCoM = {-0.09,-0.03,0};
+            JaboutCoMOnOff = On;
+                
+            AnyRefNode RHipJoint = 
+            {
+                sRel =  { -0.06371582, -0.08784103, 0.1137453};
+            };
+        
+            AnyRefNode LHipJoint = 
+            {
+                sRel =  {-0.06371582, -0.0877099, -0.1137453};
+            };
+        
+            AnyRefNode StaticMarkerFrame = {};
+        
+        
+            #if HideStickModelGraphics == 0
 
-   AnyDrawRefFrame drw ={RGB={0,0.76953125,0}; ScaleXYZ = 0.12*{1,1,1};Visible = On;};
+                AnyDrawRefFrame drw ={RGB={0,0.76953125,0}; ScaleXYZ = 0.12*{1,1,1};Visible = On;};
 
-AnyRefNode Ellipsoid = {
-    sRel = {-0.09,-0.03,0};
-    AnySurfEllipsoid elip =     {
-      Radius = {0.09, 0.06, 0.1};
-      AnyDrawParamSurf drw =       {
-         RGB = {0, 0.76953125, 0};
-      };
-    };
-};
+                AnyRefNode Ellipsoid = 
+                {
+                    sRel = {-0.09,-0.03,0};
+                    AnySurfEllipsoid elip =     
+                    {
+                        Radius = {0.09, 0.06, 0.1};
+                        //AnyDrawParamSurf drw = {RGB = {0, 0.76953125, 0};};
+                    };
+                };
 
-AnyDrawLine DrwLine1 = {
-p0 = .sCoM;
-p1 = .RHipJoint.sRel;
-Line.Thickness = 0.01;
-GlobalCoord = Off;
-Line.RGB = {0, 0.76953125, 0};
-};
-AnyDrawLine DrwLine2 = {
-p0 = .sCoM;
-p1 = .LHipJoint.sRel;
-Line.Thickness = 0.01;
-GlobalCoord = Off;
-Line.RGB = {0, 0.76953125, 0};
-};#endif
-   
+                AnyDrawLine DrwLine1 = 
+                {
+                    p0 = .sCoM;
+                    p1 = .RHipJoint.sRel;
+                    Line.Thickness = 0.01;
+                    GlobalCoord = Off;
+                    Line.RGB = {0, 0.76953125, 0};
+                };
+                AnyDrawLine DrwLine2 = 
+                {
+                    p0 = .sCoM;
+                    p1 = .LHipJoint.sRel;
+                    Line.Thickness = 0.01;
+                    GlobalCoord = Off;
+                    Line.RGB = {0, 0.76953125, 0};
+                };
+            #endif // HideStickModelGraphics
+        };
+    #endif // Include Hip
     
-  };
-  #endif
-  
-};
+    #if IncludeSpine == 1
+        AnyFolder Spine =
+        {
+            AnySeg ThoracicSpine = 
+            {
+                r0 = .....StickFigure.Posture.Trunk.Spine.ThoracicSpine.InitialPos.r0; 
+                Axes0 = .....StickFigure.Posture.Trunk.Spine.ThoracicSpine.InitialPos.Axes0;
+
+                // Mass is incorrect need literatur search
+                Mass = 10.6;
+                Jii = {0.02, 0.025, 0.015};
+                sCoM = {-0.09,-0.03,0};
+                JaboutCoMOnOff = On;
+
+                #if HideStickModelGraphics == 0
+                    //Draw the LCS of ThoracicSpine
+                    AnyDrawRefFrame drw =
+                    {
+                        RGB={1,0.8,0}; 
+                        ScaleXYZ = 0.12*{1,1,1};
+                        Visible = On;
+                    };
+                    
+                    AnyDrawLine DrwLine1 = 
+                    {
+                        p0 = .C7.sRel;
+                        p1 = .T6.sRel;
+                        Line.Thickness = 0.01;
+                        GlobalCoord = Off;
+                        Line.RGB = {1, 0.8, 0};
+                        Opacity = 1.0;
+                    };
+
+                    AnyDrawLine DrwLine2 = 
+                    {
+                        p0 = .T6.sRel;
+                        p1 = .T8.sRel;
+                        Line.Thickness = 0.01;
+                        GlobalCoord = Off;
+                        Line.RGB = {1, 0.8, 0};
+                        Opacity = 1.0;
+                    };
+
+                    AnyDrawLine DrwLine3 = 
+                    {
+                        p0 = .T8.sRel;
+                        p1 = .T10.sRel;
+                        Line.Thickness = 0.01;
+                        GlobalCoord = Off;
+                        Line.RGB = {1, 0.8, 0};
+                        Opacity = 1.0;
+                    };
+                #endif // HideStickModelGraphics    
+            }; // ThoracicSpine
+            
+            AnySeg LumbarSpine = 
+            {
+                r0 = .....StickFigure.Posture.Trunk.Spine.LumbarSpine.InitialPos.r0; 
+                Axes0 = .....StickFigure.Posture.Trunk.Spine.LumbarSpine.InitialPos.Axes0;
+
+
+                // Mass is incorrect need literatur search
+                Mass = 10.6;
+                Jii = {0.02, 0.025, 0.015};
+                sCoM = {-0.09,-0.03,0};
+                JaboutCoMOnOff = On;
+
+                        
+                #if HideStickModelGraphics == 0
+
+                        //Draw the LCS of LumbarSpine
+                        AnyDrawRefFrame drw ={RGB={1,0,1}; ScaleXYZ = 0.12*{1,1,1};Visible = On;};
+                        
+                        AnyDrawLine DrwLine1 = 
+                        {
+                            p0 = .T10.sRel;
+                            p1 = .L1.sRel;
+                            Line.Thickness = 0.01;
+                            GlobalCoord = Off;
+                            Line.RGB = {1, 0, 1};
+                            Opacity = 1.0;
+                        };
+
+                        AnyDrawLine DrwLine2 = 
+                        {
+                            p0 = .L1.sRel;
+                            p1 = .L3.sRel;
+                            Line.Thickness = 0.01;
+                            GlobalCoord = Off;
+                            Line.RGB = {1, 0, 1};
+                            Opacity = 1.0;
+                        };
+
+                        AnyDrawLine DrwLine3 = 
+                        {
+                            p0 = .L3.sRel;
+                            p1 = .L5.sRel;
+                            Line.Thickness = 0.01;
+                            GlobalCoord = Off;
+                            Line.RGB = {1, 0, 1};
+                            Opacity = 1.0;
+                        };
+                #endif // HideStickModelGraphics
+            }; // LumbarSpine  
+        }; // Spine
+
+        AnySeg Thorax =
+        {
+            r0 = ....StickFigure.Posture.Trunk.Thorax.InitialPos.r0; 
+            Axes0 = ....StickFigure.Posture.Trunk.Thorax.InitialPos.Axes0;
+
+            // Mass is incorrect need literatur search
+            Mass = 10.6;
+            Jii = {0.02, 0.025, 0.015};
+            sCoM = {-0.09,-0.03,0};
+            JaboutCoMOnOff = On;
+
+            #if HideStickModelGraphics == 0
+                //Draw the LCS of Thorax
+                AnyDrawRefFrame drw =
+                {
+                    RGB={0,1,0}; 
+                    ScaleXYZ = 0.12*{1,1,1};
+                    Visible = On;
+                };
+                                
+                AnyDrawLine DrwLine1 = 
+                {
+                    p0 = .IncisuraJugularis.sRel;
+                    p1 = .C7.sRel;
+                    Line.Thickness = 0.01;
+                    GlobalCoord = Off;
+                    Line.RGB = {0, 1, 0};
+                    Opacity = 1.0;
+                };
+
+                AnyDrawLine DrwLine2 = 
+                {
+                    p0 = .ProcessusXiphoideus.sRel;
+                    p1 = .T8.sRel;
+                    Line.Thickness = 0.01;
+                    GlobalCoord = Off;
+                    Line.RGB = {0, 1, 0};
+                    Opacity = 1.0;
+                };
+ 
+                AnyDrawLine DrwLine3 = 
+                {
+                    p0 = .IncisuraJugularis.sRel;
+                    p1 = .ProcessusXiphoideus.sRel;
+                    Line.Thickness = 0.01;
+                    GlobalCoord = Off;
+                    Line.RGB = {0, 1, 0};
+                    Opacity = 1.0;
+                };
+
+                AnyDrawLine DrwLine4 = 
+                {
+                    p0 = .C7.sRel;
+                    p1 = .T8.sRel;
+                    Line.Thickness = 0.01;
+                    GlobalCoord = Off;
+                    Line.RGB = {0, 1, 0};
+                    Opacity = 1.0;
+                };
+                
+            #endif // HideStickModelGraphics 
+
+        }; // Thorax
+    #endif // Include Spine
+}; // Seg

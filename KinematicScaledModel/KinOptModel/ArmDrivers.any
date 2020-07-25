@@ -1,0 +1,111 @@
+#if IncludeArm == 1
+  AnyFolder ArmDrivers =
+  {
+    AnyFolder ArticulatioAcromioClavicularis =
+    {
+      AnyKinEq AxialRotDriver = 
+      {
+          AnyKinRotational &ArticulatioAcromioClavicularisRotMeasure = ...ArmMeasures.ArticulatioAcromioClavicularis.RotMeasure;
+          MeasureOrganizer = {0};
+      }; // AxialRotDriver
+    }; // ArticulatioSternoClavicularis
+
+    #if IncludeRight == 1
+      // The position AI and AA along the stick is constrained to be on the ellipsoid surface. 
+      // This is done by means of the equation for an ellipsoid with center at
+      // the origin of the coordinate system:
+      // x^2/a + y^2/b + z^2/c = 1
+      // This fits a second order NormComb measure perfectly. The 1 on
+      // the right hand side of the equation is obtained by driving the
+      // measure to 1 by a simple driver.
+      AnyKinEqSimpleDriver RScapThoracGlideAI = 
+      {
+        AnyKinMeasureNormComb Comb = 
+        {
+          AnyKinLinear lin = {
+            AnyRefFrame &C = ......Trunk.Seg.Thorax.REllipNode;
+            AnyRefFrame &Point = ......Right.Arm.Seg.Scapula.RAngulusInferior;
+            Ref = 0;
+          };
+          Order = 2;
+          Offset = 0;
+          Weight = {1/.....Trunk.Seg.Thorax.RThoraxEllipsoidRadii[0], 
+                    1/.....Trunk.Seg.Thorax.RThoraxEllipsoidRadii[1], 
+                    1/.....Trunk.Seg.Thorax.RThoraxEllipsoidRadii[2]};
+        };
+        DriverPos = {1};   // RHS of the allipsoid equation
+        DriverVel = {0};
+      }; // RScapThoracGlideAI
+
+      AnyKinEqSimpleDriver RScapThoracGlideAA = 
+      {
+        AnyKinMeasureNormComb Comb = 
+        {
+          AnyKinLinear lin = {
+            AnyRefFrame &C = ......Trunk.Seg.Thorax.REllipNode;
+            AnyRefFrame &Point = ......Right.Arm.Seg.Scapula.RAngulusAcromii;
+            Ref = 0;
+          };
+          Order = 2;
+          Offset = 0;
+          Weight = {1/.....Trunk.Seg.Thorax.RThoraxEllipsoidRadii[0], 
+                    1/.....Trunk.Seg.Thorax.RThoraxEllipsoidRadii[1], 
+                    1/.....Trunk.Seg.Thorax.RThoraxEllipsoidRadii[2]};
+        };
+        DriverPos = {1};   // RHS of the allipsoid equation
+        DriverVel = {0};
+      }; // RScapThoracGlideAA
+
+    #endif // IncludeRight
+
+    #if IncludeLeft == 1
+      // The position AI and AA along the stick is constrained to be on the ellipsoid surface. 
+      // This is done by means of the equation for an ellipsoid with center at
+      // the origin of the coordinate system:
+      // x^2/a + y^2/b + z^2/c = 1
+      // This fits a second order NormComb measure perfectly. The 1 on
+      // the right hand side of the equation is obtained by driving the
+      // measure to 1 by a simple driver.
+      AnyKinEqSimpleDriver LScapThoracGlideAI = 
+      {
+        AnyKinMeasureNormComb Comb = 
+        {
+          AnyKinLinear lin = {
+            AnyRefFrame &C = ......Trunk.Seg.Thorax.LEllipNode;
+            AnyRefFrame &Point = ......Left.Arm.Seg.Scapula.LAngulusInferior;
+            Ref = 0;
+          };
+          Order = 2;
+          Offset = 0;
+          Weight = {1/.....Trunk.Seg.Thorax.LThoraxEllipsoidRadii[0], 
+                    1/.....Trunk.Seg.Thorax.LThoraxEllipsoidRadii[1], 
+                    1/.....Trunk.Seg.Thorax.LThoraxEllipsoidRadii[2]};
+        };
+        DriverPos = {1};   // RHS of the allipsoid equation
+        DriverVel = {0};
+      }; // LScapThoracGlideAI
+
+      AnyKinEqSimpleDriver LScapThoracGlideAA = 
+      {
+        AnyKinMeasureNormComb Comb = 
+        {
+          AnyKinLinear lin = {
+            AnyRefFrame &C = ......Trunk.Seg.Thorax.LEllipNode;
+            AnyRefFrame &Point = ......Left.Arm.Seg.Scapula.LAngulusAcromii;
+            Ref = 0;
+          };
+          Order = 2;
+          Offset = 0;
+          Weight = 
+          {
+            1/.....Trunk.Seg.Thorax.LThoraxEllipsoidRadii[0], 
+            1/.....Trunk.Seg.Thorax.LThoraxEllipsoidRadii[1], 
+            1/.....Trunk.Seg.Thorax.LThoraxEllipsoidRadii[2]
+          }; // Weight
+        }; // Comb
+        DriverPos = {1};   // RHS of the allipsoid equation
+        DriverVel = {0};
+      }; // LScapThoracGlideAA
+    #endif // IncludeLeft
+  }; // ArmDrivers
+#endif

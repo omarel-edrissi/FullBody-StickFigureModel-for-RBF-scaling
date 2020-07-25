@@ -1,0 +1,33 @@
+#if IncludeArm == 1
+  AnyFolder ArmMeasures =
+  {
+    AnyFolder ArticulatioAcromioClavicularis =
+    {
+      AnyKinRotational RotMeasure =
+      {               
+        #ifdef RightArm
+          #if USE_KLEIN_BRETELER_SC_JOINT_CENTER_ESTIMATION == 1
+              // old was AnyRefFrame &ref1= .....Right.Arm.Seg.Clavicle.RArticulatioSternoClavicularis;
+              AnyRefFrame &ref1= .....Right.Arm.Seg.Clavicle.RArticulatioAcromioClavicularis;
+              AnyRefFrame &ref2= .....Trunk.Seg.Thorax.RArticulatioSternoClavicularis;
+          #else
+              AnyRefFrame &ref1= .....Right.Arm.Seg.Clavicle.RArticulatioAcromioClavicularis;
+              AnyRefFrame &ref2= .....Trunk.Seg.Thorax.IncisuraJugularis;
+          #endif // USE_KLEIN_BRETELER_SC_JOINT_CENTER_ESTIMATION == 1
+        #endif // Right Arm
+
+        #ifdef LeftArm
+          #if USE_KLEIN_BRETELER_SC_JOINT_CENTER_ESTIMATION == 1
+              AnyRefFrame &ref1= .....Left.Arm.Seg.Clavicle.LArticulatioAcromioClavicularis;
+              AnyRefFrame &ref2= .....Trunk.Seg.Thorax.LArticulatioSternoClavicularis;
+          #else
+              AnyRefFrame &ref1= .....Left.Arm.Seg.Clavicle.LArticulatioAcromioClavicularis;
+              AnyRefFrame &ref2= .....Trunk.Seg.Thorax.IncisuraJugularis;
+          #endif // USE_KLEIN_BRETELER_SC_JOINT_CENTER_ESTIMATION
+        #endif // LeftArm
+        
+        Type = RotAxesAngles; 
+      }; // RotXMeasure
+    }; // ArticulatioSternoClavicularis
+  }; // ArmMeasures
+#endif // IncludeArm

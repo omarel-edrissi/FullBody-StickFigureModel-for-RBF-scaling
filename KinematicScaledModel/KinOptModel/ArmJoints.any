@@ -1,0 +1,142 @@
+AnyFolder Jnt =
+{
+    #if IncludeArm == 1
+
+        #if IncludeShoulder == 1         
+                // The articulatio sternoclavicularis has three DoF and the function of a aspheroid joint
+                // (Platzer W, Shiozawa T. Obere Extremität. In: Platzer W, Shiozawa T, ed. Taschenatlas Anatomie, 
+                // Band 1: Bewegungsapparat. 12., aktualisierte Auflage. Stuttgart: Thieme; 2018. doi:10.1055/b-006-149537).
+                // Restriction of 1 DOF rotation (axial rotation = alpha = RotX) and 2 DOF translation ()
+                // Spherical joint which allows one translation, here along the z-axis, the line connecting SC and AC,
+                // pointing to AC.
+                AnySphericalJoint ArticulatioSternoClavicularis =
+                {
+                    #ifdef RightArm
+                        #if USE_KLEIN_BRETELER_SC_JOINT_CENTER_ESTIMATION == 1
+                            AnyRefFrame &ref1= ....Right.Arm.Seg.Clavicle.RArticulatioSternoClavicularis;
+                            AnyRefFrame &ref2= ....Trunk.Seg.Thorax.RArticulatioSternoClavicularis;
+                        #else
+                            AnyRefFrame &ref1= ....Right.Arm.Seg.Clavicle.IncisuraJugularis;
+                            AnyRefFrame &ref2= ....Trunk.Seg.Thorax.IncisuraJugularis;
+                        #endif // USE_KLEIN_BRETELER_SC_JOINT_CENTER_ESTIMATION
+                        //Constraints.CType = {Hard,Hard,Hard};
+                    #endif // Right Arm
+                
+                    #ifdef LeftArm
+                    // Reference to RefFrame at Stickfigure.any/Posture/Left/Arm/Anterachium( || Humerus)/LArticulatioCubiti.sRelstatic
+                        #if USE_KLEIN_BRETELER_SC_JOINT_CENTER_ESTIMATION == 1
+                            AnyRefFrame &ref1= ....Left.Arm.Seg.Clavicle.LArticulatioSternoClavicularis;
+                            AnyRefFrame &ref2= ....Trunk.Seg.Thorax.LArticulatioSternoClavicularis;
+                        #else
+                            AnyRefFrame &ref1= ....Left.Arm.Seg.Clavicle.IncisuraJugularis;
+                            AnyRefFrame &ref2= ....Trunk.Seg.Thorax.IncisuraJugularis;
+                        #endif // USE_KLEIN_BRETELER_SC_JOINT_CENTER_ESTIMATION
+                        //Constraints.CType = {Hard,Hard,Hard};
+                    #endif // LeftArm
+                    #if HideStickModelGraphics == 0
+                        AnyDrawStdJoint drwJnt = 
+                        {   
+                            D = 0.025; 
+                            L=4*D; 
+                        }; // drwJnt
+                    #endif // HideStickModelGraphics
+                }; // ArticulatioSternoClavicularis TransSphericalJoint 
+
+            AnySphericalJoint ArticulatioAcromioClavicularis =
+            {
+                #ifdef RightArm
+                    AnyRefFrame &ref1= ....Right.Arm.Seg.Clavicle.RArticulatioAcromioClavicularis;
+                    AnyRefFrame &ref2= ....Right.Arm.Seg.Scapula.RArticulatioAcromioClavicularis;
+                #endif // Right Arm
+            
+                #ifdef LeftArm
+                    AnyRefFrame &ref1= ....Left.Arm.Seg.Clavicle.LArticulatioAcromioClavicularis;
+                    AnyRefFrame &ref2= ....Left.Arm.Seg.Scapula.LArticulatioAcromioClavicularis;
+                #endif // LeftArm
+                //Constraints.CType = {Hard,Hard,Hard};
+
+                #if HideStickModelGraphics == 0
+                    AnyDrawStdJoint drwJnt = 
+                    {   
+                        D = 0.025; 
+                        L=4*D; 
+                    }; // drwJnt
+                #endif // HideStickModelGraphics
+            }; // ArticulatioAcromioClavicularis spherical joint
+
+
+            AnySphericalJoint ArticulatioGlenoHumeralis =
+            {
+                #ifdef RightArm
+                    AnyRefFrame &ref1= ....Right.Arm.Seg.Humerus.RArticulatioGlenoHumeralis;
+                    AnyRefFrame &ref2= ....Right.Arm.Seg.Scapula.RArticulatioGlenoHumeralis;
+                #endif // Right Arm
+            
+                #ifdef LeftArm
+                    AnyRefFrame &ref1= ....Left.Arm.Seg.Humerus.LArticulatioGlenoHumeralis;
+                    AnyRefFrame &ref2= ....Left.Arm.Seg.Scapula.LArticulatioGlenoHumeralis;            
+                #endif // LeftArm
+                //Constraints.CType = {Hard,Hard,Hard};
+
+                #if HideStickModelGraphics == 0
+                    AnyDrawStdJoint drwJnt = 
+                    {   
+                        D = 0.025; 
+                        L=4*D; 
+                    }; // drwJnt
+                #endif // HideStickModelGraphics
+            }; // ArticulatioGlenoHumeralis
+            
+        #endif // IncludeShoulder
+
+        #if IncludeElbow == 1
+            // Articulatio cubiti (elbow joint) as revolute joint (hinge joint) with 1 DoF 
+            AnyRevoluteJoint ArticulatioCubiti =
+            {
+                #ifdef RightArm
+                    AnyRefFrame &ref1= ....Right.Arm.Seg.Forearm.RArticulatioCubiti;
+                    AnyRefFrame &ref2= ....Right.Arm.Seg.Humerus.RArticulatioCubiti;
+                #endif // Right Arm
+                
+                #ifdef LeftArm
+                    // Reference to RefFrame at Stickfigure.any/Posture/Left/Arm/Anterachium( || Humerus)/LArticulatioCubiti.sRelstatic
+                    AnyRefFrame &ref1= ....Left.Arm.Seg.Forearm.LArticulatioCubiti;
+                    AnyRefFrame &ref2= ....Left.Arm.Seg.Humerus.LArticulatioCubiti;
+                #endif // LeftArm
+
+                #if HideStickModelGraphics == 0
+                AnyDrawStdJoint drwJnt = 
+                {   
+                    D = 0.015; 
+                    L = 4*D; 
+                };
+                #endif // HideStickModelGraphics
+            }; // ArticulatioCubiti revolute joint
+        
+        #endif // IncludeElbow
+
+        #if IncludeWrist == 1
+            AnyRevoluteJoint ArticulatioRadioCarpalis = 
+            {
+                #ifdef RightArm
+                    AnyRefFrame &ref1= ....Right.Arm.Seg.Forearm.RArticulatioRadioCarpalis;
+                    AnyRefFrame &ref2= ....Right.Arm.Seg.Hand.RArticulatioRadioCarpalis;
+                #endif // Right Arm
+                
+                #ifdef LeftArm
+                    // Reference to RefFrame at Stickfigure.any/Posture/Left/Arm/Forearm( || Hand)/LArticulatioRadioCarpalis.sRelstatic
+                    AnyRefFrame &ref1= ....Left.Arm.Seg.Forearm.LArticulatioRadioCarpalis;
+                    AnyRefFrame &ref2= ....Left.Arm.Seg.Hand.LArticulatioRadioCarpalis;
+                #endif // LeftArm
+
+                #if HideStickModelGraphics == 0
+                AnyDrawStdJoint drwJnt = 
+                {   
+                    D = 0.015; 
+                    L=4*D; 
+                };
+                #endif // HideStickModelGraphics
+            }; // ArticulatioRadioCarpalis       
+        #endif // IncludeWrist
+    #endif // Include Arms
+}; // Jnt

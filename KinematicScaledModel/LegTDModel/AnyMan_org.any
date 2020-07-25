@@ -1,0 +1,143 @@
+// File of anthropometric data based on data from the book 
+//Dynamics of Human Gait (Second Edition)
+//Christopher L Vaughan, PhD
+//University of Cape Town
+//Brian L Davis, PhD
+//Cleveland Clinic Foundation
+//Jeremy C O’Connor, BSc (Eng)
+//University of Cape Town
+
+AnyVar BMI = AnthroData.Body_Mass/(AnthroData.body_height^2);
+  AnyVar FatPercent = (-0.09 + 0.0149*BMI - 0.00009*BMI^2)*100; //Estimation from Frankenfield et al. (2001) valid for men
+
+
+
+AnyFolder AnthroData = {
+
+  
+  AnyVar Body_Mass = Main.SubjectSpecificData.Anthropometrics.BodyMass;
+  AnyVar body_height =Main.SubjectSpecificData.Anthropometrics.BodyHeight;
+  AnyVar KneeWidth = Main.SubjectSpecificData.Anthropometrics.KneeWidth;
+  AnyVar AnkleWidth = Main.SubjectSpecificData.Anthropometrics.AnkleWidth;
+          
+  AnyVar ThighLengthIni= Main.SubjectSpecificData.Anthropometrics.ThighLengthIni;  //rigth and left side is mirrored 
+  AnyVar ShankLengthIni= Main.SubjectSpecificData.Anthropometrics.ShankLengthIni;
+  AnyVar FootLengthIni=Main.SubjectSpecificData.Anthropometrics.FootLengthIni;
+  AnyVar PelvisWidthIni=Main.SubjectSpecificData.Anthropometrics.PelvisWidthIni; //distance between hip joints
+    
+  AnyVar HeadHeightIni = Main.SubjectSpecificData.Anthropometrics.HeadHeightIni;//height in neutral position from  C1HatNode to top of head
+  AnyVar TrunkHeightIni = Main.SubjectSpecificData.Anthropometrics.TrunkHeightIni;//height in neautral position from  C1HatNode to L5SacrumJnt
+  AnyVar UpperArmLengthIni = Main.SubjectSpecificData.Anthropometrics.UpperArmLengthIni;
+  AnyVar LowerArmLengthIni =Main.SubjectSpecificData.Anthropometrics.LowerArmLengthIni;
+  AnyVar HandLengthIni = Main.SubjectSpecificData.Anthropometrics.HandLengthIni;
+  AnyVar HandBreadth = Main.SubjectSpecificData.Anthropometrics.HandBreadth;
+  AnyVar ThighCirc= Main.SubjectSpecificData.Anthropometrics.ThighCirc;
+  AnyVar KneeCirc=Main.SubjectSpecificData.Anthropometrics.KneeCirc ;
+  AnyVar AnkleCirc= Main.SubjectSpecificData.Anthropometrics.AnkleCirc;
+  AnyVar PelvisCirc=Main.SubjectSpecificData.Anthropometrics.PelvisCirc ;
+  AnyVar PelvisHeight=Main.SubjectSpecificData.Anthropometrics.PelvisHeight ;
+  AnyVar WaistCirc=Main.SubjectSpecificData.Anthropometrics.WaistCirc ;
+  AnyVar BreastCirc=Main.SubjectSpecificData.Anthropometrics.BreastCirc ;
+  AnyVar UpperArmCirc= Main.SubjectSpecificData.Anthropometrics.UpperArmCirc;
+  AnyVar LowerArmCirc=Main.SubjectSpecificData.Anthropometrics.LowerArmCirc ;
+  AnyVar WristCirc=Main.SubjectSpecificData.Anthropometrics.WristCirc ;
+  AnyVar HandWidth=Main.SubjectSpecificData.Anthropometrics.HandWidth ;
+  AnyVar FootWidth= Main.SubjectSpecificData.Anthropometrics.FootWidth;
+  AnyVar AnkleHeigth=Main.SubjectSpecificData.Anthropometrics.AnkleHeigth; 
+  
+  //Volumenberechnung
+  AnyVar ThighD1=ThighCirc/pi;
+  AnyVar ThighD2=KneeCirc/pi;
+  AnyVar ThighVolume=(ThighLengthIni*pi/12)*(ThighD1^2+ThighD2^2+ThighD2*ThighD1);
+  AnyVar ShankD1=KneeCirc/pi;
+  AnyVar ShankD2=AnkleCirc/pi;
+  AnyVar ShankVolume=(ShankLengthIni*pi/12)*(ShankD1^2+ShankD2^2+ShankD1*ShankD2);
+  AnyVar FootVolume=FootLengthIni*FootWidth*0.5*AnkleHeigth;
+  AnyVar UpperArmD1=Main.SubjectSpecificData.Anthropometrics.UpperArmCirc/pi;
+  AnyVar UpperArmD2=Main.SubjectSpecificData.Anthropometrics.LowerArmCirc /pi;
+  AnyVar UpperArmVolume=(UpperArmLengthIni*pi/12)*(UpperArmD1^2+UpperArmD2^2+UpperArmD1*UpperArmD2);
+  AnyVar LowerArmD1=UpperArmD2;
+  AnyVar LowerArmD2=WristCirc/pi;
+  AnyVar LowerArmVolume=(LowerArmLengthIni*pi/12)*(LowerArmD1^2+LowerArmD2^2+LowerArmD1*LowerArmD2);
+  AnyVar ThoraxD1=BreastCirc/pi;
+  AnyVar ThoraxD2=WaistCirc/pi;
+  AnyVar ThoraxVolume=(TrunkHeightIni*pi/12)*(ThoraxD1^2+ThoraxD2^2+ThoraxD1*ThoraxD2);
+  AnyVar PelvisVolum=(PelvisCirc/pi)*PelvisHeight
+  
+
+  //Segment masses in kg from Winter ("Biomechanics and motor control of human movement." David A. Winter)
+  AnyVar lumbar = 0.139*Body_Mass; // T12-L1 to L5-Sacrum
+  AnyVar pelvis = 0.142*Body_Mass;
+  AnyVar thorax = ThoraxVolume*Main.AnyBodyGaitAppModel.HumanModel.Scaling.StandardParameters.BodyParameters.Density-pelvis-lumbar; // C7-T1 to T12-L1 (modified from 0.216 winter to separate scapula)
+  AnyVar clavicle_r = 0.0133*Body_Mass;
+  AnyVar upper_arm_r =UpperArmVolume*Main.AnyBodyGaitAppModel.HumanModel.Scaling.StandardParameters.BodyParameters.Density;
+  AnyVar lower_arm_r = LowerArmVolume*Main.AnyBodyGaitAppModel.HumanModel.Scaling.StandardParameters.BodyParameters.Density;
+  AnyVar hand_r = 0.007*Body_Mass;
+  AnyVar clavicle_l = 0.0133*Body_Mass;
+  AnyVar upper_arm_l=UpperArmVolume*Main.AnyBodyGaitAppModel.HumanModel.Scaling.StandardParameters.BodyParameters.Density;
+  AnyVar lower_arm_l = LowerArmVolume*Main.AnyBodyGaitAppModel.HumanModel.Scaling.StandardParameters.BodyParameters.Density;
+  AnyVar hand_l = 0.007*Body_Mass;
+  AnyVar head = 0.08*Body_Mass; // head and cervical
+  AnyVar thigh_r = ThighVolume*Main.AnyBodyGaitAppModel.HumanModel.Scaling.StandardParameters.BodyParameters.Density;
+  AnyVar lower_leg_r = ShankVolume*Main.AnyBodyGaitAppModel.HumanModel.Scaling.StandardParameters.BodyParameters.Density;
+  AnyVar foot_r = FootVolume*Main.AnyBodyGaitAppModel.HumanModel.Scaling.StandardParameters.BodyParameters.Density;
+  AnyVar ball_r = 0.000;
+  AnyVar thigh_l = ThighVolume*Main.AnyBodyGaitAppModel.HumanModel.Scaling.StandardParameters.BodyParameters.Density;
+  AnyVar lower_leg_l = ShankVolume*Main.AnyBodyGaitAppModel.HumanModel.Scaling.StandardParameters.BodyParameters.Density;
+  AnyVar foot_l = FootVolume*Main.AnyBodyGaitAppModel.HumanModel.Scaling.StandardParameters.BodyParameters.Density;
+  AnyVar ball_l = 0.000;
+
+  
+  // Those two folders are used by the TD leg
+  AnyFolder Right ={
+    AnyVar thigh = .thigh_r;
+    AnyVar lower_leg = .lower_leg_r;
+    AnyVar talus = 0.0145*0.2*.Body_Mass;
+    AnyVar foot = .foot_r;
+    AnyVar ball = 0.000;
+  };
+  AnyFolder Left={
+    AnyVar thigh = .thigh_l;
+    AnyVar lower_leg = .lower_leg_l;
+    AnyVar talus = 0.0145*0.2*.Body_Mass;
+    AnyVar foot = .foot_l;
+    AnyVar ball = 0.000;
+  };
+  
+};
+
+//Only the lenghts for the leg are used for this model, but the  full dataset
+//needs to be present in order to load the model
+AnyFolder AnthroSegmentLengths = {
+  
+  
+  AnyVar ThighLength = Main.SubjectSpecificData.Anthropometrics.ThighLengthIni;
+  AnyVar ShankLength = Main.SubjectSpecificData.Anthropometrics.ShankLengthIni;
+  AnyVar FootLength = Main.SubjectSpecificData.Anthropometrics.FootLengthIni;
+  AnyVar PelvisWidth = Main.SubjectSpecificData.Anthropometrics.PelvisWidthIni; //distance between hip joints
+  AnyVar HeadHeight = Main.SubjectSpecificData.Anthropometrics.HeadHeightIni;//height in neutral position from  C1HatNode to top of head
+  AnyVar TrunkHeight = Main.SubjectSpecificData.Anthropometrics.TrunkHeightIni;//height in neautral position from  C1HatNode to L5SacrumJnt
+  AnyVar UpperArmLength = Main.SubjectSpecificData.Anthropometrics.UpperArmLengthIni;
+  AnyVar LowerArmLength =Main.SubjectSpecificData.Anthropometrics.LowerArmLengthIni;
+  AnyVar HandLength = Main.SubjectSpecificData.Anthropometrics.HandLengthIni;
+  AnyVar HandBreadth = Main.SubjectSpecificData.Anthropometrics.HandBreadth;
+  
+  
+  // Those two folders are used by the TD leg
+  AnyFolder Right ={
+    AnyVar ThighLength = vnorm(Main.JntParameterOptModel.LegModel.Right.Seg.Thigh.HipJoint.sRel-Main.JntParameterOptModel.LegModel.Right.Seg.Thigh.KneeJoint.sRel);
+    AnyVar ShankLength = vnorm(Main.JntParameterOptModel.LegModel.Right.Seg.Shank.KneeJoint.sRel-Main.JntParameterOptModel.LegModel.Right.Seg.Shank.AnkleJoint.sRel);
+    AnyVar FootLength = .FootLength* vnorm(Main.JntParameterOptModel.LegModel.Right.Seg.Foot.RHeel.sRel-Main.JntParameterOptModel.LegModel.Right.Seg.Foot.RToe.sRel)/
+                        vnorm(Main.SubjectSpecificData.MarkerPos.HeelMarker-Main.SubjectSpecificData.MarkerPos.ToeMarker);
+    AnyVar TalusLength = 0.133*FootLength; // calculated automaticaly from the foot size
+  };
+  
+  AnyFolder Left ={
+    AnyVar ThighLength = vnorm(Main.JntParameterOptModel.LegModel.Left.Seg.Thigh.HipJoint.sRel-Main.JntParameterOptModel.LegModel.Left.Seg.Thigh.KneeJoint.sRel);
+    AnyVar ShankLength = vnorm(Main.JntParameterOptModel.LegModel.Left.Seg.Shank.KneeJoint.sRel-Main.JntParameterOptModel.LegModel.Left.Seg.Shank.AnkleJoint.sRel);
+    AnyVar FootLength = .FootLength* vnorm(Main.JntParameterOptModel.LegModel.Left.Seg.Foot.LHeel.sRel-Main.JntParameterOptModel.LegModel.Left.Seg.Foot.LToe.sRel)/
+                        vnorm(Main.SubjectSpecificData.MarkerPos.HeelMarker-Main.SubjectSpecificData.MarkerPos.ToeMarker);
+    AnyVar TalusLength = 0.133*FootLength; // calculated automaticaly from the foot size
+  };  
+};
+

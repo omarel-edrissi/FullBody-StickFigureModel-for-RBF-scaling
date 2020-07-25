@@ -1,0 +1,352 @@
+AnyFolder Seg = 
+{
+  #if IncludeArm == 1
+    #if IncludeShoulder == 1
+      AnySeg Clavicle =
+      {
+        // Mass is incorrect need literatur search
+        Mass = 10.6;
+        Jii = {0.02, 0.025, 0.015};
+        sCoM = {-0.09,-0.03,0};
+        JaboutCoMOnOff = On;
+        
+        #ifdef RightArm
+          r0 = .....StickFigure.Posture.Right.Arm.Clavicle.InitialPos.r0;
+          Axes0 = .....StickFigure.Posture.Right.Arm.Clavicle.InitialPos.Axes0;
+        #endif
+        
+        #ifdef LeftArm
+          r0 = .....StickFigure.Posture.Left.Arm.Clavicle.InitialPos.r0;
+          Axes0 = .....StickFigure.Posture.Left.Arm.Clavicle.InitialPos.Axes0;
+        #endif      
+
+        #if HideStickModelGraphics == 0
+          //Draw the LCS of Clavicle
+          AnyDrawRefFrame drw =
+          {
+            RGB={1,0,0}; 
+            ScaleXYZ = 0.12*{1,1,1};
+            Visible = On;
+          };  
+
+            
+          AnyDrawLine DrwLine = 
+          {
+            #ifdef RightArm
+              #if USE_KLEIN_BRETELER_SC_JOINT_CENTER_ESTIMATION == 1
+                p0 = .RArticulatioSternoClavicularis.sRel;
+              #else
+                p0 = .IncisuraJugularis.sRel;
+              #endif
+              p1 = .RAcromion.sRel;
+            #endif
+            
+            #ifdef LeftArm
+              #if USE_KLEIN_BRETELER_SC_JOINT_CENTER_ESTIMATION == 1
+                p0 = .LArticulatioSternoClavicularis.sRel;
+              #else
+                p0 = .IncisuraJugularis.sRel;
+              #endif
+              p1 = .LAcromion.sRel;
+            #endif
+            
+            Line.Thickness = 0.01;
+            GlobalCoord = Off;
+            Line.RGB = {1, 0, 0}; 
+            Opacity = 1.0;  
+          };
+          
+        #endif
+      };
+
+      AnySeg Scapula =
+      {
+        // Mass is incorrect need literatur search
+        Mass = 10.6;
+        Jii = {0.02, 0.025, 0.015};
+        sCoM = {-0.09,-0.03,0};
+        JaboutCoMOnOff = On;
+        
+        #ifdef RightArm
+          r0 = .....StickFigure.Posture.Right.Arm.Scapula.InitialPos.r0;
+          Axes0 = .....StickFigure.Posture.Right.Arm.Scapula.InitialPos.Axes0;
+        #endif
+        
+        #ifdef LeftArm
+          r0 = .....StickFigure.Posture.Left.Arm.Scapula.InitialPos.r0;
+          Axes0 = .....StickFigure.Posture.Left.Arm.Scapula.InitialPos.Axes0;
+        #endif      
+    
+        #if HideStickModelGraphics == 0
+          //Draw the LCS of Scapula
+          AnyDrawRefFrame drw =
+          {
+            RGB={1,1,1}; 
+            ScaleXYZ = 0.12*{1,1,1};
+            Visible = On;
+          };  
+
+          AnyDrawLine DrwLine1 = 
+          {
+            #ifdef RightArm
+                p0 = .RAngulusAcromii.sRel;
+                p1 = .RAngulusInferior.sRel;
+            #endif
+            
+            #ifdef LeftArm
+                p0 = .LAngulusAcromii.sRel;
+                p1 = .LAngulusInferior.sRel;
+            #endif
+            
+            Line.Thickness = 0.01;
+            GlobalCoord = Off;
+            Line.RGB = {1, 1, 1};
+            Opacity = 1.0;    
+          };
+
+          AnyDrawLine DrwLine2 = 
+          {
+            #ifdef RightArm
+                p0 = .RAngulusAcromii.sRel;
+                p1 = .RTrigonumSpinaeScapulae.sRel;
+            #endif
+            
+            #ifdef LeftArm
+                p0 = .LAngulusAcromii.sRel;
+                p1 = .LTrigonumSpinaeScapulae.sRel;
+            #endif
+            
+            Line.Thickness = 0.01;
+            GlobalCoord = Off;
+            Line.RGB = {1, 1, 1};
+            Opacity = 1.0;   
+          };
+
+          AnyDrawLine DrwLine3 = 
+          {
+            #ifdef RightArm
+                p0 = .RAngulusAcromii.sRel;
+                p1 = .RAcromion.sRel;
+            #endif
+            
+            #ifdef LeftArm
+                p0 = .LAngulusAcromii.sRel;
+                p1 = .LAcromion.sRel;
+            #endif
+            
+            Line.Thickness = 0.01;
+            GlobalCoord = Off;
+            Line.RGB = {1, 1, 1};
+            Opacity = 1.0;    
+          };
+
+          AnyDrawLine DrwLine5 = 
+          {
+            #ifdef RightArm
+                p1 = .RAngulusInferior.sRel;
+                p0 = .RTrigonumSpinaeScapulae.sRel;
+            #endif
+            
+            #ifdef LeftArm
+                p1 = .LAngulusInferior.sRel;
+                p0 = .LTrigonumSpinaeScapulae.sRel;
+            #endif
+            
+            Line.Thickness = 0.01;
+            GlobalCoord = Off;
+            Line.RGB = {1, 1, 1};
+            Opacity = 1.0;   
+          };
+     
+        #if USE_MESKERS_GH_JOINT_CENTER_ESTIMATION == 1
+         AnyDrawLine DrwLine6 = 
+           {
+             #ifdef RightArm
+                 p1 = .RProcessusCoracoideus.sRel;
+                 p0 = .RAcromion.sRel;
+             #endif
+             
+             #ifdef LeftArm
+                 p1 = .LProcessusCoracoideus.sRel;
+                 p0 = .LAcromion.sRel;
+             #endif
+             
+             Line.Thickness = 0.01;
+             GlobalCoord = Off;
+             Line.RGB = {1, 1, 1};
+             Opacity = 1.0;    
+           };
+ 
+           AnyDrawLine DrwLine7 = 
+           {
+             #ifdef RightArm
+                 p1 = .RProcessusCoracoideus.sRel;
+                 p0 = .RAngulusAcromii.sRel;
+             #endif
+             
+             #ifdef LeftArm
+                 p1 = .LProcessusCoracoideus.sRel;
+                 p0 = .LAngulusAcromii.sRel;
+             #endif
+             
+             Line.Thickness = 0.01;
+             GlobalCoord = Off;
+             Line.RGB = {1, 1, 1};
+             Opacity = 1.0;    
+           };
+          #endif
+        #endif
+      }; // Scapula
+
+    #endif // IncludeShoulder
+
+    #if IncludeShoulder == 1 | IncludeElbow == 1
+      AnySeg Humerus =
+      {
+        // Mass is incorrect need literatur search
+        Mass = 10.6;
+        Jii = {0.02, 0.025, 0.015};
+        sCoM = {-0.09,-0.03,0};
+        JaboutCoMOnOff = On;
+        
+        #ifdef RightArm
+          r0 = .....StickFigure.Posture.Right.Arm.Humerus.InitialPos.r0;
+          Axes0 = .....StickFigure.Posture.Right.Arm.Humerus.InitialPos.Axes0;
+        #endif
+        
+        #ifdef LeftArm
+          r0 = .....StickFigure.Posture.Left.Arm.Humerus.InitialPos.r0;
+          Axes0 = .....StickFigure.Posture.Left.Arm.Humerus.InitialPos.Axes0;
+        #endif      
+
+        #if HideStickModelGraphics == 0
+          //Draw the LCS of Humerus
+          AnyDrawRefFrame drw =
+          {
+            RGB={0,0,1}; 
+            ScaleXYZ = 0.12*{1,1,1};
+            Visible = On;
+          };     
+          AnyDrawLine DrwLine = 
+          {
+            #ifdef RightArm
+              p0 = 0.5* (.REpicondylusMedialisHumeri.sRel + .REpicondylusLateralisHumeri.sRel);
+              p1 = .RArticulatioGlenoHumeralis.sRel;
+            #endif
+            #ifdef LeftArm
+              p0 = 0.5* (.LEpicondylusMedialisHumeri.sRel + .LEpicondylusLateralisHumeri.sRel);
+              p1 = .LArticulatioGlenoHumeralis.sRel;
+            #endif
+            
+            Line.Thickness = 0.01;
+            GlobalCoord = Off;
+            Line.RGB = {0, 0, 1};
+            Opacity = 1.0;   
+          };
+        #endif
+      };
+    #endif // IncludeShoulder == 1 | IncludeElbow == 1
+
+    #if IncludeElbow == 1 | IncludeWrist == 1  
+      AnySeg Forearm =
+      {
+        // Mass is incorrect need literatur search
+        Mass = 10.6;
+        Jii = {0.02, 0.025, 0.015};
+        sCoM = {-0.09,-0.03,0};
+        JaboutCoMOnOff = On;
+        
+        #ifdef RightArm
+          r0 = .....StickFigure.Posture.Right.Arm.Forearm.InitialPos.r0;
+          Axes0 = .....StickFigure.Posture.Right.Arm.Forearm.InitialPos.Axes0;
+        #endif
+        
+        #ifdef LeftArm
+          r0 = .....StickFigure.Posture.Left.Arm.Forearm.InitialPos.r0;
+          Axes0 = .....StickFigure.Posture.Left.Arm.Forearm.InitialPos.Axes0;
+        #endif      
+
+        #if HideStickModelGraphics == 0
+          //Draw the LCS of Forearm
+          AnyDrawRefFrame drw =
+          {
+            RGB={0,1,0}; 
+            ScaleXYZ = 0.12*{1,1,1};
+            Visible = On;
+          };    
+
+          AnyDrawLine DrwLine = 
+          {
+
+            #ifdef RightArm
+              p0 = -0.5* (..Humerus.REpicondylusMedialisHumeri.sRel + ..Humerus.REpicondylusLateralisHumeri.sRel);
+              p1 = .RArticulatioRadioCarpalis.sRel;
+              
+            #endif
+            #ifdef LeftArm
+              p0 = -0.5* (..Humerus.LEpicondylusMedialisHumeri.sRel + ..Humerus.LEpicondylusLateralisHumeri.sRel);
+              p1 = .LArticulatioRadioCarpalis.sRel;
+            #endif
+            
+            Line.Thickness = 0.01;
+            GlobalCoord = Off;
+            Line.RGB = {0, 1, 0};
+            Opacity = 1.0;    
+          };
+
+        #endif
+      };
+    #endif // IncludeElbow == 1 | IncludeWrist == 1
+
+    #if IncludeWrist == 1
+      AnySeg Hand =
+      {
+        // Mass is incorrect need literatur search
+        Mass = 10.6;
+        Jii = {0.02, 0.025, 0.015};
+        sCoM = {-0.09,-0.03,0};
+        JaboutCoMOnOff = On;
+        
+        #ifdef RightArm
+          r0 = .....StickFigure.Posture.Right.Arm.Hand.InitialPos.r0;
+          Axes0 = .....StickFigure.Posture.Right.Arm.Hand.InitialPos.Axes0;
+        #endif
+        
+        #ifdef LeftArm
+          r0 = .....StickFigure.Posture.Left.Arm.Hand.InitialPos.r0;
+          Axes0 = .....StickFigure.Posture.Left.Arm.Hand.InitialPos.Axes0;
+        #endif      
+
+        #if HideStickModelGraphics == 0
+          //Draw the LCS of Hand
+          AnyDrawRefFrame drw =
+          {
+            RGB={1,0,0}; 
+            ScaleXYZ = 0.12*{1,1,1};
+            Visible = On;
+          };    
+
+          AnyDrawLine DrwLine = 
+          {
+
+            #ifdef RightArm
+              p0 = 0.5* (.RProcessusStyloideusUlnae.sRel + .RProcessusStyloideusRadii.sRel);
+              p1 = .RManusSegmentHelpMarker.sRel;     
+            #endif
+
+            #ifdef LeftArm
+              p0 = 0.5* (.LProcessusStyloideusUlnae.sRel + .LProcessusStyloideusRadii.sRel);
+              p1 = .LManusSegmentHelpMarker.sRel;
+            #endif
+            
+            Line.Thickness = 0.01;
+            GlobalCoord = Off;
+            Line.RGB = {1, 0, 0};
+            Opacity = 1.0;    
+          };
+
+        #endif
+      };
+    #endif // IncludeWrist
+  #endif // IncludeArm
+};
