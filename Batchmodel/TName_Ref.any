@@ -1,6 +1,6 @@
 AnyFolder TName_Ref = 
 {
-    AnyString NameR = "..\Input\Ref_sup0004_mod.c3d"; 
-    AnyString NameG = "Ref_sup0004_mod"; 
+    AnyString NameR = "..\Input\RReference_Supination_01_mod.c3d"; 
+    AnyString NameG = "Reference_Supination_01_mod";
 }; 
 
